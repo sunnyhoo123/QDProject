@@ -93,7 +93,7 @@
 		name: "Home",
 		data() {
 			return {
-				msg: "123",
+				msg: "1233",
 				seen: true,
 				ok: true,
 				activeClass: "active",
