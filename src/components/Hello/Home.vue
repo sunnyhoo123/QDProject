@@ -103,8 +103,6 @@
 				status: ['info','success','danger'],
 				testUrl: '',
 				testparams: '',
-			//  selected:{
-			//  }
 				textarea: '',
 				contList:[],
 				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
