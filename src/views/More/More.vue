@@ -1,11 +1,9 @@
 <template>
-  <div id="more">
-    <router-view/>
-    <!-- <qee>
-      <p>父组件插槽</p>
-    </qee> -->
-     <!-- <p>父组件插槽</p> -->
-  </div>
+    <div id="more">
+       <div>ES6</div>
+       <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
+       <el-button type="primary" @click="PrefixInteger">拆分数字</el-button>
+    </div>
 </template>
 
 <script>
@@ -13,21 +11,25 @@
         name: 'more',
         data(){
             return{
-
+                original:0
             }
         },
         methods: {
-                qee
+            PrefixInteger(num,n){
+                let originaValue;
+                originaValue = String(this.original).split("")
+                console.log((Array(9).join(0)+this.original).slice(-9))
+            }
         }
     }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
 }
 </style>
