@@ -1,5 +1,11 @@
 const BASE = process.env.API_ROOT,
-    BROKER_URL = `${BASE}/base`,
-    BROKER = {
-        listCoin: `${BROKER_URL}listFiatCurrency`
+    JSON_BASE = process.env.JSON_ROOT,
+    TOTAL = `${BASE}/base`,
+    NODE_URL = `${TOTAL}/NODE`,
+    NODE = {
+        list:`${NODE_URL}list`
     }
+export default{
+    NODE,
+    JSON_BASE 
+}

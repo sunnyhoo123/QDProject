@@ -4,6 +4,7 @@ import home from '@/components/Hello/home'
 import Demo from '@/components/Demo'
 import ListAbout from '@/views/ListAbout/ListAbout'
 import NumberAbout from '@/views/NumberAbout/NumberAbout'
+import More from '@/views/More/More'
 
 Vue.use(Router)
 
@@ -30,6 +31,12 @@ export default new Router({
       name: 'NumberAbout',
       component: NumberAbout
     },
+    {
+      path: '/more',
+      name: 'More',
+      component: More
+    },
+
 
   ]
 })

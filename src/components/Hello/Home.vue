@@ -89,12 +89,13 @@
 	import TestDemo from '@/components/Demo.vue'
 	import fsObj from '@/services/fs-service.js'
 	import {mapActions,mapGetters} from 'vuex'
+	import apiConfig from '@/config/API-config'
 	export default {
 		name: "Home",
 		data() {
 			return {
 				msg: "1233",
-				seen: true,
+				seen: false,
 				ok: true,
 				activeClass: "active",
 				errorClass: "text-danger",
@@ -103,12 +104,10 @@
 				status: ['info','success','danger'],
 				testUrl: '',
 				testparams: '',
-			//  selected:{
-			//  }
 				textarea: '',
 				contList:[],
 				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
-				hiddenBg:'隐藏背景'
+				hiddenBg:'显示背景',
 			};
 		},
 		computed: {
@@ -128,15 +127,15 @@
 		},
 		methods: {
 			...mapActions(['exec']),
-			getApiData() {
-				axios.post(
-					"http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency", {
-							id: 2
-					}
-				).then(function(rep) {
-					console.log(rep);
-				});
-			},
+			// getApiData() {
+			// 	axios.post(
+			// 		"http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency", {
+			// 				id: 2
+			// 		}
+			// 	).then(function(rep) {
+			// 		console.log(rep);
+			// 	});
+			// },
 			increment () {
 			this.count++
 			},
@@ -149,9 +148,15 @@
 			return url
 			},
 			Test1(){
-				this.contList.push(this.selected)
-				console.log(this.contList)
+				// this.contList.push(this.selected)
+				// console.log(this.contList)
+				// var date1=new Date('2016-01-01 00:00:00')Format('yyyy-MM-dd HH:mm:ss'); 
 				
+				var date1=new Date(1547644771000).Format('yyyy-MM-dd HH:mm:ss'); 
+				console.log(new Date('123456'))
+				let TOTAL = `${this.API_ROOT}/browser-api/`
+				console.log(RegExp.$1.length)
+				console.log(apiConfig.NODE.list)
 			},
 			bg(){
 				let r = Math.floor((Math.random()*6)+1)
