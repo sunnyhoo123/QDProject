@@ -2,6 +2,7 @@
     <div id="listabout">
         <div>Array数组专场</div>
 		<el-button type="primary" @click="filterFun">filterFun</el-button>
+		<el-button type="primary" @click="traverse">traverse</el-button>
         <div>{{example2}}</div>
     </div>
 </template>
@@ -11,6 +12,7 @@
         name: 'listabout',
         data(){
             return{
+                temp:[],
                 example1:{
                     items:{
                         messages:23,
@@ -18,8 +20,8 @@
                         messages:3333,
                     }
                 },
-                example2:['123','324','323','34242','3232']
-                
+                example2:['123','324','323','34242','3232'],
+                example3:[123,324,323,34242,3232]
             };
         },
         methods: {
@@ -27,6 +29,12 @@
                 this.example2 = this.example2.filter(function(value){
                     return value.match('123')
                 })
+            },
+            traverse(){
+                this.temp=this.example3.map((item,index)=>{
+                    return item+0.1*index
+                })
+                console.log(this.temp)
             }
         }
     }
