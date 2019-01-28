@@ -35,10 +35,6 @@
 		</div>
 		
 		<!-- <div v-bind:class="[activeClass, errorClass]">使用数组传值</div> -->
-		
-			<!-- <li>
-				请求地址：http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency
-			</li> -->
 		<!-- <div id="example-5">
 			<select v-model="selected" multiple style="width: 50px;">
 				<option disabled value="">请选择</option>
@@ -74,12 +70,13 @@
 		<el-button type="primary" @click="Test1()">方法测试</el-button>
 		<el-button type="primary" @click="bg">切换背景</el-button>
 		<el-button type="primary" @click="addCont">执行合约</el-button>
+		<el-button type="primary" @click="getApiData">调用接口</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 		<div class="body">
 			<div class="background" ref="element" style="display:block" v-if="seen"></div>
 			<div class="execCont"><strong>合约信息</strong>
-				<ul v-for="item in contList" :key="item">
-					<li >{{item}}</li>
+				<ul class="ul-cont" v-for="item in contList" :key="item">
+					<li class="li-cont">{{item}}</li>
 				</ul>
 			</div>
 			<el-menu class="menu" >
@@ -92,7 +89,11 @@
 				
        		</el-menu>
 		</div>
-		
+		<div v-if="seen">
+			<ul  class="ul-api" v-for="item in getResult" :key="item.index">
+				<li><img :src="item.url" width="100" height="200"></li>
+			</ul>
+		</div>
 	</div>
 </template>
 
@@ -101,7 +102,7 @@
 	import TestDemo from '@/components/Demo.vue'
 	import fsObj from '@/services/fs-service.js'
 	import {mapActions,mapGetters} from 'vuex'
-	import apiConfig from '@/config/API-config'
+	import apiService from '@/services/API-service.js'
 	export default {
 		name: "Home",
 		data() {
@@ -119,7 +120,7 @@
 				textarea: '',
 				contList:[],
 				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
-				hiddenBg:'显示背景',
+				hiddenBg:'显示图片',
 				options: [{
 					value: '选项0',
 					label: '所有'
@@ -139,7 +140,8 @@
 					value: '选项5',
 					label: '北京烤鸭'
 				}],
-				value:''
+				value:'',
+				getResult:[]
 			};
 		},
 		computed: {
@@ -160,13 +162,21 @@
 		methods: {
 			...mapActions(['exec']),
 			getApiData() {
-				axios.post(
-					"http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency", {
-							id: 2
-					}
-				).then(function(rep) {
-					console.log(rep);
-				});
+				// 未封装请求方法
+				// axios.post(
+				// 	"http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency", {
+				// 			id: 2
+				// 	}
+				// ).then(function(rep) {
+				// 	console.log(rep);
+				// });
+
+				//将参数封装到API-config.js中，将方法封装到API-service.js中
+				apiService.TestURL.imgTestURL().then(res=>{
+					let result = res
+					this.getResult = result.results
+					console.log(this.getResult)
+				}).catch()
 			},
 			increment () {
 			this.count++
@@ -219,9 +229,9 @@
 			hiddenBG(){
 				this.seen = !this.seen
 				if(this.seen){
-					this.hiddenBg = '隐藏背景'
+					this.hiddenBg = '隐藏图片'
 				}else{
-					this.hiddenBg = '显示背景'
+					this.hiddenBg = '显示图片'
 				}
 
 				
@@ -235,19 +245,19 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang='less' scoped>
 	h1,h2 {
 		font-weight: normal;
 	}
 	/* [title]{
 		background: #42b983
 	} */
-	ul {
+	.ul-cont {
 		list-style-type: none;
 		padding: 0;
 	}
 
-	li {
+	.li-cont {
 		display: inline-block;
 		margin: 0 10px;
 	}
@@ -286,5 +296,9 @@
 		width: 20px;
 		background: red;
 	}
-
+	.ul-api{
+		li{
+			float: left;
+		}
+	}
 </style>

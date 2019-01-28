@@ -4,8 +4,10 @@ const BASE = process.env.API_ROOT,
     NODE_URL = `${TOTAL}/NODE`,
     NODE = {
         list:`${NODE_URL}list`
-    }
+    },
+    TestURL = 'https://gank.io/api/data/%E7%A6%8F%E5%88%A9/50/1'
 export default{
     NODE,
-    JSON_BASE 
+    JSON_BASE,
+    TestURL
 }
