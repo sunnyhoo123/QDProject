@@ -35,9 +35,7 @@
 		</div>
 		
 		<!-- <div v-bind:class="[activeClass, errorClass]">使用数组传值</div> -->
-		<div>
-			<!-- <button @click="getApiData">获取币种</button> -->
-		</div>
+		
 			<!-- <li>
 				请求地址：http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency
 			</li> -->
@@ -108,6 +106,7 @@
 				contList:[],
 				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
 				hiddenBg:'显示背景',
+				obj:{latitude:1,longitude:32}
 			};
 		},
 		computed: {
@@ -127,15 +126,15 @@
 		},
 		methods: {
 			...mapActions(['exec']),
-			// getApiData() {
-			// 	axios.post(
-			// 		"http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency", {
-			// 				id: 2
-			// 		}
-			// 	).then(function(rep) {
-			// 		console.log(rep);
-			// 	});
-			// },
+			getApiData() {
+				axios.post(
+					"http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency", {
+							id: 2
+					}
+				).then(function(rep) {
+					console.log(rep);
+				});
+			},
 			increment () {
 			this.count++
 			},
@@ -157,6 +156,15 @@
 				let TOTAL = `${this.API_ROOT}/browser-api/`
 				console.log(RegExp.$1.length)
 				console.log(apiConfig.NODE.list)
+
+				let temp = String.raw;
+				let tmpl =  `
+					<table>
+					${this.contList.push(`<div>${this.obj.latitude}</div>`)}
+					</table>
+					`
+				console.log(tmpl)
+
 			},
 			bg(){
 				let r = Math.floor((Math.random()*6)+1)
@@ -195,11 +203,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	h1,
-	h2 {
+	h1,h2 {
 		font-weight: normal;
 	}
-
+	/* [title]{
+		background: #42b983
+	} */
 	ul {
 		list-style-type: none;
 		padding: 0;

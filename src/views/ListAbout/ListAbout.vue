@@ -4,6 +4,7 @@
 		<el-button type="primary" @click="filterFun">filterFun</el-button>
 		<el-button type="primary" @click="mapA">mapA</el-button>
 		<el-button type="primary" @click="forEachA">forEachA</el-button>
+		<el-button type="primary" @click="sortA">排序</el-button>
         <div>{{example2}}</div>
     </div>
 </template>
@@ -22,7 +23,8 @@
                     }
                 },
                 example2:['123','324','323','34242','3232'],
-                example3:[{latitude:1,longitude:32},{latitude:2},{latitude:3},{latitude:4},{latitude:5}]
+                example3:[{latitude:1,longitude:32},{latitude:2},{latitude:3},{latitude:4},{latitude:5}],
+                example4:[0,1,15,3,7],
             };
         },
         methods: {
@@ -45,6 +47,12 @@
                     item.latitude = item.latitude +0.1
                 })
                 console.log(this.example3,'temp')
+            },
+            sortA(){
+                this.example4.sort((a,b)=>(
+                    a-b
+                ))
+                console.log(this.example4) //改变了原来的数组
             }
         }
     }
