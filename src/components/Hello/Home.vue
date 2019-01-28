@@ -56,6 +56,20 @@
 		</select>
 		<span>select: {{ selected }}</span>
 		<span>点击自增，{{count}}会加1</span>
+
+		<template>
+			<el-select v-model="value" placeholder="请选择">
+				<el-option
+				v-for="item in options"
+				:key="item.value"
+				:label="item.label"
+				:value="item.label">
+				</el-option>
+			</el-select>
+		</template>
+		<p>
+			您选择的是：{{value}}
+		</p>
 		<el-button type="primary" @click="increment">自增测试</el-button>
 		<el-button type="primary" @click="Test1()">方法测试</el-button>
 		<el-button type="primary" @click="bg">切换背景</el-button>
@@ -106,7 +120,26 @@
 				contList:[],
 				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
 				hiddenBg:'显示背景',
-				obj:{latitude:1,longitude:32}
+				options: [{
+					value: '选项0',
+					label: '所有'
+					}, {
+					value: '选项1',
+					label: '黄金糕'
+					}, {
+					value: '选项2',
+					label: '双皮奶'
+					}, {
+					value: '选项3',
+					label: '蚵仔煎'
+					}, {
+					value: '选项4',
+					label: '龙须面'
+					}, {
+					value: '选项5',
+					label: '北京烤鸭'
+				}],
+				value:''
 			};
 		},
 		computed: {
