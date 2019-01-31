@@ -1,8 +1,6 @@
 <template>
-    <div class="feature">
-        <input v-model.lazy="content">
-        <span>输入的内容为 {{content}}</span>
-        <div v-html="content"></div>
+    <div class="func">
+        <el-button type="primary" @click="paramTest(1)">参数测试</el-button>
     </div>
 </template>
 
@@ -11,11 +9,11 @@
 
     export default {
         //组件名
-        name: 'feature',
+        name: 'func',
         //实例的数据对象
         data() {
             return {
-                content:''
+
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -28,7 +26,9 @@
         },
         //方法
         methods: {
-
+            paramTest(a,b){
+                console.log(a,b)
+            }
         },
         //生命周期函数
         created() {

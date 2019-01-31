@@ -13,6 +13,12 @@
 				<el-tag title="router-link to">跳转到
 					<router-link to="./numberabout">number</router-link>
 				</el-tag>
+				<el-tag title="router-link to">跳转到
+					<router-link to="./fea">fea</router-link>
+				</el-tag>
+				<el-tag title="router-link to">跳转到
+					<router-link to="./func">func</router-link>
+				</el-tag>
 			</div>
 		</div>
 </template>

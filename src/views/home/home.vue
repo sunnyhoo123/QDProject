@@ -36,6 +36,8 @@
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 
 		<span>点击自增，{{count}}会加1</span>
+		<span>computer后的值{{reversedMessage}}</span>
+		<span>{{msg}}</span>
 
 		<div class="modules">
 			<div>
@@ -142,18 +144,18 @@
 		},
 		computed: {
 			...mapGetters(['contractExecListGetter']),
-			// reversedMessage: function(){
-			// 	return this.msg.split('').reverse().join('')
-			// }
-			reversedMessage:{
-				get:function(){
-					return this.msg
-				},
-				set:function(newValue){
-					let names = newValue.split(' ');
-					console.log(names)
-				}
+			reversedMessage: function(){
+				return this.msg.split('').reverse().join('')
 			}
+			// reversedMessage:{
+			// 	get:function(){
+			// 		return this.msg
+			// 	},
+			// 	set:function(newValue){
+			// 		let names = newValue.split(' ');
+			// 		console.log(names)
+			// 	}
+			// }
 		},
 		methods: {
 			...mapActions(['exec']),
@@ -194,7 +196,7 @@
 				console.log(new Date('123456'))
 				let TOTAL = `${this.API_ROOT}/browser-api/`
 				console.log(RegExp.$1.length)
-				console.log(apiConfig.NODE.list)
+				// console.log(apiConfig.NODE.list)
 
 				let temp = String.raw;
 				let tmpl =  `

@@ -1,7 +1,9 @@
 const demoComponent = resolve => require(['@/views/home/Demo.vue'], resolve)
 const listComponent = resolve => require(['@/views/ListAbout/ListAbout.vue'], resolve)
 const numberComponent = resolve => require(['@/views/NumberAbout/NumberAbout.vue'], resolve)
-const moreComponent = resolve => require(['@/views/More/More.vue'], resolve)
+const moreComponent = resolve => require(['@/views/more/more.vue'], resolve)
+const feaComponent = resolve => require(['@/views/Feature/Feature.vue'], resolve)
+const funcComponent = resolve => require(['@/views/func/func.vue'], resolve)
 
 export const demoCom ={
     path:'/demo',
@@ -22,4 +24,14 @@ export const moreCom ={
     path:'/more',
     component:moreComponent,
     name:'More',
+}
+export const funcCom ={
+    path:'/func',
+    component:funcComponent,
+    name:'func',
+}
+export const feaCom ={
+    path:'/fea',
+    component:feaComponent,
+    name:'fea',
 }

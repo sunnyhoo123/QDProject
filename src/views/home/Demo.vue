@@ -69,8 +69,10 @@
                             type="textarea"
                             :rows="2"
                             placeholder="请输入内容"
+                            @change="parseInput"
                             v-model="textarea">
                         </el-input>
+                        <span>输入的内容为{{textarea}}</span>
 		                <el-button type="primary" @click="changeLogWay">切换登陆</el-button>
                         <template v-if="loginType === 'username'">
                             <label key="1">Username</label>
