@@ -1,6 +1,5 @@
 <template>
-		<div class="home">
-		
+	<div class="home">
 		<!-- <div>
 			<el-tag>直接使用另一个vue</el-tag>
 			<test-demo></test-demo> 
@@ -16,23 +15,7 @@
 		<!-- <TestDemo>
 				<span slot-scope="propsqwe">{{propsqwe.text}}</span>
 		</TestDemo> -->
-		<div>
-			<el-tag title="router-link to">跳转到
-				<router-link to="/demo">Demo</router-link>
-			</el-tag>
-			<el-tag title="router-link to">跳转到
-				<router-link to="./more">More</router-link>
-			</el-tag>
-			<el-tag title="router-link to">跳转到
-				<router-link to="./listabout">list</router-link>
-			</el-tag>
-			<el-tag title="router-link to">跳转到
-				<router-link to="./numberabout">number</router-link>
-			</el-tag>
-			<el-input v-model="msg" placeholder="请输入内容" style="width:100px" 
-				@input="inputTest" maxlength="5"></el-input>
-			<!-- <h2 v-if="ok">computed：{{reversedMessage}}</h2> -->
-		</div>
+		<com-Header></com-Header>
 		
 		<!-- <div v-bind:class="[activeClass, errorClass]">使用数组传值</div> -->
 		<!-- <div id="example-5">
@@ -44,50 +27,65 @@
 			</select>
 			<span>Selected: {{ selected }}</span>
 		</div> -->
-		<select v-model="selected">
-			<!-- 内联对象字面量 -->
-			<option value="交易">交易</option>
-			<option value="查询">查询</option>
-			<option v-bind:value="{ number: 123 }">初始化</option>
-		</select>
-		<span>select: {{ selected }}</span>
-		<span>点击自增，{{count}}会加1</span>
 
-		<template>
-			<el-select v-model="value" placeholder="请选择">
-				<el-option
-				v-for="item in options"
-				:key="item.value"
-				:label="item.label"
-				:value="item.label">
-				</el-option>
-			</el-select>
-		</template>
-		<p>
-			您选择的是：{{value}}
-		</p>
 		<el-button type="primary" @click="increment">自增测试</el-button>
 		<el-button type="primary" @click="Test1()">方法测试</el-button>
 		<el-button type="primary" @click="bg">切换背景</el-button>
 		<el-button type="primary" @click="addCont">执行合约</el-button>
 		<el-button type="primary" @click="getApiData">调用接口</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
-		<div class="body">
-			<div class="background" ref="element" style="display:block" v-if="seen"></div>
-			<div class="execCont"><strong>合约信息</strong>
-				<ul class="ul-cont" v-for="item in contList" :key="item">
-					<li class="li-cont">{{item}}</li>
-				</ul>
+
+		<span>点击自增，{{count}}会加1</span>
+		<span>computer后的值{{reversedMessage}}</span>
+		<span>{{msg}}</span>
+
+		<div class="modules">
+			<div>
+				<select v-model="selected">
+					<!-- 内联对象字面量 -->
+					<option value="交易">交易</option>
+					<option value="查询">查询</option>
+					<option v-bind:value="{ number: 123 }">初始化</option>
+				</select>
+				<span>select: {{ selected }}</span>
 			</div>
-			<el-menu class="menu" >
+			<div>
+				<template>
+					<el-select v-model="food" placeholder="请选择">
+						<el-option
+							v-for="item in options"
+							:key="item.value"
+							:label="item.label"
+							:value="item.label">
+						</el-option>
+					</el-select>
+				</template>
+				<span>
+					您选择的是：{{food}}
+				</span>
+
+			</div>
+			<div>
+				<el-menu class="menu" >
 					<template v-for="(item,index) in menu" > 
 						<el-menu-item  :index="index + ''" :key="index" v-if="index!=1" >
 							<i v-if="item.icon" :class="item.icon"></i> {{item.name}}
 						</el-menu-item>
 						<template v-else disabled>{{item.name}}</template>
 					</template>
-				
-       		</el-menu>
+       			</el-menu>
+			</div>
+		</div>
+		
+
+		
+		<div class="contract">
+			<div class="background" ref="element" style="display:block" v-if="seen"></div>
+			<div class="execCont"><strong>合约信息</strong>
+				<ul class="ul-cont" v-for="item in contList" :key="item">
+					<li class="li-cont">{{item}}</li>
+				</ul>
+			</div>
 		</div>
 		<div v-if="seen">
 			<ul  class="ul-api" v-for="item in getResult" :key="item.index">
@@ -99,12 +97,12 @@
 
 <script>
 	import axios from 'axios'
-	import TestDemo from '@/components/Demo.vue'
 	import fsObj from '@/services/fs-service.js'
 	import {mapActions,mapGetters} from 'vuex'
-	// import apiService from '@/services/API-service.js'
+	import apiService from '@/services/API-service.js'
+	import comHeader from '@/components/header/header.vue';
 	export default {
-		name: "Home",
+		name: "home",
 		data() {
 			return {
 				msg: "1233",
@@ -140,24 +138,24 @@
 					value: '选项5',
 					label: '北京烤鸭'
 				}],
-				value:'',
+				food:'',
 				getResult:[]
 			};
 		},
 		computed: {
 			...mapGetters(['contractExecListGetter']),
-			// reversedMessage: function(){
-			// 	return this.msg.split('').reverse().join('')
-			// }
-			reversedMessage:{
-				get:function(){
-					return this.msg
-				},
-				set:function(newValue){
-					let names = newValue.split(' ');
-					console.log(names)
-				}
+			reversedMessage: function(){
+				return this.msg.split('').reverse().join('')
 			}
+			// reversedMessage:{
+			// 	get:function(){
+			// 		return this.msg
+			// 	},
+			// 	set:function(newValue){
+			// 		let names = newValue.split(' ');
+			// 		console.log(names)
+			// 	}
+			// }
 		},
 		methods: {
 			...mapActions(['exec']),
@@ -198,7 +196,7 @@
 				console.log(new Date('123456'))
 				let TOTAL = `${this.API_ROOT}/browser-api/`
 				console.log(RegExp.$1.length)
-				console.log(apiConfig.NODE.list)
+				// console.log(apiConfig.NODE.list)
 
 				let temp = String.raw;
 				let tmpl =  `
@@ -238,7 +236,8 @@
 			}
 		},
 		components: {
-			TestDemo
+			// TestDemo
+			comHeader
 		}
 		 
 	}
@@ -278,7 +277,7 @@
 		height: 400px;
 		background: url('./images/demo1.jpg') no-repeat
 	}
-	.body{
+	.contract{
 		display: flex;
 	}
 	.up{
@@ -288,10 +287,6 @@
 		border-left: 2px solid rgb(129,180,229);
 		transform: rotate(45deg);
 	}
-	.menu{
-		width: 500px;
-		height: 100px;
-	}
 	.icon-wallet{
 		width: 20px;
 		background: red;
@@ -300,5 +295,8 @@
 		li{
 			float: left;
 		}
+	}
+	.modules{
+		display: flex;
 	}
 </style>
