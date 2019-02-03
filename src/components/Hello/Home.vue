@@ -102,7 +102,7 @@
 	import TestDemo from '@/components/Demo.vue'
 	import fsObj from '@/services/fs-service.js'
 	import {mapActions,mapGetters} from 'vuex'
-	import apiService from '@/services/API-service.js'
+	// import apiService from '@/services/API-service.js'
 	export default {
 		name: "Home",
 		data() {
@@ -172,11 +172,11 @@
 				// });
 
 				//将参数封装到API-config.js中，将方法封装到API-service.js中
-				apiService.TestURL.imgTestURL().then(res=>{
-					let result = res
-					this.getResult = result.results
-					console.log(this.getResult)
-				}).catch()
+				// apiService.TestURL.imgTestURL().then(res=>{
+				// 	let result = res
+				// 	this.getResult = result.results
+				// 	console.log(this.getResult)
+				// }).catch()
 			},
 			increment () {
 			this.count++

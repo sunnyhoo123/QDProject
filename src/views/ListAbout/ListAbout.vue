@@ -5,7 +5,11 @@
 		<el-button type="primary" @click="mapA">mapA</el-button>
 		<el-button type="primary" @click="forEachA">forEachA</el-button>
 		<el-button type="primary" @click="sortA">排序</el-button>
+		<el-button type="primary" @click="testSet">响应更改数据</el-button>
         <div>{{example2}}</div>
+        <template v-for="(item,index) of example2">
+            <span :key="index">{{item}},</span>
+        </template>
     </div>
 </template>
 
@@ -53,6 +57,12 @@
                     a-b
                 ))
                 console.log(this.example4) //改变了原来的数组
+            },
+            testSet(){
+                // this.$set(this.example2,2,'222')
+                this.example2.length = 3;
+                this.example2[1]='666'
+                console.log(this.example2)
             }
         }
     }
