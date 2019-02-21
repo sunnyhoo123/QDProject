@@ -169,12 +169,12 @@
 				// 	console.log(rep);
 				// });
 
-				//将参数封装到API-config.js中，将方法封装到API-service.js中
-				// apiService.TestURL.imgTestURL().then(res=>{
-				// 	let result = res
-				// 	this.getResult = result.results
-				// 	console.log(this.getResult)
-				// }).catch()
+				// 将参数封装到API-config.js中，将方法封装到API-service.js中
+				apiService.TestURL.imgTestURL().then(res=>{
+					let result = res
+					this.getResult = result.results
+					console.log(this.getResult)
+				}).catch()
 			},
 			increment () {
 			this.count++
