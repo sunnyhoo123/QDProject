@@ -32,10 +32,16 @@
                 // const person = { name: 'Scott', attractiveness: 8.5 }
 
                 //ES6解构
-                const consoleLogAttributes = ({ name='jerry', attractiveness } = {}) => {
-                console.log(name, attractiveness)
+                const consoleLogAttributes = ({ name='jerry', attractiveness=0 } = {}) => {
+                return [name,attractiveness]
                 }
-                consoleLogAttributes()
+
+                // const newParam =Object.assign({name:'jerry'},param,{
+
+                // })
+                consoleLogAttributes({name:'eom'})
+                console.log(name, attractiveness)
+
             }
         }
     }
