@@ -4,6 +4,7 @@
        <!-- <el-input v-model="original" placeholder="输入要拆分的数字"></el-input> -->
        <el-button type="primary" @click="regExp">正则表达</el-button>
        <el-button type="primary" @click="ES6Test">ES6 explosion</el-button>
+       <el-button type="primary" @click="VueRoot">Vue root</el-button>
     </div>
 </template>
 
@@ -31,17 +32,21 @@
             ES6Test(){
                 // const person = { name: 'Scott', attractiveness: 8.5 }
 
-                //ES6解构
-                const consoleLogAttributes = ({ name='jerry', attractiveness=0 } = {}) => {
-                return [name,attractiveness]
+                //函数参数的解构可以使用默认值。
+                const Attributes1 = ({ name='jerry', attractiveness=0 } = {}) => {
+                    return [name,attractiveness]
                 }
 
-                // const newParam =Object.assign({name:'jerry'},param,{
-
-                // })
-                consoleLogAttributes({name:'eom'})
-                console.log(name, attractiveness)
-
+                //为函数的参数指定默认值，而不是为变量name和attractiveness指定默认值，所以会得到与前一种写法不同的结果
+                const Attributes2 = ({ name, attractiveness} = {name:'jerry', attractiveness:0}) => {
+                    return [name,attractiveness]
+                }
+                console.log(Attributes2({name:'eom'}))
+                console.log(Attributes2())
+            },
+            VueRoot(){
+                //根实例可以通过 $root 属性进行访问
+                console.log(this.$root)
             }
         }
     }

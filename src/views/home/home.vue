@@ -231,8 +231,6 @@
 				}else{
 					this.hiddenBg = '显示图片'
 				}
-
-				
 			}
 		},
 		components: {

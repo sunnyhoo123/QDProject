@@ -3,6 +3,7 @@
         <el-button type="primary" @click="paramTest(1)">参数测试</el-button>
         <el-button type="primary" @click="ternary">三目运算</el-button>
         <el-button type="primary" @click="async">异步执行</el-button>
+        <el-button type="primary" @click="CAB">call+apply+bind</el-button>
     </div>
 </template>
 
@@ -15,7 +16,8 @@
         //实例的数据对象
         data() {
             return {
-                show:true
+                show:true,
+                originString:'this is a dog'
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -32,7 +34,11 @@
                 console.log(a,b)
             },
             ternary(){
-                console.log(1?'0':'-')
+                String.prototype.spacify = function(){
+                    return this.split('').join(' ');
+                }
+                console.log(this.originString.spacify());
+                console.log(1?'0':'-');
             },
             async(){
                 setTimeout(() => {
@@ -48,6 +54,30 @@
                     console.log(4);
                 })
                 console.log(5);
+            },
+            CAB(){
+                // call+apply+bind的区别：参数有区别，bind返回的是函数
+                let name = '小王',age = '20';
+                let obj = {
+                    name:'objname',
+                    objAge:age,
+                    myFun:function(m,n){
+                        console.log(this.name + '的年龄是' + this.age + '参数1' + m + '参数2' + n);
+                        return 1;// 如果不return，这里会打印一个undefined
+                    }
+                }
+                let db ={
+                    name:'大D',
+                    age:18
+                }
+                console.log(obj.myFun())
+                console.log(obj.myFun.call(db,'奶茶','去冰'))
+                console.log(obj.myFun.apply(db,['奶茶','去冰']))
+                console.log(obj.myFun.bind(db,'奶茶','去冰')())
+                console.log(obj.myFun.bind(db,['奶茶','去冰'])())
+            },
+            spacify(str){
+                return str.split('').join(' ');
             }
         },
         //生命周期函数

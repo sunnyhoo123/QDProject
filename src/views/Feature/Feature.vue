@@ -1,8 +1,10 @@
 <template>
     <div class="feature">
-        <input v-model.lazy="content">
-        <span>输入的内容为 {{content}}</span>
+        <!-- 使用懒加载，输入后点击其他地方才会显示 -->
+        <input v-model.lazy="content"> 
+        <span>输入的内容为 {{content|capitalize}}</span>
         <div v-html="content"></div>
+        
     </div>
 </template>
 
@@ -28,7 +30,9 @@
         },
         //方法
         methods: {
-
+            TestToPrecision(){
+                console.log()
+            }
         },
         //生命周期函数
         created() {
@@ -50,7 +54,10 @@
         },
         //过滤器
         filters:{
-
+            //加入过滤器
+            capitalize(value){
+                return value.charAt(0).toUpperCase()+value.slice(1)
+            }
         },
         //自定义指令
         directive:{
