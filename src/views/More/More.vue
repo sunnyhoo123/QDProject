@@ -3,8 +3,12 @@
        <div>ES6</div>
        <!-- <el-input v-model="original" placeholder="输入要拆分的数字"></el-input> -->
        <el-button type="primary" @click="regExp">正则表达</el-button>
-       <el-button type="primary" @click="ES6Test">ES6 explosion</el-button>
+       <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
        <el-button type="primary" @click="VueRoot">Vue root</el-button>
+       <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
+       <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
+       <el-button type="primary" @click="ES6Promise">Promise</el-button>
+       <el-button type="primary" @click="ES6">调用本地函数</el-button>
     </div>
 </template>
 
@@ -27,7 +31,12 @@
             },
             ES6(){
                 const addOne = (num => num+1)
-                console.log(addOne(1))
+                // console.log(addOne(1))
+                this.ES6Promise().then((value)=>{
+                    console.log(value)
+                }).catch((err)=>{
+                    console.log(err)
+                });
             },
             ES6Test(){
                 // const person = { name: 'Scott', attractiveness: 8.5 }
@@ -47,6 +56,38 @@
             VueRoot(){
                 //根实例可以通过 $root 属性进行访问
                 console.log(this.$root)
+            },
+            JsonDraw(){
+                // 解构赋值对提取 JSON 对象中的数据，尤其有用
+                let jsonData = {
+                    id: 42,
+                    status: "OK",
+                    data: [867, 5309]
+                };
+                let { id, status, data:number} = jsonData;
+                console.log(id, status, number);
+            },
+            IteratorStr(){
+                for(let codePoint of 'hoo'){
+                    console.log(typeof(codePoint))
+                }
+            },
+            ES6Promise(){
+                console.log(1)
+                return new Promise((resolve,reject)=>{
+                    console.log(2)
+                    if(false){
+                        resolve(3)
+                    }else{
+                        reject(4)
+                        // try{
+                            
+                        // }catch(e){
+                        //     console.log(4)
+                        //     reject(4)
+                        // }
+                    }
+                })
             }
         }
     }

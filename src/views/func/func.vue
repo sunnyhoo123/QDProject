@@ -4,6 +4,8 @@
         <el-button type="primary" @click="ternary">三目运算</el-button>
         <el-button type="primary" @click="async">异步执行</el-button>
         <el-button type="primary" @click="CAB">call+apply+bind</el-button>
+        <el-button type="primary" @click="ExpreAndDec">函数声明和表达式的区别</el-button>
+        <el-button type="primary" @click="varHoisting">变量提升</el-button>
     </div>
 </template>
 
@@ -34,10 +36,12 @@
                 console.log(a,b)
             },
             ternary(){
+                //如何将这个函数直接作用在一个字符串对象上?如下
                 String.prototype.spacify = function(){
                     return this.split('').join(' ');
                 }
                 console.log(this.originString.spacify());
+
                 console.log(1?'0':'-');
             },
             async(){
@@ -78,6 +82,24 @@
             },
             spacify(str){
                 return str.split('').join(' ');
+            },
+            ExpreAndDec(){
+                // 用函数声明创建的函数可以在函数解析后调用（解析时进行等逻辑处理）；而用函数表达式创建的函数是在运行时进行赋值，且要等到表达式赋值完成后才能调用。
+                console.log(funDeclaration('Declaration'))
+                function funDeclaration(type){
+                    return type === "Declaration"
+                };
+                console.log(funExpression('Expression'))
+                let funExpression = function(type){
+                    return type === "Expression"
+                }
+            },
+            varHoisting(){
+                var a = '外部变量';
+                (function(){
+                    console.log(a1)
+                    var a1 = '内部变量'
+                })()
             }
         },
         //生命周期函数
