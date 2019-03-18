@@ -5,6 +5,8 @@
         <span>输入的内容为 {{content|unit}}</span>
         <div v-html="content"></div>
         <div>{{new Date(detailInfo.joinTime?detailInfo.joinTime:new Date().getTime()).Format('yyyy-MM-dd HH:mm:ss')}}</div>
+        <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
+        <el-button type="primary" @click="GetParameter">0~n之和</el-button>
     </div>
 </template>
 
@@ -20,7 +22,8 @@
                 content:'',
                 detailInfo:{
                     joinTime:null
-                }
+                },
+                urlTest:'http://www.runoob.com/try/try.php?filename=tryjs_datatypes_string&screen=sA313DD06E91551843259431&name=23'
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -35,6 +38,29 @@
         methods: {
             TestToPrecision(){
                 console.log()
+            },
+            GetParameter(){
+                //方法1
+                let args = this.urlTest.split('?')
+                let arr = args[1].split('&')
+                for(let i=0;i<arr.length;i++){
+                    let arg= arr[i].split('=')
+                    let obj = {}
+                    obj[arg[0]]= arg[1] //将分离的参数保存到对象中
+                    console.log(obj)
+                }
+
+                //方法2
+                let _this = this
+                function getQueryString(name) {
+                    // var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+                    var result = _this.urlTest.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+                    if (result == null || result.length < 1) {
+                        return "";
+                    }
+                    return result[1];
+                }
+                console.log(getQueryString('screen')) //输入参数名得到参数值
             }
         },
         //生命周期函数
