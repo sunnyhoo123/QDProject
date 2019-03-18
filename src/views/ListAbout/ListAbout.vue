@@ -59,6 +59,7 @@
                 console.log(this.example4) //改变了原来的数组
             },
             testSet(){
+                // v-for 列表渲染，数组无法检测：当你利用索引直接设置一个项时；当你修改数组的长度时
                 // this.$set(this.example2,2,'222')
                 this.example2.length = 3;
                 this.example2[1]='666'
