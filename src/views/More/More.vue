@@ -1,6 +1,6 @@
 <template>
     <div id="more">
-       <div>ES6</div>
+       <div v-show="vShow">ES6</div>
        <!-- <el-input v-model="original" placeholder="输入要拆分的数字"></el-input> -->
        <el-button type="primary" @click="regExp">正则表达</el-button>
        <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
@@ -17,7 +17,8 @@
         name: 'more',
         data(){
             return{
-                original:0
+                original:0,
+                vShow:true
             }
         },
         methods: {
@@ -55,6 +56,7 @@
             },
             VueRoot(){
                 //根实例可以通过 $root 属性进行访问
+                // this.vShow = false;
                 console.log(this.$root)
             },
             JsonDraw(){

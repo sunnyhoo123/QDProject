@@ -1,11 +1,13 @@
 <template>
     <div id="listabout">
         <div>Array数组专场</div>
-		<el-button type="primary" @click="filterFun">filterFun</el-button>
+		<el-button type="primary" @click="findFun">find方法</el-button>
+		<el-button type="primary" @click="filterFun">filter方法</el-button>
 		<el-button type="primary" @click="mapA">mapA</el-button>
 		<el-button type="primary" @click="forEachA">forEachA</el-button>
 		<el-button type="primary" @click="sortA">排序</el-button>
 		<el-button type="primary" @click="testSet">响应更改数据</el-button>
+		<el-button type="primary" @click="testReverseString">反转字符串</el-button>
         <div>{{example2}}</div>
         <template v-for="(item,index) of example2">
             <span :key="index">{{item}},</span>
@@ -32,10 +34,17 @@
             };
         },
         methods: {
+            findFun(){
+                let findResult = this.example4.find((value)=>{
+                    return value>1
+                })
+                console.log(typeof(findResult)) //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
+            },
             filterFun(){
-                this.example2 = this.example2.filter(function(value){
+                let filterResult = this.example2.filter(function(value){
                     return value.match('123')
                 })
+                console.log(filterResult)
             },
             mapA(){
                 this.tempArray = this.example3.map((item)=>{
@@ -63,6 +72,14 @@
                 this.example2.length = 3;
                 this.example2[1]='666'
                 console.log(this.example2)
+            },
+            testReverseString(){
+                let s1,s = 'hello 123'
+                s1 = Array.prototype.map.call(s,(x)=>{
+                    return x
+                }).reverse().join('')
+
+                console.log(s)
             }
         }
     }
