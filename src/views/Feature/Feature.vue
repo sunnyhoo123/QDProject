@@ -6,7 +6,8 @@
         <div v-html="content"></div>
         <div>{{new Date(detailInfo.joinTime?detailInfo.joinTime:new Date().getTime()).Format('yyyy-MM-dd HH:mm:ss')}}</div>
         <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
-        <el-button type="primary" @click="GetParameter">0~n之和</el-button>
+        <el-button type="primary" @click="outPut">0~n之和</el-button>
+        <toast >{{showValue}}</toast>
     </div>
 </template>
 
@@ -23,7 +24,8 @@
                 detailInfo:{
                     joinTime:null
                 },
-                urlTest:'http://www.runoob.com/try/try.php?filename=tryjs_datatypes_string&screen=sA313DD06E91551843259431&name=23'
+                urlTest:'http://www.runoob.com/try/try.php?filename=tryjs_datatypes_string&screen=sA313DD06E91551843259431&name=23',
+                showValue:''
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -61,6 +63,16 @@
                     return result[1];
                 }
                 console.log(getQueryString('screen')) //输入参数名得到参数值
+            },
+            outPut(){
+                let param = {
+                    "longitude": 'longitude',//经度
+                    "latitude": 'latitude',//纬度
+                    "locationMessage": 'locationMessage' //位置信息
+                };
+                let error = '数据库异常'
+                sessionStorage.setItem('latitude','');
+                this.showValue=error+sessionStorage.getItem('latitude')+'经纬度参数'+JSON.stringify(param);
             }
         },
         //生命周期函数

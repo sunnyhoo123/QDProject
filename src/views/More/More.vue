@@ -1,7 +1,7 @@
 <template>
     <div id="more">
        <div v-show="vShow">ES6</div>
-       <!-- <el-input v-model="original" placeholder="输入要拆分的数字"></el-input> -->
+       <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
        <el-button type="primary" @click="regExp">正则表达</el-button>
        <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
        <el-button type="primary" @click="VueRoot">Vue root</el-button>
@@ -9,26 +9,45 @@
        <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
        <el-button type="primary" @click="ES6Promise">Promise</el-button>
        <el-button type="primary" @click="ES6">调用本地函数</el-button>
+       <el-button type="primary" @click="Test">Test</el-button>
     </div>
 </template>
 
 <script>
+const count = /^\d+$/;
     export default {
         name: 'more',
         data(){
             return{
                 original:0,
-                vShow:true
+                vShow:true,
+                capitalFn:function(value){
+                    if(count.test(value)){
+                        return {valid:true}
+                    }else{
+                        return {valid:false, msg:'请输入数字'}
+                    }
+                },
             }
         },
         methods: {
-            regExp(){
+            regExp(value){
                 let originaValue;
                 var r= /^(\d{4})-(\d{1,2})-(\d{1,2})$/; //正则表达式 匹配出生日期(简单匹配)  
-                var r2= /^\d{1,2}/; //正则表达式 匹配出生日期(简单匹配)     
+                var r2= /^\d{1,2}/; //正则表达式 匹配出生日期(简单匹配)    
+                var IDcard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; //身份证
+                var passport = /^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8}))?$/; //护照
+                var eight = /^[0-9]{8}$/; //8位数
+                var letter = /^[a-zA-Z]{1}$/; //1个字母
+                // 正则校验是否中文名称组成 [\u4E00-\u9FA5]{2,4}
                 // r.exec('1985-10-15');
-                console.log(r2.exec('-10-15'))
-                console.log(RegExp.$1)
+                // console.log(r2.exec('-10-15'))
+                // console.log(RegExp.$1)
+                // console.log(count.test(123456))
+                // let capitalFn = this.capitalFn('123456')
+                console.log(letter.test(this.original)&&eight.test(this.original));
+                // console.log(this.original==0?'number':'passport');
+                
             },
             ES6(){
                 const addOne = (num => num+1)
@@ -90,6 +109,11 @@
                         // }
                     }
                 })
+            },
+            Test(){
+                let TestNet = {1:"/a-api",203:"/b-api"}
+                console.log(TestNet[1])
+                console.log(TestNet[203])
             }
         }
     }
