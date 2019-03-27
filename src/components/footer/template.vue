@@ -1,3 +1,4 @@
+
 <template>
     <div class="">
 
@@ -26,7 +27,15 @@
         },
         //方法
         methods: {
+            createObj(){
 
+                person = {
+                    firstname:'kevin',
+                    lastname:'hoo',
+                    age:20
+                }
+
+            }
         },
         //生命周期函数
         created() {
