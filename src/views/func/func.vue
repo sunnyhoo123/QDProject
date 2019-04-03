@@ -6,6 +6,7 @@
         <el-button type="primary" @click="CAB">call+apply+bind</el-button>
         <el-button type="primary" @click="ExpreAndDec">函数声明和表达式的区别</el-button>
         <el-button type="primary" @click="varHoisting">变量提升</el-button>
+        <el-button type="primary" @click="overload">没有重载</el-button>
     </div>
 </template>
 
@@ -100,6 +101,18 @@
                     console.log(a1)
                     var a1 = '内部变量'
                 })()
+            },
+            overload(){
+                function addSomeNumber(){
+                    return 100
+                };
+                function addSomeNumber(num){
+                    return num+100
+                };
+                function addSomeNumber(num,num1){
+                    return num+100+num1
+                };
+                console.log(addSomeNumber(1,2));
             }
         },
         //生命周期函数
