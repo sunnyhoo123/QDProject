@@ -28,7 +28,7 @@
                         messages:3333,
                     }
                 },
-                example2:['123','324','323','34242','3232'],
+                example2:['123','324','323','34242',123],
                 example3:[{latitude:1,longitude:32},{latitude:2},{latitude:3},{latitude:4},{latitude:5}],
                 example4:[0,1,15,3,7],
             };

@@ -1,15 +1,21 @@
 <template>
     <div id="more">
-       <div v-show="vShow">ES6</div>
-       <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
-       <el-button type="primary" @click="regExp">正则表达</el-button>
-       <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
-       <el-button type="primary" @click="VueRoot">Vue root</el-button>
-       <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
-       <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
-       <el-button type="primary" @click="ES6Promise">Promise</el-button>
-       <el-button type="primary" @click="ES6">调用本地函数</el-button>
-       <el-button type="primary" @click="Test">Test</el-button>
+        <div v-show="vShow">ES6</div>
+        <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
+        <el-button type="primary" @click="regExp">正则表达</el-button>
+        <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
+        <el-button type="primary" @click="VueRoot">Vue root</el-button>
+        <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
+        <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
+        <el-button type="primary" @click="ES6Promise">Promise</el-button>
+        <el-button type="primary" @click="ES6">调用本地函数</el-button>
+        <el-button type="primary" @click="switchNet">switchNet</el-button>
+        <router-link to="/">回到首页</router-link>
+        <router-link to="/more/tips">tips小技巧</router-link>
+        <router-link to="/more/parent">parent</router-link>
+        <div class="child">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -47,16 +53,32 @@ const count = /^\d+$/;
                 // let capitalFn = this.capitalFn('123456')
                 console.log(letter.test(this.original)&&eight.test(this.original));
                 // console.log(this.original==0?'number':'passport');
+                var re = /(\w+)\s(\w+)/; 
+                var str = "zara ali"; 
+                var newstr = str.replace(re, "$2, $1, $1, $3"); 
+                console.log(newstr); // ali, zara, zara, $3
                 
             },
             ES6(){
                 const addOne = (num => num+1)
-                // console.log(addOne(1))
+                console.log(addOne(1))
                 this.ES6Promise().then((value)=>{
                     console.log(value)
                 }).catch((err)=>{
                     console.log(err)
                 });
+            },
+            ES6Lambda(){
+                //箭头函数的表达式和默认return
+                let testObject = {
+                    a:1,
+                    custormElm: () => 2,
+                    custormElm2: () => {return 2},
+                }
+                let testF = resolve => this.
+                console.log(testObject.custormElm())
+                console.log(testObject.custormElm2())
+
             },
             ES6Test(){
                 // const person = { name: 'Scott', attractiveness: 8.5 }
@@ -110,7 +132,7 @@ const count = /^\d+$/;
                     }
                 })
             },
-            Test(){
+            switchNet(){
                 let TestNet = {1:"/a-api",203:"/b-api"}
                 console.log(TestNet[1])
                 console.log(TestNet[203])

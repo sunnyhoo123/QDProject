@@ -7,7 +7,7 @@ import Router from 'vue-router'
 // import More from '@/views/More/More'
 import home from '@/router/map/home.js'
 import Redirect from '@/router/map/Redirect.js'
-import {demoCom,listCom,numberCom,moreCom,funcCom,feaCom} from './map/JsAbout'
+import {demoCom,listCom,numberCom,moreCom,funcCom,feaCom,tipsCom} from './map/JsAbout'
 
 Vue.use(Router)
 
