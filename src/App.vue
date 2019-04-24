@@ -9,11 +9,12 @@
 </template>
 
 <script>
-import qee from './components/Hello/home.vue'
+
+// import qee from './components/Home/home.vue'
 export default {
   name: 'App',
   components: {
-            qee
+            // qee
         }
 }
 </script>
