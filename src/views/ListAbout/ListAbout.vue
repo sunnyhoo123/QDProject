@@ -35,10 +35,11 @@
         },
         methods: {
             findFun(){
+                //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
                 let findResult = this.example4.find((value)=>{
                     return value>1
                 })
-                console.log(typeof(findResult)) //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
+                console.log(typeof(findResult))
             },
             filterFun(){
                 let filterResult = this.example2.filter(function(value){
