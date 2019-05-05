@@ -2,11 +2,13 @@
     <div class="parent">
         <el-button type="primary" @click="NotTest">123</el-button>
         <com-child :form-list='formList'></com-child>
+        <com-animal></com-animal>
     </div>
 </template>
 
 <script>
     import comChild from '@/components/child.vue';
+    import comAnimal from '@/components/animal.vue';
 
     export default {
         //组件名
@@ -56,7 +58,8 @@
         },
         //组件
         components: {
-            comChild
+            comChild,
+            comAnimal
         },
         //过滤器
         filters:{
