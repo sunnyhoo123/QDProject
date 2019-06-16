@@ -28,7 +28,7 @@
                         messages:3333,
                     }
                 },
-                example2:['123','324','323','34242',123],
+                example2:['123','324','323','34242'],
                 example3:[{latitude:1,longitude:32},{latitude:2},{latitude:3},{latitude:4},{latitude:5}],
                 example4:[0,1,15,3,7],
             };
@@ -37,15 +37,24 @@
             findFun(){
                 //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
                 let findResult = this.example4.find((value)=>{
-                    return value>1
+                    return value > 1
                 })
-                console.log(typeof(findResult))
+                console.log(findResult) // 15
             },
             filterFun(){
-                let filterResult = this.example2.filter(function(value){
+                // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+                // 注意： filter() 不会对空数组进行检测。
+                // 注意： filter() 不会改变原始数组。
+                let filterResult = this.example4.filter(function(value){
+                    return value >= 1
+                })
+                // console.log(filterResult) // [1, 15, 3, 7]
+
+                let filterResult1 = this.example2.filter(function(value){
+                    // 返回的是指定的值，而不是指定值在字符串中的位置
                     return value.match('123')
                 })
-                console.log(filterResult)
+                console.log(filterResult1) // ["123"]
             },
             mapA(){
                 this.tempArray = this.example3.map((item)=>{
