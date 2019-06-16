@@ -19,6 +19,9 @@
 				<el-tag title="router-link to">跳转到
 					<router-link to="./func">function</router-link>
 				</el-tag>
+				<el-tag title="router-link to">跳转到
+					<router-link to="./map">Map</router-link>
+				</el-tag>
 			</div>
 		</div>
 </template>

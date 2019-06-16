@@ -6,6 +6,7 @@ const feaComponent = resolve => require(['@/views/Feature/Feature.vue'], resolve
 const funcComponent = resolve => require(['@/views/func/func.vue'], resolve)
 const tipsComponent = resolve => require(['@/views/more/tips.vue'], resolve)
 const parentComponent = resolve => require(['@/views/more/parent.vue'], resolve)
+const mapComponent = resolve => require(['@/views/map/mapView.vue'], resolve)
 
 export const demoCom ={
     path:'/demo',
@@ -47,8 +48,8 @@ export const feaCom ={
     component:feaComponent,
     name:'fea',
 }
-// export const tipsCom ={
-//     path:'/tips',
-//     component:tipsComponent,
-//     name:'tips',
-// }
+export const mapCom ={
+    path:'/map',
+    component:mapComponent,
+    name:'BDmap',
+}
