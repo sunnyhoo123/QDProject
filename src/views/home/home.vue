@@ -30,9 +30,9 @@
 
 		<el-button type="primary" @click="increment">自增测试</el-button>
 		<el-button type="primary" @click="Test1()">方法测试</el-button>
-		<el-button type="primary" @click="bg">切换背景</el-button>
+		<el-button type="primary" @click="changeBg">切换背景</el-button>
 		<el-button type="primary" @click="addCont">执行合约</el-button>
-		<el-button type="primary" @click="getApiData">调用接口</el-button>
+		<el-button type="primary" @click="getClubPictures">获取壁纸</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 
 		<span>点击自增，{{count}}会加1</span>
@@ -76,9 +76,6 @@
        			</el-menu>
 			</div>
 		</div>
-		
-
-		
 		<div class="contract">
 			<div class="background" ref="element" style="display:block" v-if="seen"></div>
 			<div class="execCont"><strong>合约信息</strong>
@@ -89,7 +86,7 @@
 		</div>
 		<div v-if="seen">
 			<ul  class="ul-api" v-for="item in getResult" :key="item.index">
-				<li><img :src="item.url" width="100" height="200"></li>
+				<li><img :src="item" width="800" height="600"></li>
 			</ul>
 		</div>
 	</div>
@@ -171,9 +168,15 @@
 
 				// 将参数封装到API-config.js中，将方法封装到API-service.js中
 				apiService.TestURL.imgTestURL().then(res=>{
-					let result = res
-					this.getResult = result.results
-					console.log(this.getResult)
+					this.getResult = res.results
+				}).catch()
+			},
+			getClubPictures() {
+				apiService.TestURL.acgclubURL().then(res=>{
+					let {data} = res;
+					data.forEach(item => {
+						this.getResult.push(item.thumbnail);
+					});
 				}).catch()
 			},
 			increment () {
@@ -207,8 +210,8 @@
 				console.log(tmpl)
 
 			},
-			bg(){
-				let r = Math.floor((Math.random()*6)+1)
+			changeBg(){
+				let r = Math.floor((Math.random()*10))
 				console.log(r)
 				this.$refs.element.style.background = "url("+require('./images/demo'+r+'.jpg')+ ")no-repeat"
 			},
@@ -237,7 +240,6 @@
 			// TestDemo
 			comHeader
 		}
-		 
 	}
 </script>
 
@@ -271,8 +273,8 @@
 		color: #f00;
 	}
 	.background{
-		width: 400px;
-		height: 400px;
+		width: 900px;
+		height: 700px;
 		background: url('./images/demo1.jpg') no-repeat
 	}
 	.contract{
