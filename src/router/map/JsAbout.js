@@ -7,6 +7,8 @@ const funcComponent = resolve => require(['@/views/func/func.vue'], resolve)
 const tipsComponent = resolve => require(['@/views/more/tips.vue'], resolve)
 const parentComponent = resolve => require(['@/views/more/parent.vue'], resolve)
 const mapComponent = resolve => require(['@/views/map/mapView.vue'], resolve)
+const elTabComponent = resolve => require(['@/views/elementCom/eltable.vue'], resolve)
+
 
 export const demoCom ={
     path:'/demo',
@@ -52,4 +54,9 @@ export const mapCom ={
     path:'/map',
     component:mapComponent,
     name:'BDmap',
+}
+export const elTabCom ={
+    path:'/eltab',
+    component:elTabComponent,
+    name:'eltable',
 }
