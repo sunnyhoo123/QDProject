@@ -64,6 +64,14 @@
                             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
                             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
                         </el-upload>
+                        <el-upload
+                            class="upload-demo"
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            :file-list="fileList"
+                            list-type="picture">
+                            <el-button size="small" type="primary">点击上传</el-button>
+                            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                        </el-upload>
 		                <el-button type="primary" @click="parseInput">解析转换</el-button>
                         <el-input
                             type="textarea"
@@ -74,6 +82,7 @@
                         </el-input>
                         <span>输入的内容为{{textarea}}</span>
 		                <el-button type="primary" @click="changeLogWay">切换登陆</el-button>
+		                <el-button type="primary" @click="test">一键上传</el-button>
                         <template v-if="loginType === 'username'">
                             <label key="1">Username</label>
                             <input placeholder="Enter your username" key="username">
@@ -105,7 +114,9 @@
                 message: '我是子组件Demo',
                 textarea:'',
                 uploaded:true,
-                loginType:''
+                loginType:'',
+                fileList:[],
+                choose:true,
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -167,11 +178,18 @@
                 }
             },
             changeLogWay(){
-                this.loginType = 'username'
+                if(this.choose){
+                    this.loginType = 'username'
+                    this.choose = false
+                }else{
+                    this.loginType = 'Email'
+                    this.choose = true
+                }
+            },
+            test(){
+                this.fileList = [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, 
+                {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
             }
-            
-
-
         },
         //生命周期函数
         created() {

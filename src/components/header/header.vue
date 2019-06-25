@@ -1,17 +1,17 @@
 <template>
 		<div class="header-wrap">
 			<div>
-				<el-tag title="router-link to">跳转到
-					<router-link to="/demo">Demo</router-link>
+				<el-tag title="router-link to">
+					<router-link to="/demo">Element UI</router-link>
 				</el-tag>
-				<el-tag title="router-link to">跳转到
-					<router-link to="./more">More</router-link>
+				<el-tag title="router-link to">
+					<router-link to="./more">扩展</router-link>
 				</el-tag>
-				<el-tag title="router-link to">跳转到
-					<router-link to="./listabout">list</router-link>
+				<el-tag title="router-link to">
+					<router-link to="./listabout">数组专场</router-link>
 				</el-tag>
-				<el-tag title="router-link to">跳转到
-					<router-link to="./numberabout">number</router-link>
+				<el-tag title="router-link to">
+					<router-link to="./numberabout">Number专场</router-link>
 				</el-tag>
 				<el-tag title="router-link to">跳转到
 					<router-link to="./fea">Feature</router-link>

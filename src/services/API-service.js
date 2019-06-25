@@ -5,7 +5,8 @@ Http.defaults.headers.post['Content-Type'] = "application/json;charset=utf-8"
 class ApiService{
     constructor(){
         this.TestURL ={
-            imgTestURL:this.get.bind(this,API.TestURL)
+            imgTestURL:this.get.bind(this, API.TestURL),
+            acgclubURL:this.get.bind(this, API.AcgclubPictures)
         }
     }
     get(url, params) {
