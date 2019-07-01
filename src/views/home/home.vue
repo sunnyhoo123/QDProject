@@ -32,7 +32,6 @@
 		<el-button type="primary" @click="Test1()">方法测试</el-button>
 		<el-button type="primary" @click="changeBg">切换背景</el-button>
 		<el-button type="primary" @click="addCont">执行合约</el-button>
-		<el-button type="primary" @click="getClubPictures">获取壁纸</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 
 		<span>点击自增，{{count}}会加1</span>
@@ -171,14 +170,6 @@
 					this.getResult = res.results
 				}).catch()
 			},
-			getClubPictures() {
-				apiService.TestURL.acgclubURL().then(res=>{
-					let {data} = res;
-					data.forEach(item => {
-						this.getResult.push(item.thumbnail);
-					});
-				}).catch()
-			},
 			increment () {
 			this.count++
 			},
@@ -235,6 +226,8 @@
 					this.hiddenBg = '显示图片'
 				}
 			}
+		},
+		mounted() {
 		},
 		components: {
 			// TestDemo

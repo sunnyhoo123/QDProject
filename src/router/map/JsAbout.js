@@ -1,5 +1,6 @@
-const demoComponent = resolve => require(['@/views/home/Demo.vue'], resolve)
+const demoComponent = resolve => require(['@/views/home/elUI.vue'], resolve)
 const listComponent = resolve => require(['@/views/ListAbout/ListAbout.vue'], resolve)
+const observeListComponent = resolve => require(['@/views/ListAbout/ObserveList.vue'], resolve)
 const numberComponent = resolve => require(['@/views/NumberAbout/NumberAbout.vue'], resolve)
 const moreComponent = resolve => require(['@/views/More/More.vue'], resolve)
 const feaComponent = resolve => require(['@/views/Feature/Feature.vue'], resolve)
@@ -11,9 +12,9 @@ const elTabComponent = resolve => require(['@/views/elementCom/eltable.vue'], re
 
 
 export const demoCom ={
-    path:'/demo',
+    path:'/elUI',
     component:demoComponent,
-    name:'demo',
+    name:'elUI',
 }
 export const listCom ={
     path:'/listabout',
@@ -59,4 +60,9 @@ export const elTabCom ={
     path:'/eltab',
     component:elTabComponent,
     name:'eltable',
+}
+export const observeListCom ={
+    path:'/observelist',
+    component:observeListComponent,
+    name:'observelist',
 }

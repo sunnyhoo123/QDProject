@@ -1,8 +1,9 @@
 <template>
 		<div class="header-wrap">
+			<div class="head-top">
 			<div>
 				<el-tag title="router-link to">
-					<router-link to="/demo">Element UI</router-link>
+					<router-link to="/elUI">Element UI</router-link>
 				</el-tag>
 				<el-tag title="router-link to">
 					<router-link to="./more">扩展</router-link>
@@ -25,6 +26,7 @@
 				<el-tag title="router-link to">跳转到
 					<router-link to="./eltab">eltab</router-link>
 				</el-tag>
+			</div>
 			</div>
 		</div>
 </template>
@@ -68,5 +70,13 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less' scoped>
-	
+	.head-top{
+		background-color: #fff;
+    	height: 40px;
+		// padding: 10px 60px;
+		position: relative;
+		z-index: 100;
+		box-shadow: 0 0 1px rgba(0,0,0,0.25);
+    	transition: background-color 0.3s ease-in-out;
+	}
 </style>
