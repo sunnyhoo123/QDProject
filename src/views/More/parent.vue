@@ -1,7 +1,7 @@
 <template>
     <div class="parent">
-        <el-button type="primary" @click="NotTest">123</el-button>
-        <com-child :form-list='formList'></com-child>
+        <el-button type="primary" @click="NotTest">{{num}}</el-button>
+        <com-child :form-list='formList' @child="getChildData"></com-child>
         <com-animal></com-animal>
     </div>
 </template>
@@ -40,6 +40,9 @@
                 // 按位或 裁剪数字
                 console.log(this.num/10|0)
                 console.log(this.bigNum/100|0)
+            },
+            getChildData(txtChild){
+                this.num = txtChild;
             }
         },
         //生命周期函数
