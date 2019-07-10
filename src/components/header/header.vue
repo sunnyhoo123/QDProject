@@ -9,7 +9,7 @@
 					<router-link to="./more">扩展</router-link>
 				</el-tag>
 				<el-tag title="router-link to">
-					<router-link to="./listabout">数组专场</router-link>
+					<router-link to="./listabout">Array专场</router-link>
 				</el-tag>
 				<el-tag title="router-link to">
 					<router-link to="./numberabout">Number专场</router-link>

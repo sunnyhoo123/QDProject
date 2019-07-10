@@ -56,6 +56,7 @@ export default {
   mounted() {
     // console.log(this.$data);
     console.log(this.numbers);
+    console.log(this);
   }
 };
 </script>

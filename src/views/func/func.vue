@@ -76,10 +76,10 @@
                     age:18
                 }
                 console.log(obj.myFun())
-                console.log(obj.myFun.call(db,'奶茶','去冰'))
                 console.log(obj.myFun.apply(db,['奶茶','去冰']))
                 console.log(obj.myFun.bind(db,'奶茶','去冰')())
                 console.log(obj.myFun.bind(db,['奶茶','去冰'])())
+                console.log(obj.myFun.call(db,'奶茶','去冰'))
             },
             spacify(str){
                 return str.split('').join(' ');

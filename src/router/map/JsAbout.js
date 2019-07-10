@@ -8,8 +8,8 @@ const funcComponent = resolve => require(['@/views/func/func.vue'], resolve)
 const tipsComponent = resolve => require(['@/views/more/tips.vue'], resolve)
 const parentComponent = resolve => require(['@/views/more/parent.vue'], resolve)
 const mapComponent = resolve => require(['@/views/map/mapView.vue'], resolve)
+const echartsproComponent = resolve => require(['@/views/map/echartsView.vue'], resolve)
 const elTabComponent = resolve => require(['@/views/elementCom/eltable.vue'], resolve)
-
 
 export const demoCom ={
     path:'/elUI',
@@ -65,4 +65,9 @@ export const observeListCom ={
     path:'/observelist',
     component:observeListComponent,
     name:'observelist',
+}
+export const echartsproCom ={
+    path:'/echartspro',
+    component:echartsproComponent,
+    name:'echartspro',
 }

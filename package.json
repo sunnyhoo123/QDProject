@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "echarts": "^4.2.1",
     "element-ui": "^2.4.8",
     "fs": "0.0.1-security",
     "iview": "^3.2.1",
