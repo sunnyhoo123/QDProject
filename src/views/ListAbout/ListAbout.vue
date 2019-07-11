@@ -12,6 +12,7 @@
         <template v-for="(item,index) of example2">
             <span :key="index">{{item}},</span>
         </template>
+        <router-link to="./observelist">观察数组</router-link>
     </div>
 </template>
 

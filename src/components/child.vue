@@ -14,7 +14,7 @@
         //实例的数据对象
         data() {
             return {
-                num:151,
+                num:111,
                 bigNum:12345678900123456789,
                 numString:'137'
             }
@@ -40,6 +40,7 @@
                 // 按位或 裁剪数字
                 console.log(this.num/10|0)
                 console.log(this.bigNum/100|0)
+                this.$emit('child',this.num);
             }
         },
         //生命周期函数

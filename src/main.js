@@ -12,7 +12,7 @@ import store from './vuex/store'
 import '../static/css/reset.css'
 import '../static/css/element-ui.css'
 import '../static/css/iconfont.css'
-import 'iview/dist/styles/iview.css'
+// import 'iview/dist/styles/iview.css'
 
 Vue.config.productionTip = false
 

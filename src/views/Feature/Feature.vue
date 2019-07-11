@@ -7,7 +7,7 @@
         <div>{{new Date(detailInfo.joinTime?detailInfo.joinTime:new Date().getTime()).Format('yyyy-MM-dd HH:mm:ss')}}</div>
         <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
         <el-button type="primary" @click="outPut">0~n之和</el-button>
-        <toast >{{showValue}}</toast>
+        <!-- <toast>{{showValue}}</toast> -->
     </div>
 </template>
 

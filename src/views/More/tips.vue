@@ -31,6 +31,8 @@
             NotTest(){
                 // 按位非 转换类型
                 console.log(~~this.numString)
+                // 使用占位符，使打印的字体变颜色
+                console.log("%c%s","color: red; background: yellow; font-size: 24px;","这里是文字被%s占住");
                 console.log(typeof(~~this.numString))
                 // 按位或 裁剪数字
                 console.log(this.num/10|0)
