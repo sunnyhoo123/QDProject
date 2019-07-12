@@ -1,19 +1,40 @@
 <template>
     <div class="feature">
         <!-- 使用懒加载，输入后点击其他地方才会显示 -->
-        <input v-model.lazy="content"> 
-        <span>输入的内容为 {{content|unit}}</span>
+        <span>请输入整数：</span>
+        <input v-model.lazy="content" type="number">
+        <span>过滤结果为： {{content|unit}}</span>
+        
         <div v-html="content"></div>
-        <div>{{new Date(detailInfo.joinTime?detailInfo.joinTime:new Date().getTime()).Format('yyyy-MM-dd HH:mm:ss')}}</div>
+        <div @click="getCurrentTime">获取当前时间：{{this.currentTime}}</div>
         <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
         <el-button type="primary" @click="outPut">0~n之和</el-button>
-        <!-- <toast>{{showValue}}</toast> -->
+        <el-alert title="异常时的经纬度信息" type="info" :description=showValue show-icon></el-alert>
+
+		<el-button type="primary" @click="addCont">执行合约</el-button>
+        <div>
+            <select v-model="selected">
+                <!-- 内联对象字面量 -->
+                <option value="交易">交易</option>
+                <option value="查询">查询</option>
+                <option v-bind:value="{ number: 123 }">初始化</option>
+            </select>
+            <span>select: {{ selected }}</span>
+        </div>
+        <div class="contract">
+			<div class="background" ref="element" style="display:block"></div>
+			<div class="execCont"><strong>合约信息</strong>
+				<ul class="ul-cont" v-for="(item,index) in contList" :key="index">
+					<li class="li-cont">{{item}}</li>
+				</ul>
+			</div>
+		</div>
     </div>
 </template>
 
 <script>
-    //import  from ''
-
+    import {mapActions,mapGetters} from 'vuex'
+    import dayjs from 'dayjs';
     export default {
         //组件名
         name: 'feature',
@@ -21,11 +42,12 @@
         data() {
             return {
                 content:'',
-                detailInfo:{
-                    joinTime:null
-                },
+                showCurrentTime:false,
+                currentTime:'',
                 urlTest:'http://www.runoob.com/try/try.php?filename=tryjs_datatypes_string&screen=sA313DD06E91551843259431&name=23',
-                showValue:''
+                showValue:'',
+                selected: "",
+				contList:[],
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -38,9 +60,7 @@
         },
         //方法
         methods: {
-            TestToPrecision(){
-                console.log()
-            },
+			...mapActions(['exec']),
             GetParameter(){
                 //方法1
                 let args = this.urlTest.split('?')
@@ -73,6 +93,56 @@
                 let error = '数据库异常'
                 sessionStorage.setItem('latitude','');
                 this.showValue=error+sessionStorage.getItem('latitude')+'经纬度参数'+JSON.stringify(param);
+            },
+            addCont(){
+				if (this.selected){
+					this.contList.push(this.selected)
+				} else{
+					this.$message({
+						message: '请选择合约类型',
+						duration: 1000,
+						type: 'error'
+					})
+				}
+				// this.exec(this.selected)
+            },
+            getCurrentTime(){
+                // var date = new Date(); 
+                // date.getYear(); //获取当前年份(2位) 
+                // date.getFullYear(); //获取完整的年份(4位,2014) 
+                // date.getMonth(); //获取当前月份(0-11,0代表1月) 
+                // date.getDate(); //获取当前日(1-31)
+                // date.getDay(); //获取当前星期X(0-6,0代表星期天) 
+                // date.getTime(); //获取当前时间(从1970.1.1开始的毫秒数) 
+                // date.getHours(); //获取当前小时数(0-23) 
+                // date.getMinutes(); //获取当前分钟数(0-59) 
+                // date.getSeconds(); //获取当前秒数(0-59) 
+                // date.getMilliseconds(); //获取当前毫秒数(0-999) 
+                // date.toLocaleDateString(); //获取当前日期 如 2019/7/12 
+                // date.toLocaleTimeString(); //获取当前时间 如 下午4:45:06 
+                // date.toLocaleString(); //获取日期与时间 如 2019/7/12 下午4:45:06
+                
+                // tip
+                // 获取当前时间的时间戳 ~new Date();
+
+                let today = new Date();
+                let date = today.toLocaleDateString(); 
+                let h = today.getHours();
+                let m = today.getMinutes();
+                let s = today.getSeconds();
+                // 在 numbers<10 的数字前加上 0
+                m = checkTime(m);
+                s = checkTime(s);
+
+                this.currentTime = `${date} ${h}:${m}:${s}`;
+                // 定时执行该方法
+                setTimeout(() => { this.getCurrentTime() }, 500)
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
             }
         },
         //生命周期函数

@@ -26,6 +26,7 @@
                 console.log((Array(9).join(0)+this.original).slice(-9))
             },
             precisionTest(){
+                // toPrecision：把数字格式化为指定的长度
                 // 不使用toPrecision，则value为7.000000000000001 小数点为15位
                 console.log(parseFloat((0.07*100).toPrecision(12)))
             },

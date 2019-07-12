@@ -10,6 +10,7 @@ const parentComponent = resolve => require(['@/views/more/parent.vue'], resolve)
 const mapComponent = resolve => require(['@/views/map/mapView.vue'], resolve)
 const echartsproComponent = resolve => require(['@/views/map/echartsView.vue'], resolve)
 const elTabComponent = resolve => require(['@/views/elementCom/eltable.vue'], resolve)
+const elSelectComponent = resolve => require(['@/views/elementCom/elForm/elSelect.vue'], resolve)
 
 export const demoCom ={
     path:'/elUI',
@@ -39,7 +40,7 @@ export const moreCom ={
             path:'/more/parent',
             component:parentComponent,
         },
-      ]
+    ]
 }
 export const funcCom ={
     path:'/func',
@@ -60,6 +61,12 @@ export const elTabCom ={
     path:'/eltab',
     component:elTabComponent,
     name:'eltable',
+    children:[
+        {
+            path:'/elForm/elSelect',
+            component:elSelectComponent,
+        },
+    ]
 }
 export const observeListCom ={
     path:'/observelist',

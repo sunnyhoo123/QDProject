@@ -31,7 +31,6 @@
 		<el-button type="primary" @click="increment">自增测试</el-button>
 		<el-button type="primary" @click="Test1()">方法测试</el-button>
 		<el-button type="primary" @click="changeBg">切换背景</el-button>
-		<el-button type="primary" @click="addCont">执行合约</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 
 		<span>点击自增，{{count}}会加1</span>
@@ -39,31 +38,6 @@
 		<span>{{msg}}</span>
 
 		<div class="modules">
-			<div>
-				<select v-model="selected">
-					<!-- 内联对象字面量 -->
-					<option value="交易">交易</option>
-					<option value="查询">查询</option>
-					<option v-bind:value="{ number: 123 }">初始化</option>
-				</select>
-				<span>select: {{ selected }}</span>
-			</div>
-			<div>
-				<template>
-					<el-select v-model="food" placeholder="请选择">
-						<el-option
-							v-for="item in options"
-							:key="item.value"
-							:label="item.label"
-							:value="item.label">
-						</el-option>
-					</el-select>
-				</template>
-				<span>
-					您选择的是：{{food}}
-				</span>
-
-			</div>
 			<div>
 				<el-menu class="menu" >
 					<template v-for="(item,index) in menu" > 
@@ -73,14 +47,6 @@
 						<template v-else disabled>{{item.name}}</template>
 					</template>
        			</el-menu>
-			</div>
-		</div>
-		<div class="contract">
-			<div class="background" ref="element" style="display:block" v-if="seen"></div>
-			<div class="execCont"><strong>合约信息</strong>
-				<ul class="ul-cont" v-for="item in contList" :key="item">
-					<li class="li-cont">{{item}}</li>
-				</ul>
 			</div>
 		</div>
 		<div v-if="seen">
@@ -115,26 +81,6 @@
 				contList:[],
 				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
 				hiddenBg:'显示图片',
-				options: [{
-					value: '选项0',
-					label: '所有'
-					}, {
-					value: '选项1',
-					label: '黄金糕'
-					}, {
-					value: '选项2',
-					label: '双皮奶'
-					}, {
-					value: '选项3',
-					label: '蚵仔煎'
-					}, {
-					value: '选项4',
-					label: '龙须面'
-					}, {
-					value: '选项5',
-					label: '北京烤鸭'
-				}],
-				food:'',
 				getResult:[]
 			};
 		},
@@ -154,7 +100,6 @@
 			// }
 		},
 		methods: {
-			...mapActions(['exec']),
 			getApiData() {
 				// 未封装请求方法
 				// axios.post(
@@ -205,11 +150,6 @@
 				let r = Math.floor((Math.random()*10))
 				console.log(r)
 				this.$refs.element.style.background = "url("+require('./images/demo'+r+'.jpg')+ ")no-repeat"
-			},
-			addCont(){
-				this.contList.push(this.selected)
-				// this.exec(this.selected)
-				
 			},
 			inputTest(value){
 				// let newMsg;

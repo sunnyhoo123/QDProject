@@ -3,7 +3,7 @@
         <!-- <slot name="header">HelloWorld不分发给slot</slot> -->
         <!-- <slot text="作用域插槽">1</slot> -->
         <el-container class="elContainer">
-            <el-aside width="240px">
+            <!-- <el-aside width="240px">
                 <el-col :span="12">
                     <el-menu
                         default-active="2"
@@ -45,7 +45,8 @@
                         </el-menu-item>
                     </el-menu>
                 </el-col>
-            </el-aside>
+            </el-aside> -->
+            <elLH></elLH>
             <el-container>
                 <el-header class="headerWrapper">
                     <el-breadcrumb separator="/">
@@ -107,8 +108,9 @@
 </template>
 
 <script>
-    //import  from ''
-    import fsObj from '@/services/fs-service'
+    import fsObj from '@/services/fs-service';
+    import elLH from '@/components/elLH/elLH.vue';
+    
     export default {
         //组件名
         name: 'elUI',
@@ -214,9 +216,7 @@
         },
         //组件
         components: {
-            
-
-
+            elLH
         },
         //过滤器
         filters:{

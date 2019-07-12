@@ -1,14 +1,13 @@
 <template>
     <div id="more">
-        <div v-show="vShow">ES6</div>
+        <div v-show="vShow">ES6Lambda</div>
         <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
         <el-button type="primary" @click="regExp">正则表达</el-button>
         <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
         <el-button type="primary" @click="VueRoot">Vue root</el-button>
         <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
         <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
-        <el-button type="primary" @click="ES6Promise">Promise</el-button>
-        <el-button type="primary" @click="ES6">调用本地函数</el-button>
+        <el-button type="primary" @click="ES6">调用Promise</el-button>
         <el-button type="primary" @click="switchNet">switchNet</el-button>
         <router-link to="/">回到首页</router-link>
         <router-link to="/more/tips">tips小技巧</router-link>
@@ -61,11 +60,17 @@ const count = /^\d+$/;
             },
             ES6(){
                 const addOne = (num => num+1)
-                console.log(addOne(1))
+                console.log(addOne(1),'addOne')
+                //前面捕获异常
                 this.ES6Promise().then((value)=>{
-                    console.log(value)
-                }).catch((err)=>{
-                    console.log(err)
+                    console.log(value,'执行成功')
+                });
+
+                //由reject抛出异常
+                this.ES6Promise1().then((value)=>{
+                    console.log(value,'执行成功')
+                }).catch(e => {
+                    console.log(e,'执行失败!')
                 });
             },
             ES6Lambda(){
@@ -116,9 +121,7 @@ const count = /^\d+$/;
                 }
             },
             ES6Promise(){
-                console.log(1)
                 return new Promise((resolve,reject)=>{
-                    console.log(2)
                     if(false){
                         resolve(3)
                     }else{
@@ -129,6 +132,17 @@ const count = /^\d+$/;
                         //     console.log(4)
                         //     reject(4)
                         // }
+                    }
+                }).catch((e)=>{
+                    console.log(e,'reason')
+                });
+            },
+            ES6Promise1(){
+                return new Promise((resolve,reject)=>{
+                    if(false){
+                        resolve(3)
+                    }else{
+                        reject(new Error('Could not load'));
                     }
                 })
             },
