@@ -6,9 +6,6 @@
 					<router-link to="/elUI">Element UI</router-link>
 				</el-tag>
 				<el-tag title="router-link to">
-					<router-link to="./more">扩展</router-link>
-				</el-tag>
-				<el-tag title="router-link to">
 					<router-link to="./listabout">Array专场</router-link>
 				</el-tag>
 				<el-tag title="router-link to">
@@ -25,6 +22,9 @@
 				</el-tag>
 				<el-tag title="router-link to">跳转到
 					<router-link to="./eltab">eltab</router-link>
+				</el-tag>
+				<el-tag title="router-link to">
+					<router-link to="./more">ES6等扩展</router-link>
 				</el-tag>
 			</div>
 			</div>

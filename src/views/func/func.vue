@@ -90,10 +90,16 @@
                 function funDeclaration(type){
                     return type === "Declaration"
                 };
-                console.log(funExpression('Expression'))
-                let funExpression = function(type){
-                    return type === "Expression"
+                
+                try {
+                    funExpression('Expression');
+                    let funExpression = function(type){
+                        return type === "Expression"
+                    }
+                } catch (error) {
+                    console.log(error)
                 }
+                
             },
             varHoisting(){
                 var a = '外部变量';

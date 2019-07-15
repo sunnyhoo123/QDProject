@@ -40,10 +40,12 @@
                 :total="tableData.length">
             </el-pagination>
         </div>
-        <div v-if="seen">
-			<ul  class="ul-api" v-for="item in pictures.slice((currPicPage - 1) * pagesize, currPicPage * pagesize)" :key="item.index">
-				<li><img :src="item" width="800" height="600"></li>
-			</ul>
+        <div v-if="seen" class="wallpaper">
+            <el-scrollbar style="height:100%">
+                <ul  class="ul-api" v-for="item in pictures.slice((currPicPage - 1) * pagesize, currPicPage * pagesize)" :key="item.index">
+                    <li><img :src="item" width="800" height="600"></li>
+                </ul>
+            </el-scrollbar>
             <el-pagination
                 background
                 :page-size='pagesize'
@@ -52,7 +54,8 @@
                 :total="pictures.length">
             </el-pagination>
 		</div>
-        
+        <router-link to="/elForm/elSelect">parent</router-link>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -171,5 +174,15 @@
 	描述：统一使用less,局部样式
 -->
 <style lang="less" scoped>
+    .wallpaper{
+        width: 820px;
+        height: 600px;
+    }
+</style>
 
+<style lang="less">
+    // 防止scrollbar出现横滚动条
+    .el-scrollbar__wrap{
+        overflow-x:hidden;
+    }
 </style>

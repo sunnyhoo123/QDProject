@@ -3,11 +3,12 @@
         <div>Array数组专场</div>
 		<el-button type="primary" @click="findFun">find方法</el-button>
 		<el-button type="primary" @click="filterFun">filter方法</el-button>
-		<el-button type="primary" @click="mapA">mapA</el-button>
-		<el-button type="primary" @click="forEachA">forEachA</el-button>
-		<el-button type="primary" @click="sortA">排序</el-button>
+		<el-button type="primary" @click="forEachA">forEach方法</el-button>
+		<el-button type="primary" @click="fromFun">from方法</el-button>
+		<el-button type="primary" @click="mapA">map方法</el-button>
+		<el-button type="primary" @click="sortA">sort方法</el-button>
+		<el-button type="primary" @click="testReverseString">reverse方法</el-button>
 		<el-button type="primary" @click="testSet">响应更改数据</el-button>
-		<el-button type="primary" @click="testReverseString">反转字符串</el-button>
         <div>{{example2}}</div>
         <template v-for="(item,index) of example2">
             <span :key="index">{{item}},</span>
@@ -72,6 +73,12 @@
                 })
                 console.log(this.example3,'temp')
             },
+            fromFun(){
+                // from() 方法用于通过拥有 length 属性的对象或可迭代的对象来返回一个数组。
+                // 如果对象是数组返回 true，否则返回 false
+                const arr = Array.from([1, 2, 3], x => x * 10);
+                console.log(arr)  //[10, 20, 30]
+            },
             sortA(){
                 this.example4.sort((a,b)=>(
                     a-b
@@ -86,12 +93,16 @@
                 console.log(this.example2)
             },
             testReverseString(){
+                // reverse() 方法用于颠倒数组中元素的顺序。
+                console.log(this.example4.reverse())  // [7, 3, 15, 1, 0]
+
+                // 反转字符串
                 let s1,s = 'hello 123'
                 s1 = Array.prototype.map.call(s,(x)=>{
                     return x
                 }).reverse().join('')
-
-                console.log(s)
+                
+                console.log(s1)  // 321 olleh
             }
         }
     }

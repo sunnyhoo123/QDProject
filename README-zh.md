@@ -3,11 +3,11 @@
 
 [English](README.md) | [中文](README-zh.md)
 
-# myproject
+# 个人项目
 
-> first project
+> 首个项目
 
-## Build Setup
+## 构建步骤
 
 ``` bash
 # install dependencies
