@@ -11,14 +11,20 @@
 				<div class="nav-group">
 					<div class="nav-group__title">Form</div>
 					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item"><router-link to="./eltab">Upload 上传</router-link></li>
+						<li class="nav-item">
+							<!-- <router-link to="./elementCom/elForm">Upload 上传</router-link> -->
+							<a @click="linkto">Upload 上传</a>
+						</li>
 					</ul>
 				</div>
 				<div class="nav-group">
 					<div class="nav-group__title">Data</div>
 					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item"><router-link to="./eltab">Table 表格</router-link></li>
-						<li class="nav-item">Tag 标签</li>
+						<li class="nav-item">
+							<!-- <router-link to="./elementCom/elData">Table 表格</router-link> -->
+							<a @click="linkto1">Table 表格</a>
+						</li>
+						<!-- <li class="nav-item"><router-link to="./elementCom/elData">Tag 标签</router-link></li> -->
 					</ul>
 				</div>
 				<div class="nav-group">
@@ -56,8 +62,14 @@
 		},
 		methods: {
 			increment () {
-			this.count++
+				this.count++
 			},
+			linkto (){
+				this.$router.push({ path: '/elementCom/elForm' });
+			},
+			linkto1 () {
+				this.$router.push({ path: '/elementCom/elData' });
+			}
 		},
 		components: {
 			// TestDemo
