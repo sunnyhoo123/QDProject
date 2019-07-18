@@ -54,8 +54,6 @@
                 :total="pictures.length">
             </el-pagination>
 		</div>
-        <router-link to="/elForm/elSelect">parent</router-link>
-        <router-view></router-view>
     </div>
 </template>
 

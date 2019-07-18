@@ -2,7 +2,7 @@
     <div id="numberabout">
        <div>数字专场</div>
        <el-input class="input-num" v-model.number="original" placeholder="输入要拆分的数字" type="number"></el-input>
-       <el-input type="number" :value="original" @input="typeTest"></el-input>
+       <el-input class="input-num" type="number" :value="original" @input="typeTest"></el-input>
        <el-button type="primary" @click="PrefixInteger">拆分数字</el-button>
        <el-button type="primary" @click="precisionTest">精度测试</el-button>
        <el-button type="primary" @click="typeTest">类型判断</el-button>
@@ -26,11 +26,12 @@
                 console.log((Array(9).join(0)+this.original).slice(-9))
             },
             precisionTest(){
-                // toPrecision：把数字格式化为指定的长度
+                // 解决精度问题，toPrecision：把数字格式化为指定的长度
                 // 不使用toPrecision，则value为7.000000000000001 小数点为15位
                 console.log(parseFloat((0.07*100).toPrecision(12)))
             },
             typeTest(){
+                //实现v-model
                 this.original = event.target.value
             }
            

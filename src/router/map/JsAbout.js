@@ -13,20 +13,40 @@ const elTableComponent = resolve => require(['@/views/elementCom/elData/eltable.
 const elTagComponent = resolve => require(['@/views/elementCom/elData/elTagCom.vue'], resolve)
 const elUploadComponent = resolve => require(['@/views/elementCom/elForm/elUploadCom.vue'], resolve)
 const elSelectComponent = resolve => require(['@/views/elementCom/elForm/elSelect.vue'], resolve)
+const elFormComponent = resolve => require(['@/views/elementCom/elForm/elFormCom.vue'], resolve)
+const elPopoverComponent = resolve => require(['@/views/elementCom/elOther/elPopoverCom.vue'], resolve)
 
 export const elUICom ={
     path:'/elUI',
     component:elUIComponent,
     name:'elUI',
     children:[
+        // Data
         {
-            path:'/elementCom/elData',
+            path:'/elementCom/elData/elTableCom',
             component:elTableComponent,
-            // elTagComponent
         },
         {
-            path:'/elementCom/elForm',
+            path:'/elementCom/elData/elTagCom',
+            component:elTagComponent,
+        },
+        // Form
+        {
+            path:'/elementCom/elForm/elUploadCom',
             component:elUploadComponent,
+        },
+        {
+            path:'/elementCom/elForm/elSelectCom',
+            component:elSelectComponent,
+        },
+        {
+            path:'/elementCom/elForm/elFormCom',
+            component:elFormComponent,
+        },
+        // Others
+        {
+            path:'/elementCom/elOthers/elPopoverCom',
+            component:elPopoverComponent,
         },
     ]
 }
@@ -70,17 +90,6 @@ export const mapCom ={
     component:mapComponent,
     name:'BDmap',
 }
-// export const elTableCom ={
-//     path:'/eltable',
-//     component:elTableComponent,
-//     name:'eltable',
-//     children:[
-//         {
-//             path:'/elForm/elSelect',
-//             component:elSelectComponent,
-//         },
-//     ]
-// }
 export const observeListCom ={
     path:'/observelist',
     component:observeListComponent,

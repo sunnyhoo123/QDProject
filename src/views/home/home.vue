@@ -34,26 +34,16 @@
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 
 		<span>点击自增，{{count}}会加1</span>
-		<span>computer后的值{{reversedMessage}}</span>
 		<span>{{msg}}</span>
+		<span>computer后的值{{reversedMessage}}</span>
 
-		<div class="modules">
-			<div>
-				<el-menu class="menu" >
-					<template v-for="(item,index) in menu" > 
-						<el-menu-item  :index="index + ''" :key="index" v-if="index!=1" >
-							<i v-if="item.icon" :class="item.icon"></i> {{item.name}}
-						</el-menu-item>
-						<template v-else disabled>{{item.name}}</template>
-					</template>
-       			</el-menu>
-			</div>
-		</div>
 		<div v-if="seen">
 			<ul  class="ul-api" v-for="item in getResult" :key="item.index">
 				<li><img :src="item" width="800" height="600"></li>
 			</ul>
 		</div>
+		<!-- images中的图片 -->
+		<div class="background" ref="element" style="display:block" v-if="seen"></div>
 	</div>
 </template>
 
@@ -79,7 +69,6 @@
 				testparams: '',
 				textarea: '',
 				contList:[],
-				menu:[{name:123,icon: 'icon-wallet'},{name:456},{name:789}],
 				hiddenBg:'显示图片',
 				getResult:[]
 			};
@@ -135,16 +124,6 @@
 				console.log(new Date('123456'))
 				let TOTAL = `${this.API_ROOT}/browser-api/`
 				console.log(RegExp.$1.length)
-				// console.log(apiConfig.NODE.list)
-
-				let temp = String.raw;
-				let tmpl =  `
-					<table>
-					${this.contList.push(`<div>${this.obj.latitude}</div>`)}
-					</table>
-					`
-				console.log(tmpl)
-
 			},
 			changeBg(){
 				let r = Math.floor((Math.random()*10))

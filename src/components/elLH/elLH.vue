@@ -11,20 +11,17 @@
 				<div class="nav-group">
 					<div class="nav-group__title">Form</div>
 					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item">
-							<!-- <router-link to="./elementCom/elForm">Upload 上传</router-link> -->
-							<a @click="linkto">Upload 上传</a>
+						<li class="nav-item" v-for="(value,name) in elFormComponent" :key="name">
+							<a @click="linkToForm(name)">{{value}}</a>
 						</li>
 					</ul>
 				</div>
 				<div class="nav-group">
 					<div class="nav-group__title">Data</div>
 					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item">
-							<!-- <router-link to="./elementCom/elData">Table 表格</router-link> -->
-							<a @click="linkto1">Table 表格</a>
+						<li class="nav-item" v-for="(value,name) in elDataComponent" :key="name">
+							<a @click="linkToData(name)">{{value}}</a>
 						</li>
-						<!-- <li class="nav-item"><router-link to="./elementCom/elData">Tag 标签</router-link></li> -->
 					</ul>
 				</div>
 				<div class="nav-group">
@@ -36,6 +33,11 @@
 				</div>
 				<div class="nav-group">
 					<div class="nav-group__title">Others</div>
+					<ul class="pure-menu-list" style="height: auto">
+						<li class="nav-item" v-for="(value,name) in elOthersComponent" :key="name">
+							<a @click="linkToOthers(name)">{{value}}</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</el-scrollbar>
@@ -47,29 +49,32 @@
 		name: "elLH-wrap",
 		data() {
 			return {
-			}
-		},
-		computed: {
-			reversedMessage:{
-				get:function(){
-					return this.msg
+				elFormComponent: {
+					elSelectCom: 'Select 选择器',
+					elUploadCom: 'Upload 上传',
+					elFormCom: 'Form 表单',
 				},
-				set:function(newValue){
-					let names = newValue.split(' ');
-					console.log(names)
+				elDataComponent: {
+					elTableCom: 'Table表格',
+					elTagCom:'Tag标签',
+				},
+				elOthersComponent: {
+					elPopoverCom: 'Popover 弹出框',
 				}
 			}
 		},
+		computed: {
+		},
 		methods: {
-			increment () {
-				this.count++
+			linkToForm (name){
+				this.$router.push({ path: '/elementCom/elForm/' + name });
 			},
-			linkto (){
-				this.$router.push({ path: '/elementCom/elForm' });
+			linkToData (name){
+				this.$router.push({ path: '/elementCom/elData/' + name });
 			},
-			linkto1 () {
-				this.$router.push({ path: '/elementCom/elData' });
-			}
+			linkToOthers (name){
+				this.$router.push({ path: '/elementCom/elOthers/' + name });
+			},
 		},
 		components: {
 			// TestDemo
@@ -94,6 +99,7 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			font-weight: 400;
+			cursor: pointer;
 		}
 	}
 	.side-nav{
