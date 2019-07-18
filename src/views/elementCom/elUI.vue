@@ -49,16 +49,14 @@
             <elLH></elLH>
             <el-container>
                 <el-header class="headerWrapper">
-                    <el-breadcrumb separator="/">
+                    <el-breadcrumb separator="=>">
                         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                         <el-breadcrumb-item :to="{ path: '/elUI' }">elUI页面</el-breadcrumb-item>
-                        <el-breadcrumb-item><a href="/">也是首页</a></el-breadcrumb-item>
+                        <el-breadcrumb-item><a href="/">a链接跳转至首页</a></el-breadcrumb-item>
                     </el-breadcrumb>
+                    <el-button type="text" @click="testRouter">返回到上一个Vue</el-button>
                 </el-header>
                 <div class="body">
-                    <!-- <el-button @click="testRouter">返回到上一个Vue</el-button> -->
-                    <span>{{message}}</span>
-                    <!-- <input type=file @change="readFileTest"> -->
                     <div class="main">
                     </div>
                     <router-view></router-view>
@@ -66,7 +64,6 @@
                 <el-footer>footer</el-footer>
             </el-container>
         </el-container>
-        <!-- <div class="clear"></div> -->
     </div>
 </template>
 
@@ -81,7 +78,7 @@
         
         data() {
             return {
-                message: '我是子组件Demo',
+                message: '我是子组件',
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -156,8 +153,8 @@
     .el-header, .el-footer {
         background-color: #B3C0D1;
         color: #333;
-        text-align: center;
-        line-height: 60px;
+        // text-align: center;
+        // line-height: 60px;
     }
   
     .el-aside {

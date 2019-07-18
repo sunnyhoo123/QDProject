@@ -15,13 +15,10 @@
 					<router-link to="./fea">Feature</router-link>
 				</el-tag>
 				<el-tag title="router-link to">跳转到
-					<router-link to="./func">function</router-link>
+					<router-link to="./func">Function</router-link>
 				</el-tag>
 				<el-tag title="router-link to">跳转到
 					<router-link to="./map">Map</router-link>
-				</el-tag>
-				<el-tag title="router-link to">跳转到
-					<router-link to="./eltab">eltab</router-link>
 				</el-tag>
 				<el-tag title="router-link to">
 					<router-link to="./more">ES6等扩展</router-link>
