@@ -1,8 +1,26 @@
 <template>
     <div class="parent">
-        <el-button type="primary" @click="NotTest">{{num}}</el-button>
-        <com-child :form-list='formList' @child="getChildData"></com-child>
-        <com-animal></com-animal>
+        <el-button type="primary" @click="NotTest">{{parentString}}</el-button>
+        <com-child :form-list='formList' @child="getChildData">
+            <!-- 父组件在子组件里面插入标签，然后子组件引用slot就可以看到插槽内容 -->
+            <span>{{msg}}</span> 可以不用标签
+
+            <!-- 注意：v-slot是新指令，代替slot和slot-scope,版本需要在 2.6.0 以上
+            scope在2.5.0中被slot-scope替代，用法：除了scope只可以用于<template>元素，其他和slot-scope都相同 -->
+            <template slot=first>
+                <div>这是第一个具名插槽</div>
+            </template>
+            <div slot='second'>这是第二个具名插槽</div>
+            <template v-slot:third>
+                <p>这是第三个具名插槽</p>
+            </template>
+
+            <template slot=itemSlot slot-scope="slotProps">
+                <li>{{slotProps.itemid + ' & ' + slotProps.text}}</li>
+            </template>
+        </com-child>
+
+        <!-- <com-animal></com-animal> -->
     </div>
 </template>
 
@@ -17,10 +35,12 @@
         data() {
             return {
                 num:151,
+                parentString:'parent',
                 bigNum:12345678900123456789,
                 numString:'137',
-                formList:[{'name':'kevin'},{'age':20}]
-                // formList:[1,5,6,8]
+                // formList:[{name:'kevin'},{age:20}],
+                formList:[1,5,6,8],
+                msg:'父组件普通插槽'
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -42,7 +62,7 @@
                 console.log(this.bigNum/100|0)
             },
             getChildData(txtChild){
-                this.num = txtChild;
+                this.parentString = txtChild;
             }
         },
         //生命周期函数

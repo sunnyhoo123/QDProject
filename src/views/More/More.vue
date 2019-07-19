@@ -11,7 +11,6 @@
         <el-button type="primary" @click="switchNet">switchNet</el-button>
         <router-link to="/">回到首页</router-link>
         <router-link to="/more/tips">tips小技巧</router-link>
-        <router-link to="/more/parent">parent</router-link>
         <div class="child">
             <router-view></router-view>
         </div>

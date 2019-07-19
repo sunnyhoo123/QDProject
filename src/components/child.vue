@@ -1,7 +1,15 @@
 <template>
     <div class="child">
-        <el-button type="primary" @click="NotTest">child</el-button>
+        <el-button type="primary" @click="testEmit">child传值给parent</el-button>
         <span>{{formList}}</span>
+        <!-- 默认/default插槽 -->
+        <slot>父组件没有在子组件插入内容时，此内容会显示，否则会被父组件插入的内容覆盖</slot>
+        <!-- 具名插槽 -->
+        <slot name='first'>first</slot>
+        <slot name='second'>second</slot>
+        <slot name='third'>third</slot>
+        <!-- 作用域插槽 -->
+        <slot name="itemSlot" v-for="item in items" :text="item.text" :itemid="item.id">默认值</slot>
     </div>
 </template>
 
@@ -16,11 +24,17 @@
             return {
                 num:111,
                 bigNum:12345678900123456789,
-                numString:'137'
+                childrenString:'child',
+                items:[
+                    {id:1,text:'第1段'},
+                    {id:2,text:'第2段'},
+                    {id:3,text:'第3段'},
+                ]
             }
         },
         //数组或对象，用于接收来自父组件的数据
         props: {
+            // 子组件通过props接收值
             formList:{
                 type:Array,
                 default:()=>{},
@@ -33,14 +47,8 @@
         },
         //方法
         methods: {
-            NotTest(){
-                // 按位非 转换类型
-                console.log(~~this.numString)
-                console.log(typeof(~~this.numString))
-                // 按位或 裁剪数字
-                console.log(this.num/10|0)
-                console.log(this.bigNum/100|0)
-                this.$emit('child',this.num);
+            testEmit(){
+                this.$emit('child',this.childrenString);
             }
         },
         //生命周期函数
