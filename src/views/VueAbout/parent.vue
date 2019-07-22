@@ -1,7 +1,8 @@
 <template>
     <div class="parent">
         <el-button type="primary" @click="NotTest">{{parentString}}</el-button>
-        <com-child :form-list='formList' @child="getChildData">
+        <!-- 当在一个自定义组件上使用 class 属性时，这些类将被添加到该组件的根元素上面。这个元素上已经存在的类不会被覆盖。例如：child-class -->
+        <com-child :form-list='formList' :prop-data='customValidator' @child="getChildData" class="child-class">
             <!-- 父组件在子组件里面插入标签，然后子组件引用slot就可以看到插槽内容 -->
             <span>{{msg}}</span> 可以不用标签
 
@@ -19,7 +20,8 @@
                 <li>{{slotProps.itemid + ' & ' + slotProps.text}}</li>
             </template>
         </com-child>
-
+        <!-- 传入一个对象给子组件 -->
+        <!-- <com-child :form-list='post'></com-child> -->
         <!-- <com-animal></com-animal> -->
     </div>
 </template>
@@ -40,7 +42,12 @@
                 numString:'137',
                 // formList:[{name:'kevin'},{age:20}],
                 formList:[1,5,6,8],
-                msg:'父组件普通插槽'
+                msg:'父组件普通插槽',
+                post: {
+                    id: 1,
+                    title: 'My Journey with Vue'
+                },
+                customValidator:'success'
             }
         },
         //数组或对象，用于接收来自父组件的数据
@@ -54,12 +61,13 @@
         //方法
         methods: {
             NotTest(){
-                // 按位非 转换类型
+                // 按位非 转换类型:string变为number
                 console.log(~~this.numString)
                 console.log(typeof(~~this.numString))
                 // 按位或 裁剪数字
                 console.log(this.num/10|0)
-                console.log(this.bigNum/100|0)
+                console.log(this.bigNum/10|0)
+                this.formList.push('100');
             },
             getChildData(txtChild){
                 this.parentString = txtChild;

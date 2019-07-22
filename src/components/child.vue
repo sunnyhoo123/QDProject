@@ -2,6 +2,7 @@
     <div class="child">
         <el-button type="primary" @click="testEmit">child传值给parent</el-button>
         <span>{{formList}}</span>
+        <span>{{propData}}</span>
         <!-- 默认/default插槽 -->
         <slot>父组件没有在子组件插入内容时，此内容会显示，否则会被父组件插入的内容覆盖</slot>
         <!-- 具名插槽 -->
@@ -32,13 +33,25 @@
                 ]
             }
         },
-        //数组或对象，用于接收来自父组件的数据
+        // 用于接收来自父组件的数据
+        // 注意：那些 prop 会在一个组件实例创建之前进行验证，所以实例的属性 (如 data、computed 等) 在 default 或 validator 函数中是不可用的。
         props: {
             // 子组件通过props接收值
             formList:{
-                type:Array,
-                default:()=>{},
-                // deep:true
+                type:[Array,Object],  // 检测类型为数组和对象
+                required:true,        // 必填的
+                // 对象或数组默认值必须从一个工厂函数获取
+                default: function () {
+                    return { message: 'hello' }
+                }
+            },
+            propData:{
+                default: 100,  // 当父组件没传值（传空值也算传了），则用默认值
+                // 自定义验证函数
+                validator: function (value) {
+                    // 这个值必须匹配下列字符串中的一个
+                    return ['success', 'warning', 'danger'].indexOf(value) !== -1
+                }
             }
         },
         //计算
