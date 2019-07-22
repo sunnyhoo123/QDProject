@@ -1,14 +1,22 @@
-const elUIComponent = resolve => require(['@/views/elementCom/elUI.vue'], resolve)
 const listComponent = resolve => require(['@/views/ListAbout/ListAbout.vue'], resolve)
 const observeListComponent = resolve => require(['@/views/ListAbout/ObserveList.vue'], resolve)
 const numberComponent = resolve => require(['@/views/NumberAbout/NumberAbout.vue'], resolve)
 const moreComponent = resolve => require(['@/views/More/More.vue'], resolve)
+
 const feaComponent = resolve => require(['@/views/Feature/Feature.vue'], resolve)
+const KeyCodeDelComponent = resolve => require(['@/views/Feature/KeyCodeDel.vue'], resolve)
+
 const funcComponent = resolve => require(['@/views/func/func.vue'], resolve)
 const tipsComponent = resolve => require(['@/views/more/tips.vue'], resolve)
-const parentComponent = resolve => require(['@/views/more/parent.vue'], resolve)
 const mapComponent = resolve => require(['@/views/map/mapView.vue'], resolve)
 const echartsproComponent = resolve => require(['@/views/map/echartsView.vue'], resolve)
+
+// Vue相关
+const vueComponent = resolve => require(['@/views/VueAbout/VueAbout.vue'], resolve)
+const parentComponent = resolve => require(['@/views/VueAbout/parent.vue'], resolve)
+
+// elementUI组件
+const elUIComponent = resolve => require(['@/views/elementCom/elUI.vue'], resolve)
 const elTableComponent = resolve => require(['@/views/elementCom/elData/eltable.vue'], resolve)
 const elTagComponent = resolve => require(['@/views/elementCom/elData/elTagCom.vue'], resolve)
 const elUploadComponent = resolve => require(['@/views/elementCom/elForm/elUploadCom.vue'], resolve)
@@ -69,10 +77,6 @@ export const moreCom ={
             path:'/more/tips',
             component:tipsComponent,
         },
-        {
-            path:'/more/parent',
-            component:parentComponent,
-        },
     ]
 }
 export const funcCom ={
@@ -84,6 +88,11 @@ export const feaCom ={
     path:'/fea',
     component:feaComponent,
     name:'fea',
+}
+export const KeyCodeDelCom ={
+    path:'/KeyCodeDel',
+    component:KeyCodeDelComponent,
+    name:'KeyCodeDel',
 }
 export const mapCom ={
     path:'/map',
@@ -99,4 +108,15 @@ export const echartsproCom ={
     path:'/echartspro',
     component:echartsproComponent,
     name:'echartspro',
+}
+export const vueCom ={
+    path:'/vueabout',
+    component:vueComponent,
+    name:'vueabout',
+    children:[
+        {
+            path:'/vueabout/parent',
+            component:parentComponent,
+        },
+    ]
 }

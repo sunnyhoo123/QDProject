@@ -1,5 +1,6 @@
 <template>
     <div class="feature">
+        <el-button @click="linkToKCD">S+D键实现删除功能</el-button>
         <!-- 使用懒加载，输入后点击其他地方才会显示 -->
         <span>请输入整数：</span>
         <input v-model.lazy="content" type="number">
@@ -143,6 +144,9 @@
                     }
                     return i;
                 }
+            },
+            linkToKCD(){
+                this.$router.push({ path: '/KeyCodeDel'})
             }
         },
         //生命周期函数

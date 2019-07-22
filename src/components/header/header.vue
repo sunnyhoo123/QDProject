@@ -23,6 +23,9 @@
 				<el-tag title="router-link to">
 					<router-link to="./more">ES6等扩展</router-link>
 				</el-tag>
+				<el-tag title="router-link to">
+					<router-link to="./vueabout">Vue扩展</router-link>
+				</el-tag>
 			</div>
 			</div>
 		</div>

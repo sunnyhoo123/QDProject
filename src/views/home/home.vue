@@ -1,11 +1,5 @@
 <template>
 	<div class="home">
-		<!-- <div>
-			<el-tag>直接使用另一个vue</el-tag>
-			<test-demo></test-demo> 
-			<Test-demo></Test-demo>
-		</div> -->
-		<!-- <TestDemo></TestDemo> -->
 		<!-- <TestDemo v-for="statu in status" :key="statu" :statu = status>
 			<div slot="header">
 				<h2>{{statu}}</h2> 
@@ -17,19 +11,8 @@
 		</TestDemo> -->
 		<com-Header></com-Header>
 		
-		<!-- <div v-bind:class="[activeClass, errorClass]">使用数组传值</div> -->
-		<!-- <div id="example-5">
-			<select v-model="selected" multiple style="width: 50px;">
-				<option disabled value="">请选择</option>
-				<option>A</option>
-				<option>B</option>
-				<option>C</option>
-			</select>
-			<span>Selected: {{ selected }}</span>
-		</div> -->
-
 		<el-button type="primary" @click="increment">自增测试</el-button>
-		<el-button type="primary" @click="Test1()">方法测试</el-button>
+		<el-button type="primary" @click="tempTest()">临时测试</el-button>
 		<el-button type="primary" @click="changeBg">切换背景</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
 
@@ -60,9 +43,6 @@
 				msg: "1233",
 				seen: false,
 				ok: true,
-				activeClass: "active",
-				errorClass: "text-danger",
-				selected: "",
 				count:0,
 				status: ['info','success','danger'],
 				testUrl: '',
@@ -116,8 +96,6 @@
 			return url
 			},
 			Test1(){
-				// this.contList.push(this.selected)
-				// console.log(this.contList)
 				// var date1=new Date('2016-01-01 00:00:00')Format('yyyy-MM-dd HH:mm:ss'); 
 				
 				var date1=new Date(1547644771000).Format('yyyy-MM-dd HH:mm:ss'); 
@@ -144,6 +122,9 @@
 				}else{
 					this.hiddenBg = '显示图片'
 				}
+			},
+			tempTest() {
+				console.log(document);
 			}
 		},
 		mounted() {
@@ -177,13 +158,6 @@
 		color: #42b983;
 	}
 
-	.active {
-		color: aqua;
-	}
-
-	.errorClass {
-		color: #f00;
-	}
 	.background{
 		width: 900px;
 		height: 700px;

@@ -30,7 +30,7 @@
                         messages:3333,
                     }
                 },
-                example2:['123','324','323','34242'],
+                example2:['123','324','323','34242','12345'],
                 example3:[{latitude:1,longitude:32},{latitude:2},{latitude:3},{latitude:4},{latitude:5}],
                 example4:[0,1,15,3,7],
             };
@@ -56,9 +56,10 @@
                     // 返回的是指定的值，而不是指定值在字符串中的位置
                     return value.match('123')
                 })
-                console.log(filterResult1) // ["123"]
+                console.log(filterResult1) // ["123","12345"]
             },
             mapA(){
+                // map与filter的区别是：map会对每个元素进行处理，并返回每个元素，而filter只会返回符合条件的元素
                 this.tempArray = this.example3.map((item)=>{
                     return {
                         ...item,   //map这样写不影响原有对象

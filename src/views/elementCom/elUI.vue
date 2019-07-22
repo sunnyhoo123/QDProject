@@ -46,6 +46,7 @@
                     </el-menu>
                 </el-col>
             </el-aside> -->
+            <!-- 左侧使用elLH子组件代替el-aside -->
             <elLH></elLH>
             <el-container>
                 <el-header class="headerWrapper">
