@@ -1,8 +1,11 @@
 <template>
     <div class="child">
         <el-button type="primary" @click="testEmit">child传值给parent</el-button>
+
+        <!-- props -->
         <span>{{formList}}</span>
         <span>{{propData}}</span>
+
         <!-- 默认/default插槽 -->
         <slot>父组件没有在子组件插入内容时，此内容会显示，否则会被父组件插入的内容覆盖</slot>
         <!-- 具名插槽 -->
@@ -11,6 +14,17 @@
         <slot name='third'>third</slot>
         <!-- 作用域插槽 -->
         <slot name="itemSlot" v-for="item in items" :text="item.text" :itemid="item.id">默认值</slot>
+
+        <!-- props中没有gender，但是可以用$attrs得到父组件的值 -->
+        <div>attrs: {{$attrs['gender']}}</div>
+        <label>
+            {{ label }}
+            <input
+                v-bind="$attrs"
+                :value="value"
+                @input="$emit('input', $event.target.value)"
+            >
+        </label>
     </div>
 </template>
 
@@ -19,7 +33,7 @@
 
     export default {
         //组件名
-        name: 'child',
+        name: 'com-child',
         //实例的数据对象
         data() {
             return {
@@ -33,6 +47,7 @@
                 ]
             }
         },
+        // inheritAttrs: false,
         // 用于接收来自父组件的数据
         // 注意：那些 prop 会在一个组件实例创建之前进行验证，所以实例的属性 (如 data、computed 等) 在 default 或 validator 函数中是不可用的。
         props: {
@@ -52,6 +67,10 @@
                     // 这个值必须匹配下列字符串中的一个
                     return ['success', 'warning', 'danger'].indexOf(value) !== -1
                 }
+            },
+            label:{
+            }, 
+            value:{
             }
         },
         //计算
