@@ -23,7 +23,6 @@
             <span>select: {{ selected }}</span>
         </div>
         <div class="contract">
-			<div class="background" ref="element" style="display:block"></div>
 			<div class="execCont"><strong>合约信息</strong>
 				<ul class="ul-cont" v-for="(item,index) in contList" :key="index">
 					<li class="li-cont">{{item}}</li>

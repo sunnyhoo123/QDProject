@@ -1,7 +1,7 @@
 <template>
 		<div class="header-wrap">
+			<text-scroll></text-scroll>
 			<div class="head-top">
-			<div>
 				<el-tag title="router-link to">
 					<router-link to="/elUI">Element UI</router-link>
 				</el-tag>
@@ -27,13 +27,14 @@
 					<router-link to="./vueabout">Vue扩展</router-link>
 				</el-tag>
 			</div>
-			</div>
 		</div>
 </template>
 
 <script>
 	import axios from 'axios'
+	import TextScroll from '@/components/TextScroll/TextScroll.vue'
 	import {mapActions,mapGetters} from 'vuex'
+	
 	export default {
 		name: "header-wrap",
 		data() {
@@ -62,7 +63,7 @@
 			},
 		},
 		components: {
-			// TestDemo
+			TextScroll
 		}
 		 
 	}
