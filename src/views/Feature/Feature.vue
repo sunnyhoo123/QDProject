@@ -1,8 +1,8 @@
 <template>
     <div class="feature">
         <el-button @click="linkToKCD">S+D键实现删除功能</el-button>
-        <!-- 使用懒加载，输入后点击其他地方才会显示 -->
         <span>请输入整数：</span>
+        <!-- 使用懒加载，输入后点击其他地方才会显示 -->
         <input v-model.lazy="content" type="number">
         <span>过滤结果为： {{content|unit}}</span>
         
@@ -23,25 +23,27 @@
             <span>select: {{ selected }}</span>
         </div>
         <div class="contract">
-			<div class="background" ref="element" style="display:block"></div>
 			<div class="execCont"><strong>合约信息</strong>
 				<ul class="ul-cont" v-for="(item,index) in contList" :key="index">
 					<li class="li-cont">{{item}}</li>
 				</ul>
 			</div>
 		</div>
+        <el-slider class="block1" v-model="value1" @input="onSlider"></el-slider>
     </div>
 </template>
 
 <script>
     import {mapActions,mapGetters} from 'vuex'
     import dayjs from 'dayjs';
+    import {Debounce} from '@/utils/codes.js'
     export default {
         //组件名
         name: 'feature',
         //实例的数据对象
         data() {
             return {
+                value1:0,
                 content:'',
                 showCurrentTime:false,
                 currentTime:'',
@@ -146,8 +148,12 @@
                 }
             },
             linkToKCD(){
+                // this.$message('这是一条消息提示');
                 this.$router.push({ path: '/KeyCodeDel'})
-            }
+            },
+            onSlider:Debounce(function(){
+                this.$message('这是一条消息提示');
+            },1000),
         },
         //生命周期函数
         created() {
@@ -199,5 +205,7 @@
 	描述：统一使用less,局部样式
 -->
 <style lang="less" scoped>
-
+    .block1{
+        width:500px
+    }
 </style>

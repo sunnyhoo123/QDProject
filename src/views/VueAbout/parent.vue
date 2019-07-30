@@ -2,7 +2,13 @@
     <div class="parent">
         <el-button type="primary" @click="NotTest">{{parentString}}</el-button>
         <!-- 当在一个自定义组件上使用 class 属性时，这些类将被添加到该组件的根元素上面。这个元素上已经存在的类不会被覆盖。例如：child-class -->
-        <com-child :form-list='formList' :prop-data='customValidator' @child="getChildData" class="child-class">
+        <com-child class='parentClass' 
+            @input="getChildData" 
+            :form-list='formList' 
+            :prop-data='customValidator' 
+            :label='msg' 
+            :value='parentString'
+            :gender='customValidator'>
             <!-- 父组件在子组件里面插入标签，然后子组件引用slot就可以看到插槽内容 -->
             <span>{{msg}}</span> 可以不用标签
 
@@ -42,7 +48,7 @@
                 numString:'137',
                 // formList:[{name:'kevin'},{age:20}],
                 formList:[1,5,6,8],
-                msg:'父组件普通插槽',
+                msg:'普通父组件',
                 post: {
                     id: 1,
                     title: 'My Journey with Vue'

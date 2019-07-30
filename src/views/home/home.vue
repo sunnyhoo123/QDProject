@@ -1,20 +1,12 @@
 <template>
 	<div class="home">
-		<!-- <TestDemo v-for="statu in status" :key="statu" :statu = status>
-			<div slot="header">
-				<h2>{{statu}}</h2> 
-				<p>将父组件的状态{{statu}}传递给子组件header</p>
-			</div>
-		</TestDemo> -->
-		<!-- <TestDemo>
-				<span slot-scope="propsqwe">{{propsqwe.text}}</span>
-		</TestDemo> -->
 		<com-Header></com-Header>
-		
 		<el-button type="primary" @click="increment">自增测试</el-button>
 		<el-button type="primary" @click="tempTest()">临时测试</el-button>
 		<el-button type="primary" @click="changeBg">切换背景</el-button>
 		<el-button type="primary" @click="hiddenBG">{{hiddenBg}}</el-button>
+		<el-button type="primary" @contextmenu.prevent="rightEvent()">{{rightClick}}</el-button>
+		<input type="button" value="按钮" @contextmenu.prevent="show()"> 
 
 		<span>点击自增，{{count}}会加1</span>
 		<span>{{msg}}</span>
@@ -50,7 +42,8 @@
 				textarea: '',
 				contList:[],
 				hiddenBg:'显示图片',
-				getResult:[]
+				getResult:[],
+				rightClick:'鼠标右键'
 			};
 		},
 		computed: {
@@ -125,6 +118,12 @@
 			},
 			tempTest() {
 				console.log(document);
+			},
+			rightEvent() {
+				console.log(555)
+			},
+			show(e) {
+				console.log(e)
 			}
 		},
 		mounted() {
