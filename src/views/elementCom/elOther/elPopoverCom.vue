@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'elPopoverCom',
+  name: "ElPopoverCom",
   data() {
     return {
      

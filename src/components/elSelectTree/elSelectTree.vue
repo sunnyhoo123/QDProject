@@ -8,32 +8,37 @@
     @hide="onHidePopover">
     <el-tree
       ref="tree"
-      class="select-tree"
-      highlight-current
       :style="`min-width: ${treeWidth}`"
       :data="options"
       :props="treeProps"
       :expand-on-click-node="false"
       :filter-node-method="filterNode"
       :default-expand-all="false"
+      class="select-tree"
+      highlight-current
       @node-click="onClickNode">
     </el-tree>
     <el-input
       slot="reference"
       ref="input"
       v-model="labelModel"
-      clearable
       :style="`width: ${width}px`"
       :class="{ 'rotate': showStatus }"
-      suffix-icon="el-icon-arrow-down"
-      :placeholder="placeholder">
+      :placeholder="placeholder"
+      clearable
+      suffix-icon="el-icon-arrow-down">
     </el-input>
   </el-popover>
 </template>
 
 <script>
 export default {
-  name: 'Pagination',
+  name: "Pagination",
+  // 设置绑定参数
+  model: {
+    prop: "value",
+    event: "selected",
+  },
   props: {
     // 接收绑定参数
     value: String,
@@ -48,24 +53,31 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: '请选择',
+      default: "请选择",
     },
     // 树节点配置选项
     treeProps: {
       type: Object,
       required: false,
       default: () => ({
-        parent: 'parentId',
-        value: 'rowGuid',
-        label: 'areaName',
-        children: 'children',
+        parent: "parentId",
+        value: "rowGuid",
+        label: "areaName",
+        children: "children",
       }),
     },
   },
-  // 设置绑定参数
-  model: {
-    prop: 'value',
-    event: 'selected',
+  data() {
+    return {
+      // 树状菜单显示状态
+      showStatus: false,
+      // 菜单宽度
+      treeWidth: "auto",
+      // 输入框显示值
+      labelModel: "",
+      // 实际请求传值
+      valueModel: "0",
+    };
   },
   computed: {
     // 是否为树状结构数据
@@ -81,25 +93,13 @@ export default {
   watch: {
     labelModel(val) {
       if (!val) {
-        this.valueModel = '';
+        this.valueModel = "";
       }
       this.$refs.tree.filter(val);
     },
     value(val) {
       this.labelModel = this.queryTree(this.data, val);
     },
-  },
-  data() {
-    return {
-      // 树状菜单显示状态
-      showStatus: false,
-      // 菜单宽度
-      treeWidth: 'auto',
-      // 输入框显示值
-      labelModel: '',
-      // 实际请求传值
-      valueModel: '0',
-    };
   },
   created() {
     // 检测输入框原有值并显示对应 label
@@ -120,7 +120,7 @@ export default {
     },
     // 偏平数组转化为树状层级结构
     switchTree() {
-      return this.cleanChildren(this.buildTree(this.options, '0'));
+      return this.cleanChildren(this.buildTree(this.options, "0"));
     },
     // 隐藏树状菜单
     onCloseTree() {
@@ -134,7 +134,7 @@ export default {
     // 隐藏时触发
     onHidePopover() {
       this.showStatus = false;
-      this.$emit('selected', this.valueModel);
+      this.$emit("selected", this.valueModel);
     },
     // 树节点过滤方法
     filterNode(query, data) {
@@ -154,10 +154,10 @@ export default {
           return temp[this.treeProps.label];
         }
       }
-      return '';
+      return "";
     },
     // 将一维的扁平数组转换为多层级对象
-    buildTree(data, id = '0') {
+    buildTree(data, id = "0") {
       const fa = (parentId) => {
         const temp = [];
         for (let i = 0; i < data.length; i++) {

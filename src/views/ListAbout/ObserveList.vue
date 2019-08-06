@@ -2,14 +2,14 @@
   <div id="observe-list">
     <div class="wrap">
       <ul>
-        <li v-for="(item,index) in items" v-on:click="handle(index)" :key="index">
+        <li v-for="(item,index) in items" :key="index" @click="handle(index)">
           <!-- <span>{{item}}</span> -->
-          <span>{{item.name}}</span>
-          <span>{{numbers[index]}}</span>
+          <span>{{ item.name }}</span>
+          <span>{{ numbers[index] }}</span>
         </li>
       </ul>
       <div>
-            {{arr}}
+        {{ arr }}
       </div>
     </div>
   </div>
@@ -18,14 +18,19 @@
 <script>
 import Vue from "vue";
 export default {
-  name: "observelist",
+  name: "Observelist",
   data() {
     return {
       numbers: [1,2,3],
-      test: {a:3},
+      test: { a:3 },
       items: [{ name: "tom" }, { name: "jerry" }, { name: "zara" }],
       arr: [],
     };
+  },
+  mounted() {
+    // console.log(this.$data);
+    console.log(this.numbers);
+    console.log(this);
   },
   methods: {
     handle: function(index) {
@@ -36,7 +41,7 @@ export default {
       //     console.log('这里有个index:%i', index);
       //     this.numbers[index]++;
       // }
-      this.items[index] = {name: 'kate'};
+      this.items[index] = { name: "kate" };
       // this.items[index].name += " good";
 
       // Vue.set(this.$data,arr,'arr出现了');
@@ -53,11 +58,6 @@ export default {
     //   this.arr[index].name += " good";
     }
   },
-  mounted() {
-    // console.log(this.$data);
-    console.log(this.numbers);
-    console.log(this);
-  }
 };
 </script>
 
