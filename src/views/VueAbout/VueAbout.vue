@@ -5,12 +5,18 @@
     <div class="child">
       <router-view></router-view>
     </div>
-
+    <!-- 事件处理 -->
     <div @click="alert(1)">123
-      <a href="/#" @click.self.prevent="alert(2)">
-        <div @click="alert(3)">456</div>
+      <a href="/#" @click.self.prevent="alert(2)">456
+        <div @click="alert(3)">789</div>
       </a>
     </div>
+    <div @click="alert(1)">123
+      <a href="/#" @click.prevent.self="alert(2)">456
+        <div @click="alert(3)">789</div>
+      </a>
+    </div>
+
   </div>
 </template>
 
@@ -58,7 +64,9 @@ export default {
   },
   // 方法
   methods: {
-
+    alert(val) {
+      console.log("%c%s","color: red; background: yellow; font-size: 24px;", val);
+    }
   },
   // 自定义指令
   directive: {

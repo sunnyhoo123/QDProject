@@ -63,6 +63,7 @@ export default {
       },
       elOthersComponent: {
         elPopoverCom: "Popover 弹出框",
+        elDialogCom: "Dialog 对话框框",
       }
     }
   },
@@ -79,7 +80,6 @@ export default {
       this.$router.push({ path: "/elementCom/elOthers/" + name });
     },
   },
-		 
 }
 </script>
 

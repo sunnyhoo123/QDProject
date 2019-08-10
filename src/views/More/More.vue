@@ -119,7 +119,7 @@ export default {
     },
     ES6Promise(){
       return new Promise((resolve,reject)=>{
-        if(false){
+        if(!this.vShow){
           resolve(3)
         }else{
           reject(4)
@@ -136,7 +136,7 @@ export default {
     },
     ES6Promise1(){
       return new Promise((resolve,reject)=>{
-        if(false){
+        if(!this.vShow){
           resolve(3)
         }else{
           reject(new Error("Could not load"));
