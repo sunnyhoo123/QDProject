@@ -39,6 +39,14 @@
 						</li>
 					</ul>
 				</div>
+				<div class="nav-group">
+					<div class="nav-group__title">custom</div>
+					<ul class="pure-menu-list" style="height: auto">
+						<li class="nav-item" v-for="(value,name) in CustomComponent" :key="name">
+							<a @click="linkToCustom(name)">{{value}}</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</el-scrollbar>
 	</div>
@@ -60,6 +68,9 @@
 				},
 				elOthersComponent: {
 					elPopoverCom: 'Popover 弹出框',
+				},
+				CustomComponent: {
+					birdCom: '愤怒的小鸟',
 				}
 			}
 		},
@@ -74,6 +85,9 @@
 			},
 			linkToOthers (name){
 				this.$router.push({ path: '/elementCom/elOthers/' + name });
+			},
+			linkToCustom (name){
+				this.$router.push({ path: '/elementCom/custom/' + name });
 			},
 		},
 		components: {

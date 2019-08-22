@@ -23,6 +23,8 @@ const elUploadComponent = resolve => require(['@/views/elementCom/elForm/elUploa
 const elSelectComponent = resolve => require(['@/views/elementCom/elForm/elSelect.vue'], resolve)
 const elFormComponent = resolve => require(['@/views/elementCom/elForm/elFormCom.vue'], resolve)
 const elPopoverComponent = resolve => require(['@/views/elementCom/elOther/elPopoverCom.vue'], resolve)
+// 定制组件
+const customBirdComponent = resolve => require(['@/views/elementCom/CSSPlus/bird.vue'], resolve)
 
 export const elUICom ={
     path:'/elUI',
@@ -55,6 +57,11 @@ export const elUICom ={
         {
             path:'/elementCom/elOthers/elPopoverCom',
             component:elPopoverComponent,
+        },
+        // custom
+        {
+            path:'/elementCom/custom/birdCom',
+            component:customBirdComponent,
         },
     ]
 }

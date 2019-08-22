@@ -130,7 +130,7 @@
 		},
 		components: {
 			// TestDemo
-			comHeader
+			comHeader,
 		}
 	}
 </script>
