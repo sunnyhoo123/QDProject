@@ -1,64 +1,64 @@
 <template>
-    <div class="elTagCom">
-        <el-tag>标签一</el-tag>
-        <el-tag type="success">标签二</el-tag>
-        <el-tag type="info">标签三</el-tag>
-        <el-tag type="warning">标签四</el-tag>
-        <el-tag type="danger">标签五</el-tag>
-    </div>
+  <div class="elTagCom">
+    <el-tag>标签一</el-tag>
+    <el-tag type="success">标签二</el-tag>
+    <el-tag type="info">标签三</el-tag>
+    <el-tag type="warning">标签四</el-tag>
+    <el-tag type="danger">标签五</el-tag>
+  </div>
 </template>
 
 <script>
-    //import  from ''
+//import  from ''
 
-    export default {
-        //组件名
-        name: 'elTagCom',
-        //实例的数据对象
-        data() {
-            return {
+export default {
+  //组件名
+  name: "ElTagCom",
+  //组件
+  components: {
 
-            }
-        },
-        //数组或对象，用于接收来自父组件的数据
-        props: {
+  },
+  //过滤器
+  filters:{
 
-        },
-        //计算
-        computed: {
+  },
+  //数组或对象，用于接收来自父组件的数据
+  props: {
 
-        },
-        //方法
-        methods: {
+  },
+  //实例的数据对象
+  data() {
+    return {
 
-        },
-        //生命周期函数
-        created() {
-
-        },
-        beforeMount() {
-
-        },
-        mounted() {
-
-        },
-        //监视
-        watch: {
-
-        },
-        //组件
-        components: {
-
-        },
-        //过滤器
-        filters:{
-
-        },
-        //自定义指令
-        directive:{
-
-        }
     }
+  },
+  //计算
+  computed: {
+
+  },
+  //监视
+  watch: {
+
+  },
+  //生命周期函数
+  created() {
+
+  },
+  beforeMount() {
+
+  },
+  mounted() {
+
+  },
+  //方法
+  methods: {
+
+  },
+  //自定义指令
+  directive:{
+
+  }
+}
 </script>
 
 <!--

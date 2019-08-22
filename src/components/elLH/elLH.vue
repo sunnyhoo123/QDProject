@@ -1,31 +1,31 @@
 <template>
-	<div class="elLH-wrap">
-		<el-scrollbar style="height:100%">
-			<div class="side-nav">
-				<div class="nav-group">
-					<div class="nav-group__title">Basic</div>
-					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item"></li>
-					</ul>
-				</div>
-				<div class="nav-group">
-					<div class="nav-group__title">Form</div>
-					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item" v-for="(value,name) in elFormComponent" :key="name">
-							<a @click="linkToForm(name)">{{value}}</a>
-						</li>
-					</ul>
-				</div>
-				<div class="nav-group">
-					<div class="nav-group__title">Data</div>
-					<ul class="pure-menu-list" style="height: auto">
-						<li class="nav-item" v-for="(value,name) in elDataComponent" :key="name">
-							<a @click="linkToData(name)">{{value}}</a>
-						</li>
-					</ul>
-				</div>
-				<div class="nav-group">
-					<div class="nav-group__title">Notice</div>
+  <div class="elLH-wrap">
+    <el-scrollbar style="height:100%">
+      <div class="side-nav">
+        <div class="nav-group">
+          <div class="nav-group__title">Basic</div>
+          <ul class="pure-menu-list" style="height: auto">
+            <li class="nav-item"></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group__title">Form</div>
+          <ul class="pure-menu-list" style="height: auto">
+            <li v-for="(value,name) in elFormComponent" :key="name" class="nav-item">
+              <a @click="linkToForm(name)">{{ value }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group__title">Data</div>
+          <ul class="pure-menu-list" style="height: auto">
+            <li v-for="(value,name) in elDataComponent" :key="name" class="nav-item">
+              <a @click="linkToData(name)">{{ value }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group__title">Notice</div>
 
 				</div>
 				<div class="nav-group">

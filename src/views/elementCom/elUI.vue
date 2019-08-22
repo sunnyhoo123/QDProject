@@ -1,9 +1,9 @@
 <template>
-    <div class="elUI">
-        <!-- <slot name="header">HelloWorld不分发给slot</slot> -->
-        <!-- <slot text="作用域插槽">1</slot> -->
-        <el-container class="elContainer">
-            <!-- <el-aside width="240px">
+  <div class="elUI">
+    <!-- <slot name="header">HelloWorld不分发给slot</slot> -->
+    <!-- <slot text="作用域插槽">1</slot> -->
+    <el-container class="elContainer">
+      <!-- <el-aside width="240px">
                 <el-col :span="12">
                     <el-menu
                         default-active="2"
@@ -46,94 +46,94 @@
                     </el-menu>
                 </el-col>
             </el-aside> -->
-            <!-- 左侧使用elLH子组件代替el-aside -->
-            <elLH></elLH>
-            <el-container>
-                <el-header class="headerWrapper">
-                    <el-breadcrumb separator="=>">
-                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                        <el-breadcrumb-item :to="{ path: '/elUI' }">elUI页面</el-breadcrumb-item>
-                        <el-breadcrumb-item><a href="/">a链接跳转至首页</a></el-breadcrumb-item>
-                    </el-breadcrumb>
-                    <el-button type="text" @click="testRouter">返回到上一个Vue</el-button>
-                </el-header>
-                <div class="body">
-                    <div class="main">
-                    </div>
-                    <router-view></router-view>
-                </div>
-                <el-footer>footer</el-footer>
-            </el-container>
-        </el-container>
-    </div>
+      <!-- 左侧使用elLH子组件代替el-aside -->
+      <elLH></elLH>
+      <el-container>
+        <el-header class="headerWrapper">
+          <el-breadcrumb separator="=>">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/elUI' }">elUI页面</el-breadcrumb-item>
+            <el-breadcrumb-item><a href="/">a链接跳转至首页</a></el-breadcrumb-item>
+          </el-breadcrumb>
+          <el-button type="text" @click="testRouter">返回到上一个Vue</el-button>
+        </el-header>
+        <div class="body">
+          <div class="main">
+          </div>
+          <router-view></router-view>
+        </div>
+        <el-footer>footer</el-footer>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script>
-    import fsObj from '@/services/fs-service';
-    import elLH from '@/components/elLH/elLH.vue';
+import fsObj from "@/services/fs-service";
+import elLH from "@/components/elLH/elLH.vue";
     
-    export default {
-        //组件名
-        name: 'elUI',
-        //实例的数据对象
+export default {
+  //组件名
+  name: "ElUI",
+  //组件
+  components: {
+    elLH
+  },
+  //过滤器
+  filters:{
+
+  },
+  //数组或对象，用于接收来自父组件的数据
+  props: {
+    // status
+    // :{
+    //             type: Array,
+    //             default:function(){
+    //                 return [];
+    //             }
+    //         }
+  },
+  //实例的数据对象
         
-        data() {
-            return {
-                message: '我是子组件',
-            }
-        },
-        //数组或对象，用于接收来自父组件的数据
-        props: {
-            // status
-            // :{
-            //             type: Array,
-            //             default:function(){
-            //                 return [];
-            //             }
-            //         }
-        },
-
-        //计算
-        computed: {
-
-        },
-        //方法
-        methods: {
-            testRouter(){
-                this.$router.push({
-                    path:'/'
-                })
-            },
-        },
-        //生命周期函数
-        created() {
-
-        },
-        beforeMount() {
-
-        },
-        mounted() {
-
-        },
-        //监视
-        watch: {
-            firstName: function (val) {
-                this.fullName = val + ' ' + this.lastName
-            },
-        },
-        //组件
-        components: {
-            elLH
-        },
-        //过滤器
-        filters:{
-
-        },
-        //自定义指令
-        directive:{
-
-        }
+  data() {
+    return {
+      message: "我是子组件",
     }
+  },
+
+  //计算
+  computed: {
+
+  },
+  //监视
+  watch: {
+    firstName: function(val) {
+      this.fullName = val + " " + this.lastName
+    },
+  },
+  //生命周期函数
+  created() {
+
+  },
+  beforeMount() {
+
+  },
+  mounted() {
+
+  },
+  //方法
+  methods: {
+    testRouter(){
+      this.$router.push({
+        path:"/"
+      })
+    },
+  },
+  //自定义指令
+  directive:{
+
+  }
+}
 </script>
 
 <!--
