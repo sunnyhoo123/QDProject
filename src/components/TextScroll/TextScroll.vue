@@ -2,40 +2,40 @@
   <div class="textBox">
     <span class="remind">**点击滚动条可停止滚动**</span>  
     <transition name="slide">
-      <p @click="stopScroll" class="text" :key="text.id">{{text.val}}</p>
+      <p :key="text.id" class="text" @click="stopScroll">{{ text.val }}</p>
     </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'scroll',
-  data () {
+  name: "Scroll",
+  data() {
     return {
       textArr: [
-        '恭喜 手机号为176****5610 的用户喜获 100元 现金券',
-        '恭喜 手机号为150****5210 的用户喜获 100元 现金券',
-        '恭喜 手机号为183****1613 的用户喜获 100元 现金券',
-        '恭喜 手机号为183****1613 的用户喜获 100元 现券',
-        '恭喜 手机号为183****1613 的用户喜获 100元 现券'
+        "恭喜 手机号为176****5610 的用户喜获 100元 现金券",
+        "恭喜 手机号为150****5210 的用户喜获 100元 现金券",
+        "恭喜 手机号为183****1613 的用户喜获 100元 现金券",
+        "恭喜 手机号为183****1613 的用户喜获 100元 现券",
+        "恭喜 手机号为183****1613 的用户喜获 100元 现券"
       ],
       number: 0,
       Scroll: false
     }
   },
   computed: {
-    text () {
+    text() {
       return {
         id: this.number,
         val: this.textArr[this.number]
       }
     }
   },
-  mounted () {
+  mounted() {
     this.startMove()
   },
   methods: {
-    startMove () {
+    startMove() {
       // eslint-disable-next-line
       let timer = setTimeout(() => {
         if (this.number === 2) {
@@ -51,7 +51,7 @@ export default {
       }, 2000); // 滚动不需要停顿则将2000改成动画持续时间
     },
     stopScroll(){
-        this.Scroll = !this.Scroll 
+      this.Scroll = !this.Scroll 
     }
   }
 }

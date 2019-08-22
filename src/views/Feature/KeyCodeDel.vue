@@ -1,15 +1,15 @@
 <template>
   <div class="keycode-del">
-    <el-tag>{{alarmRecord}}</el-tag>
+    <el-tag>{{ alarmRecord }}</el-tag>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'KeyCodeDel',
-  data () {
+  name: "KeyCodeDel",
+  data() {
     return {
-      alarmRecord:['告警记录1','告警记录2'],
+      alarmRecord:["告警记录1","告警记录2"],
       sKeyDown: false,
       dKeyDown: false,
       canDeleteAlarm: true,
@@ -35,13 +35,13 @@ export default {
     },
 
     keyDown() {
-      this.off(document.body, 'keydown', this.keyDownHandle);
-      this.on(document.body, 'keydown', this.keyDownHandle);
+      this.off(document.body, "keydown", this.keyDownHandle);
+      this.on(document.body, "keydown", this.keyDownHandle);
     },
 
     keyUp() {
-      this.off(document.body, 'keyup', this.keyUpHandle);
-      this.on(document.body, 'keyup', this.keyUpHandle);
+      this.off(document.body, "keyup", this.keyUpHandle);
+      this.on(document.body, "keyup", this.keyUpHandle);
     },
 
     keyDownHandle(ev) {
@@ -73,8 +73,8 @@ export default {
     },
 
     removeKeyEvent() {
-      this.off(document.body, 'keydown', this.keyDownHandle);
-      this.off(document.body, 'keyup', this.keyUpHandle);
+      this.off(document.body, "keydown", this.keyDownHandle);
+      this.off(document.body, "keyup", this.keyUpHandle);
     },
 
     destroyed() {
