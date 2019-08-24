@@ -1,12 +1,12 @@
 <template>
   <div class="tips">
     <el-button type="primary" @click="NotTest">按位运算符</el-button>
+    <el-button type="primary" @click.native="showNotification">PC右下角通知</el-button>
   </div>
 </template>
 
 <script>
-//import  from ''
-
+import logoImage from "@/assets/cat.jpg"
 export default {
   //组件名
   name: "Tips",
@@ -27,7 +27,7 @@ export default {
     return {
       num:151,
       bigNum:12345678900123456789,
-      numString:"137"
+      numString:"137",
     }
   },
   //计算
@@ -62,6 +62,42 @@ export default {
       //类型转换
       console.log(+this.numString)
       console.log(typeof(+this.numString))
+    },
+    showNotification() {
+      // callback的方式已经废弃
+      // Notification.requestPermission(prem => {
+      //   prem == "granted" // 同意
+      //   prem == "denied" // 拒绝
+      // })
+
+      // 先检查浏览器是否支持发送通知
+      if(!("Notification" in window)) {
+        console.log("This browser does not support desktop notification");
+      }
+      
+      // 请求发送通知
+      Notification.requestPermission().then(function(result) {
+        if (result === "denied") {
+          console.log("Permission wasn't granted. Allow a retry.");
+          return;
+        }
+        if (result === "default") {
+          console.log("The permission request was dismissed.");
+          return;
+        }
+        // Do something with the granted permission.
+        const notice = new Notification("前端宇宙情报局", {
+          body: "这20个不常用的Web API真的有用吗?，别问，问就是有用🈶",
+          icon: logoImage,
+          data: {
+            url: "https://juejin.im/post/5d5df391e51d453b1e478ad0"
+          }
+        });
+        // 点击回调
+        notice.onclick = () => {
+          window.open(notice.data.url); // 当用户点击通知时，在浏览器打开百度网站
+        }
+      });
     }
   },
   //自定义指令

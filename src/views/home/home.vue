@@ -4,6 +4,7 @@
     <el-button type="primary" @click="increment">自增测试</el-button>
     <el-button type="primary" @click="tempTest()">临时测试</el-button>
     <el-button type="primary" @click="changeBg">切换背景</el-button>
+    <el-button type="primary" @click="getCompanions">mock数据</el-button>
     <el-button type="primary" @click="hiddenBG">{{ hiddenBg }}</el-button>
     <el-button type="primary" @contextmenu.prevent="rightEvent()">{{ rightClick }}</el-button>
     <input type="button" value="按钮" @contextmenu.prevent="show()">
@@ -24,7 +25,9 @@
 
 <script>
 // import axios from 'axios'
+
 // import fsObj from '@/services/fs-service.js'
+import api from "api"
 // import {mapActions, mapGetters} from 'vuex'
 import apiService from "@/services/API-service.js"
 import comHeader from "@/components/header/header.vue"
@@ -79,6 +82,12 @@ export default {
       apiService.TestURL.imgTestURL().then(res => {
         this.getResult = res.results
       }).catch()
+    },
+    getCompanions() {
+      return api.get(`static/mock/alarmlist.json`).then(res => {
+        console.log(res);
+        return res;
+      });
     },
     increment() {
       this.count++
