@@ -34,13 +34,30 @@
 </template>
 
 <script>
-import { mapActions,mapGetters } from "vuex"
-import dayjs from "dayjs";
+import { mapActions } from "vuex"
 import { Debounce } from "@/utils/codes.js"
 export default {
   //组件名
   name: "Feature",
   //数组或对象，用于接收来自父组件的数据
+  //过滤器
+  filters:{
+    //加入过滤器
+    capitalize(value){
+      //首字母大写
+      return value.charAt(0).toUpperCase()+value.slice(1)
+    },
+    unit(value){
+      //超过1k,以K为单位，超过1000K，单位M，小数点2位
+      if ( (value) < 1000){
+        return value
+      }else if(1000 < (value) && (value) < 1000000){
+        return (value/1000).toFixed(2)+"K"
+      }else if((value) >1000000 ){
+        return (value/1000000).toFixed(2)+"M"
+      }
+    }
+  },
   props: {
 
   },
@@ -57,6 +74,7 @@ export default {
       contList:[],
     }
   },
+  
   //计算
   computed: {
 
@@ -155,43 +173,7 @@ export default {
       this.$message("这是一条消息提示");
     },1000),
   },
-  //监视
-  watch: {
-
-  },
-  //生命周期函数
-  created() {
-
-  },
-  beforeMount() {
-
-  },
-  mounted() {
-
-  },
-  //组件
-  components: {
-
-  },
-  //过滤器
-  filters:{
-    //加入过滤器
-    capitalize(value){
-      //首字母大写
-      return value.charAt(0).toUpperCase()+value.slice(1)
-    },
-    unit(value){
-      //超过1k,以K为单位，超过1000K，单位M，小数点2位
-      if ( (value) < 1000){
-        return value
-      }else if(1000 < (value) && (value) < 1000000){
-        return (value/1000).toFixed(2)+"K"
-      }else if((value) >1000000 ){
-        return (value/1000000).toFixed(2)+"M"
-      }
-    }
-            
-  },
+  
   //自定义指令
   directive:{
 

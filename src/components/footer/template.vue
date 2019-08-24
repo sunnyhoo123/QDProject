@@ -49,13 +49,6 @@ export default {
   },
   //方法
   methods: {
-    createObj(){
-      person = {
-        firstname:"kevin",
-        lastname:"hoo",
-        age:20
-      }
-    }
   },
   //自定义指令
   directive:{

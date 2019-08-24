@@ -31,12 +31,14 @@
 </template>
 
 <script>
-import axios from "axios"
 import TextScroll from "@/components/TextScroll/TextScroll.vue"
 import { mapActions,mapGetters } from "vuex"
 	
 export default {
   name: "HeaderWrap",
+  components: {
+    TextScroll
+  },
   data() {
     return {
     }
@@ -62,10 +64,6 @@ export default {
       this.count++
     },
   },
-  components: {
-    TextScroll
-  }
-		 
 }
 </script>
 

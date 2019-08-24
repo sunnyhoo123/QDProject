@@ -69,7 +69,6 @@
 </template>
 
 <script>
-import fsObj from "@/services/fs-service";
 import elLH from "@/components/elLH/elLH.vue";
     
 export default {
