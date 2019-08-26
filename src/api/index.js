@@ -49,6 +49,4 @@ if (window.config) {
   api.defaults.baseURL = config.host;
 }
 
-api.defaults.headers.accessToken = localStorage.getItem("access_token");
-
 export default api;

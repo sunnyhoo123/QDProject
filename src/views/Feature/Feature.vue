@@ -10,13 +10,15 @@
     <div @click="getCurrentTime">获取当前时间：{{ this.currentTime }}</div>
     <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
     <el-button type="primary" @click="outPut">0~n之和</el-button>
+    <el-button type="primary" @click="fetchIp">获取本机ip</el-button>
+    
     <el-alert :description="showValue" title="异常时的经纬度信息" type="info" show-icon></el-alert>
 
     <el-button type="primary" @click="addCont">执行合约</el-button>
     <div>
       <select v-model="selected">
         <!-- 内联对象字面量 -->
-        <option value="交易">交易</option>
+        <option :value="$t('feature.trade')">{{ $t("feature.trade") }}</option>
         <option value="查询">查询</option>
         <option :value="{ number: 123 }">初始化</option>
       </select>
@@ -172,6 +174,22 @@ export default {
     onSlider:Debounce(function(){
       this.$message("这是一条消息提示");
     },1000),
+    fetchIp() {
+      let conn = new RTCPeerConnection({
+        iceServers: []
+      })
+      let noop = function(){}
+      conn.onicecandidate = function(ice){
+        if (ice.candidate){
+          let ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/
+          let windowIp = ip_regex.exec(ice.candidate.candidate)[1];
+          console.log(windowIp, "windowIp");
+          conn.onicecandidate = noop
+        }
+      }
+      conn.createDataChannel("dog")
+      conn.createOffer(conn.setLocalDescription.bind(conn),noop)
+    }
   },
   
   //自定义指令

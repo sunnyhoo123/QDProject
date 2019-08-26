@@ -1,5 +1,6 @@
 <template>
   <div id="more">
+    <!-- “Lambda 表达式”(lambda expression)是匿名函数的别称 -->
     <div v-show="vShow">ES6Lambda</div>
     <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
     <el-button type="primary" @click="regExp">正则表达</el-button>
@@ -8,6 +9,8 @@
     <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
     <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
     <el-button type="primary" @click="ES6">调用Promise</el-button>
+    <el-button type="primary" @click="ES6async">调用Async</el-button>
+    <el-button type="primary" @click="ES6Arrow">箭头函数</el-button>
     <el-button type="primary" @click="switchNet">switchNet</el-button>
     <router-link to="/">回到首页</router-link>
     <router-link to="/more/tips">tips小技巧</router-link>
@@ -23,9 +26,9 @@ export default {
   name: "More",
   data(){
     return{
-      original:0,
-      vShow:true,
-      capitalFn:function(value){
+      original: 0,
+      vShow: false,
+      capitalFn: function(value){
         if(count.test(value)){
           return { valid:true }
         }else{
@@ -57,8 +60,6 @@ export default {
       console.log(newstr); // ali, zara, zara, $3
     },
     ES6(){
-      const addOne = (num => num+1)
-      console.log(addOne(1),"addOne")
       //前面捕获异常
       this.ES6Promise().then((value)=>{
         console.log(value,"执行成功")
@@ -71,7 +72,16 @@ export default {
         console.log(e,"执行失败!")
       });
     },
-    ES6Lambda(){
+    async ES6async(){
+      console.log("async开始执行")
+      const p1 = await this.ES6Promise();
+      const p2 = await this.ES6Promise1();
+      console.log(p1);
+      console.log(p2);
+      console.log("async执行完毕");
+    },
+    // Arrow Function（箭头函数）
+    ES6Arrow(){
       //箭头函数的表达式和默认return
       let testObject = {
         a:1,
