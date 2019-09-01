@@ -27,60 +27,74 @@
         <div class="nav-group">
           <div class="nav-group__title">Notice</div>
 
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Navigation</div>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Others</div>
-          <ul class="pure-menu-list" style="height: auto">
-            <li v-for="(value,name) in elOthersComponent" :key="name" class="nav-item">
-              <a @click="linkToOthers(name)">{{ value }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </el-scrollbar>
-  </div>
+				</div>
+				<div class="nav-group">
+					<div class="nav-group__title">Navigation</div>
+				</div>
+				<div class="nav-group">
+					<div class="nav-group__title">Others</div>
+					<ul class="pure-menu-list" style="height: auto">
+						<li class="nav-item" v-for="(value,name) in elOthersComponent" :key="name">
+							<a @click="linkToOthers(name)">{{value}}</a>
+						</li>
+					</ul>
+				</div>
+				<div class="nav-group">
+					<div class="nav-group__title">custom</div>
+					<ul class="pure-menu-list" style="height: auto">
+						<li class="nav-item" v-for="(value,name) in CustomComponent" :key="name">
+							<a @click="linkToCustom(name)">{{value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</el-scrollbar>
+	</div>
 </template>
 
 <script>
-export default {
-  name: "ElLHWrap",
-  components: {
-    // TestDemo
-  },
-  data() {
-    return {
-      elFormComponent: {
-        elSelectCom: "Select 选择器",
-        elUploadCom: "Upload 上传",
-        elFormCom: "Form 表单",
-      },
-      elDataComponent: {
-        elTableCom: "Table表格",
-        elTagCom:"Tag标签",
-      },
-      elOthersComponent: {
-        elPopoverCom: "Popover 弹出框",
-        elDialogCom: "Dialog 对话框框",
-      }
-    }
-  },
-  computed: {
-  },
-  methods: {
-    linkToForm(name){
-      this.$router.push({ path: "/elementCom/elForm/" + name });
-    },
-    linkToData(name){
-      this.$router.push({ path: "/elementCom/elData/" + name });
-    },
-    linkToOthers(name){
-      this.$router.push({ path: "/elementCom/elOthers/" + name });
-    },
-  },
-}
+	export default {
+		name: "elLH-wrap",
+		data() {
+			return {
+				elFormComponent: {
+					elSelectCom: 'Select 选择器',
+					elUploadCom: 'Upload 上传',
+					elFormCom: 'Form 表单',
+				},
+				elDataComponent: {
+					elTableCom: 'Table表格',
+					elTagCom:'Tag标签',
+				},
+				elOthersComponent: {
+					elPopoverCom: 'Popover 弹出框',
+				},
+				CustomComponent: {
+					birdCom: '愤怒的小鸟',
+				}
+			}
+		},
+		computed: {
+		},
+		methods: {
+			linkToForm (name){
+				this.$router.push({ path: '/elementCom/elForm/' + name });
+			},
+			linkToData (name){
+				this.$router.push({ path: '/elementCom/elData/' + name });
+			},
+			linkToOthers (name){
+				this.$router.push({ path: '/elementCom/elOthers/' + name });
+			},
+			linkToCustom (name){
+				this.$router.push({ path: '/elementCom/custom/' + name });
+			},
+		},
+		components: {
+			// TestDemo
+		}
+		 
+	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

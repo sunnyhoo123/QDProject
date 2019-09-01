@@ -16,52 +16,54 @@ const vueComponent = resolve => require(["@/views/VueAbout/VueAbout.vue"], resol
 const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
 
 // elementUI组件
-const elUIComponent = resolve => require(["@/views/elementCom/elUI.vue"], resolve)
-const elTableComponent = resolve => require(["@/views/elementCom/elData/eltable.vue"], resolve)
-const elTagComponent = resolve => require(["@/views/elementCom/elData/elTagCom.vue"], resolve)
-const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
-const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelect.vue"], resolve)
-const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)
-const elPopoverComponent = resolve => require(["@/views/elementCom/elOther/elPopoverCom.vue"], resolve)
-const elDialogComponent = resolve => require(["@/views/elementCom/elOther/elDialogCom.vue"], resolve)
+const elUIComponent = resolve => require(['@/views/elementCom/elUI.vue'], resolve)
+const elTableComponent = resolve => require(['@/views/elementCom/elData/eltable.vue'], resolve)
+const elTagComponent = resolve => require(['@/views/elementCom/elData/elTagCom.vue'], resolve)
+const elUploadComponent = resolve => require(['@/views/elementCom/elForm/elUploadCom.vue'], resolve)
+const elSelectComponent = resolve => require(['@/views/elementCom/elForm/elSelect.vue'], resolve)
+const elFormComponent = resolve => require(['@/views/elementCom/elForm/elFormCom.vue'], resolve)
+const elPopoverComponent = resolve => require(['@/views/elementCom/elOther/elPopoverCom.vue'], resolve)
+// 定制组件
+const customBirdComponent = resolve => require(['@/views/elementCom/CSSPlus/bird.vue'], resolve)
 
 export const elUICom ={
-  path:"/elUI",
-  component:elUIComponent,
-  name:"elUI",
-  children:[
-    // Data
-    {
-      path:"/elementCom/elData/elTableCom",
-      component:elTableComponent,
-    },
-    {
-      path:"/elementCom/elData/elTagCom",
-      component:elTagComponent,
-    },
-    // Form
-    {
-      path:"/elementCom/elForm/elUploadCom",
-      component:elUploadComponent,
-    },
-    {
-      path:"/elementCom/elForm/elSelectCom",
-      component:elSelectComponent,
-    },
-    {
-      path:"/elementCom/elForm/elFormCom",
-      component:elFormComponent,
-    },
-    // Others
-    {
-      path:"/elementCom/elOthers/elPopoverCom",
-      component:elPopoverComponent,
-    },
-    {
-      path:"/elementCom/elOthers/elDialogCom",
-      component:elDialogComponent,
-    },
-  ]
+    path:'/elUI',
+    component:elUIComponent,
+    name:'elUI',
+    children:[
+        // Data
+        {
+            path:'/elementCom/elData/elTableCom',
+            component:elTableComponent,
+        },
+        {
+            path:'/elementCom/elData/elTagCom',
+            component:elTagComponent,
+        },
+        // Form
+        {
+            path:'/elementCom/elForm/elUploadCom',
+            component:elUploadComponent,
+        },
+        {
+            path:'/elementCom/elForm/elSelectCom',
+            component:elSelectComponent,
+        },
+        {
+            path:'/elementCom/elForm/elFormCom',
+            component:elFormComponent,
+        },
+        // Others
+        {
+            path:'/elementCom/elOthers/elPopoverCom',
+            component:elPopoverComponent,
+        },
+        // custom
+        {
+            path:'/elementCom/custom/birdCom',
+            component:customBirdComponent,
+        },
+    ]
 }
 export const listCom ={
   path:"/listabout",
