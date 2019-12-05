@@ -27,20 +27,20 @@ export default {
       // loadMap().then((res)=>{
       //   console.log(res)
       // })
-      // 百度地图API功能
-      var map = new BMap.Map(this.$refs.BDmap);    // 创建Map实例
+      // 百度地图API功能,创建Map实例 
+      var map = new BMap.Map(this.$refs.BDmap);    // eslint-disable-line
       // map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
       //添加地图类型控件
-      map.addControl(new BMap.MapTypeControl({
+      map.addControl(new BMap.MapTypeControl({ // eslint-disable-line
         mapTypes:[
-          BMAP_NORMAL_MAP,
-          BMAP_HYBRID_MAP
+          BMAP_NORMAL_MAP, // eslint-disable-line
+          BMAP_HYBRID_MAP  // eslint-disable-line
         ]
       }));  //右上角地图+混合
       // map.addControl(new BMap.MapTypeControl());   //地图类型控件,地图+卫星+三维,默认位于地图右上方
-      map.addControl(new BMap.NavigationControl());   //地图平移缩放控件，PC 端默认位于地图左上方，它包含控制地图的平移和缩放的
-      map.addControl(new BMap.ScaleControl());        //比例尺控件，默认位于地图左下方，显示地图的比例关系
-      map.addControl(new BMap.OverviewMapControl());  //缩略地图控件，默认位于地图右下方，是一个可折叠的缩略地图
+      // map.addControl(new BMap.NavigationControl());   //地图平移缩放控件，PC 端默认位于地图左上方，它包含控制地图的平移和缩放的
+      // map.addControl(new BMap.ScaleControl());        //比例尺控件，默认位于地图左下方，显示地图的比例关系
+      // map.addControl(new BMap.OverviewMapControl());  //缩略地图控件，默认位于地图右下方，是一个可折叠的缩略地图
       // map.setCurrentCity("武汉");          // 设置地图显示的城市 此项是必须设置的
       map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
       map.centerAndZoom("武汉")   //通过这个可以只输入地名获得坐标位置

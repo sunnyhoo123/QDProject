@@ -67,8 +67,6 @@ export default {
       }
     }
   },
-  computed: {
-  },
   methods: {
     linkToForm(name){
       this.$router.push({ path: "/elementCom/elForm/" + name });

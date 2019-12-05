@@ -97,9 +97,9 @@ export default {
     },
     readFileTest(){
       this.file = event.target.files
-      fsObj.ReadFile(this.file[0].path,"",(err,data)=>{
-        console.log(err.data)
-      });
+      // fsObj.ReadFile(this.file[0].path,"",(err,data)=>{
+      //   console.log(err.data)
+      // });
       console.log(this.file,123)
     },
     parseInput(){
@@ -144,11 +144,7 @@ export default {
 }
 </script>
 
-<!--
-	作者：hoo790692170@163.com
-	时间：2017-03-27
-	描述：统一使用less,局部样式
--->
+
 <style lang="less" scoped>
 
 </style>

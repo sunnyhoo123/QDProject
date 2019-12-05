@@ -52,7 +52,7 @@ export default {
       // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
       // 注意： filter() 不会对空数组进行检测。
       // 注意： filter() 不会改变原始数组。
-      let filterResult = this.example4.filter(function(value){
+      let filterResult = this.example4.filter(function(value){ // eslint-disable-line
         return value >= 1
       })
       // console.log(filterResult) // [1, 15, 3, 7]
@@ -74,7 +74,7 @@ export default {
       console.log(this.tempArray)
     },
     forEachA(){
-      this.example3.forEach(function(item,index){
+      this.example3.forEach(function(item, index){ // eslint-disable-line
         item.latitude = item.latitude +0.1
       })
       console.log(this.example3,"temp")

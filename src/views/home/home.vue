@@ -103,9 +103,9 @@ export default {
     Test1() {
       // var date1=new Date('2016-01-01 00:00:00')Format('yyyy-MM-dd HH:mm:ss');
 
-      var date1 = new Date(1547644771000).Format("yyyy-MM-dd HH:mm:ss")
+      var date1 = new Date(1547644771000).Format("yyyy-MM-dd HH:mm:ss") // eslint-disable-line
       console.log(new Date("123456"))
-      let TOTAL = `${this.API_ROOT}/browser-api/`
+      let TOTAL = `${this.API_ROOT}/browser-api/` // eslint-disable-line
       console.log(RegExp.$1.length)
     },
     changeBg() {
@@ -115,7 +115,7 @@ export default {
     },
     inputTest(value) {
       // let newMsg;
-      this.msg = value.replace(/[^\d\.]/g, "")
+      this.msg = value.replace(/[^\d\.]/g, "") // eslint-disable-line
       console.log(this.msg)
 
       // debugger

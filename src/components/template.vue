@@ -57,11 +57,6 @@ export default {
 }
 </script>
 
-<!--
-	作者：hoo790692170@163.com
-	时间：2017-03-27
-	描述：统一使用less,局部样式
--->
 <style lang="less" scoped>
 
 </style>

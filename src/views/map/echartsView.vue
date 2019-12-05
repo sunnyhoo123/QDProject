@@ -25,12 +25,12 @@ export default {
       tooltip: {
         "trigger": "items",
         formatter: function() {
-          var date = new Date(params.value[0]);
-          data = date.getHours() + ":"
+          var date = new Date(params.value[0]); // eslint-disable-line
+          data = date.getHours() + ":" // eslint-disable-line
                   + date.getMinutes();
-          return data + "<br/>"
-                  + params.value[1] + ", " 
-                  + params.value[2];
+          return data + "<br/>" // eslint-disable-line
+                  + params.value[1] + ", "  // eslint-disable-line
+                  + params.value[2];        // eslint-disable-line
         }
       },
       legend: {
@@ -80,8 +80,8 @@ export default {
         data: (function() {
           var d = [];
           var len = 0;
-          var now = new Date();
-          var value;
+          var now = new Date(); // eslint-disable-line
+          var value; // eslint-disable-line
           while (len++ < 13) {
             d.push([
               new Date(2019,7,25,10000*len),

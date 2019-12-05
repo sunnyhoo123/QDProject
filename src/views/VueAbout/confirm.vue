@@ -148,9 +148,6 @@
 <script>
 export default {
   name: "Confirm",
-  props:{
-    
-  },
   data(){
     return{
       showFlag:false,

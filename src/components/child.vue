@@ -35,14 +35,6 @@
 export default {
   // 组件名
   name: "ComChild",
-  // 组件
-  components: {
-
-  },
-  // 过滤器
-  filters: {
-
-  },
   // inheritAttrs: false,
   // 用于接收来自父组件的数据
   // 注意：那些 prop 会在一个组件实例创建之前进行验证，所以实例的属性 (如 data、computed 等) 在 default 或 validator 函数中是不可用的。
@@ -82,24 +74,6 @@ export default {
       ]
     }
   },
-  // 计算
-  computed: {
-
-  },
-  // 监视
-  watch: {
-
-  },
-  // 生命周期函数
-  created() {
-
-  },
-  beforeMount() {
-
-  },
-  mounted() {
-
-  },
   // 方法
   methods: {
     testEmit() {
@@ -110,18 +84,9 @@ export default {
       this.$emit("update:propData", this.PropData)
     }
   },
-  // 自定义指令
-  directive: {
-
-  }
 }
 </script>
 
-<!--
-	作者：hoo790692170@163.com
-	时间：2017-03-27
-	描述：统一使用less,局部样式
--->
 <style lang="less" scoped>
 
 </style>

@@ -82,7 +82,7 @@ export default {
     },
     CAB(){
       // call+apply+bind的区别：参数有区别，bind返回的是函数
-      let name = "小王",age = "20";
+      let name = "小王",age = "20"; // eslint-disable-line
       let obj = {
         name:"objname",
         objAge:age,
@@ -121,7 +121,7 @@ export default {
       }
     },
     varHoisting(){
-      var a = "外部变量";
+      var a = "外部变量"; // eslint-disable-line
       (function(){
         console.log(a1)
         var a1 = "内部变量"
@@ -131,12 +131,12 @@ export default {
       function addSomeNumber(){
         return 100
       }
-      function addSomeNumber(num){
-        return num+100
-      }
-      function addSomeNumber(num,num1){
-        return num+100+num1
-      }
+      // function addSomeNumber(num){
+      //   return num+100
+      // }
+      // function addSomeNumber(num,num1){
+      //   return num+100+num1
+      // }
       console.log(addSomeNumber(1,2));
     }
   },

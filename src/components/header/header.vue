@@ -69,13 +69,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less' scoped>
-	.head-top{
-		background-color: #fff;
-    	height: 40px;
-		// padding: 10px 60px;
-		position: relative;
-		z-index: 100;
-		box-shadow: 0 0 1px rgba(0,0,0,0.25);
-    	transition: background-color 0.3s ease-in-out;
-	}
+.head-top{
+  background-color: #fff;
+    height: 40px;
+  // padding: 10px 60px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 0 1px rgba(0,0,0,0.25);
+    transition: background-color 0.3s ease-in-out;
+}
 </style>
