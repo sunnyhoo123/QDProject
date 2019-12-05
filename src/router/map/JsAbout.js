@@ -5,6 +5,7 @@ const moreComponent = resolve => require(["@/views/More/More.vue"], resolve)
 
 const feaComponent = resolve => require(["@/views/Feature/Feature.vue"], resolve)
 const KeyCodeDelComponent = resolve => require(["@/views/Feature/KeyCodeDel.vue"], resolve)
+const PersonalCenterComponent = resolve => require(["@/views/Feature/PersonalCenter/index.vue"], resolve)
 
 const funcComponent = resolve => require(["@/views/func/func.vue"], resolve)
 const tipsComponent = resolve => require(["@/views/more/tips.vue"], resolve)
@@ -25,7 +26,8 @@ const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploa
 const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelect.vue"], resolve)
 const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)
 const elPopoverComponent = resolve => require(["@/views/elementCom/elOther/elPopoverCom.vue"], resolve)
-const elDialogComponent = resolve => require(["@/views/elementCom/elOther/elDialogCom.vue"], resolve)
+// 定制组件
+const customBirdComponent = resolve => require(["@/views/elementCom/CSSPlus/bird.vue"], resolve)
 
 export const elUICom ={
   path:"/elUI",
@@ -59,9 +61,10 @@ export const elUICom ={
       path:"/elementCom/elOthers/elPopoverCom",
       component:elPopoverComponent,
     },
+    // custom
     {
-      path:"/elementCom/elOthers/elDialogCom",
-      component:elDialogComponent,
+      path:"/elementCom/custom/birdCom",
+      component:customBirdComponent,
     },
   ]
 }
@@ -101,6 +104,12 @@ export const KeyCodeDelCom ={
   component:KeyCodeDelComponent,
   name:"KeyCodeDel",
 }
+export const PersonalCenterCom ={
+  path: "/PersonalCenter",
+  component: PersonalCenterComponent,
+  name: "PersonalCenter",
+}
+
 export const mapCom ={
   path:"/map",
   component:mapComponent,

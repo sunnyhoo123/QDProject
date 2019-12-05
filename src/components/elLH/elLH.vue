@@ -39,6 +39,14 @@
             </li>
           </ul>
         </div>
+        <div class="nav-group">
+          <div class="nav-group__title">custom</div>
+          <ul class="pure-menu-list" style="height: auto">
+            <li v-for="(value,name) in CustomComponent" :key="name" class="nav-item">
+              <a @click="linkToCustom(name)">{{ value }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </el-scrollbar>
   </div>

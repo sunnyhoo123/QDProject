@@ -1,6 +1,7 @@
 <template>
   <div class="feature">
     <el-button @click="linkToKCD">S+D键实现删除功能</el-button>
+    <el-button @click="linkToPC">模拟个人中心</el-button>
     <span>请输入整数：</span>
     <!-- 使用懒加载，输入后点击其他地方才会显示 -->
     <input v-model.lazy="content" type="number">
@@ -170,6 +171,9 @@ export default {
     linkToKCD(){
       // this.$message('这是一条消息提示');
       this.$router.push({ path: "/KeyCodeDel" })
+    },
+    linkToPC() {
+      this.$router.push({ path: "/PersonalCenter" })
     },
     onSlider:Debounce(function(){
       this.$message("这是一条消息提示");
