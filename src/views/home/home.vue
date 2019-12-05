@@ -6,13 +6,11 @@
     <el-button type="primary" @click="changeBg">切换背景</el-button>
     <el-button type="primary" @click="getMockdata">mock数据</el-button>
     <el-button type="primary" @click="hiddenBG">{{ hiddenBg }}</el-button>
-    <el-button type="primary" @contextmenu.prevent="rightEvent()">{{ rightClick }}</el-button>
-    <input type="button" value="按钮" @contextmenu.prevent="show()">
-
+    <el-button type="primary" @contextmenu.prevent.native="openMenu($event)">{{ rightClick }}</el-button>
+    <input type="button" value="原生右键" @contextmenu.prevent="show">
     <span>点击自增，{{ count }}会加1</span>
     <span>{{ msg }}</span>
     <span>computer后的值{{ reversedMessage }}</span>
-
     <div v-if="seen">
       <ul v-for="item in getResult" :key="item.index" class="ul-api">
         <li><img :src="item" width="800" height="600"></li>
@@ -20,12 +18,18 @@
     </div>
     <!-- images中的图片 -->
     <div v-if="seen" ref="element" class="background" style="display:block"></div>
+    <!-- 右键菜单 -->
+    <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
+      <li>上移一层</li>
+      <li>下移一层</li>
+    </ul>
   </div>
 </template>
 
 <script>
 // import fsObj from '@/services/fs-service.js'
 import api from "api"
+import { cloneDeep } from "lodash";
 // import {mapActions, mapGetters} from 'vuex'
 import apiService from "@/services/API-service.js"
 import comHeader from "@/components/header/header.vue"
@@ -49,7 +53,11 @@ export default {
       contList: [],
       hiddenBg: "显示图片",
       getResult: [],
-      rightClick: "鼠标右键"
+      rightClick: "鼠标右键",
+      visible: false,
+      top: 0,
+      left: 0,
+      responseData: null,
     }
   },
   computed: {
@@ -66,6 +74,17 @@ export default {
     //     console.log(names)
     //   }
     // }
+  },
+  watch: {
+    visible: {
+      handler(value) {
+        if(value) {
+          document.body.addEventListener("click", this.closeMenu)
+        }else {
+          document.body.removeEventListener("click", this.closeMenu)
+        }
+      }
+    }
   },
   mounted() {
   },
@@ -85,8 +104,10 @@ export default {
     getMockdata() {
       // axios.get("http://localhost:8080/static/mock/alarmList.json").then(res => {
       api.get("/static/mock/alarmList.json").then(res => {
-        console.log(res);
-        return res;
+        this.responseData = cloneDeep(res)
+        this.responseData.image.url = "www"
+        console.log(res, "res"); // 使用cloneDeep，赋值后res不会随之改变
+        console.log(this.responseData, "responseData");
       });
     },
     increment() {
@@ -131,8 +152,24 @@ export default {
     tempTest() {
       console.log(document)
     },
-    rightEvent() {
-      console.log(555)
+    openMenu(e) {
+      const menuMinWidth = 105;
+      const offsetLeft = this.$el.getBoundingClientRect().left
+      const offsetWidth = this.$el.offsetWidth // container width
+      const maxLeft = offsetWidth - menuMinWidth // left boundary
+      const left = e.clientX - offsetLeft // 15: margin right
+      
+      if (left > maxLeft) {
+        this.left = maxLeft
+      } else {
+        this.left = left
+      }
+
+      this.top = e.clientY - 60 // fix 位置bug
+      this.visible = true
+    },
+    closeMenu() {
+      this.visible = false
     },
     show(e) {
       console.log(e)
@@ -189,5 +226,26 @@ export default {
   }
   .modules{
     display: flex;
+  }
+  .contextmenu {
+    margin: 0;
+    background: #fff;
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+    li {
+      margin: 0;
+      padding: 7px 16px;
+      cursor: pointer;
+      &:hover {
+        background: #eee;
+      }
+    }
   }
 </style>
