@@ -1,19 +1,22 @@
 <template>
   <div id="more">
-    <!-- “Lambda 表达式”(lambda expression)是匿名函数的别称 -->
-    <div v-show="vShow">ES6Lambda</div>
-    <el-input v-model="original" placeholder="输入要拆分的数字"></el-input>
-    <el-button type="primary" @click="regExp">正则表达</el-button>
-    <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
-    <el-button type="primary" @click="VueRoot">Vue root</el-button>
-    <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
-    <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
-    <el-button type="primary" @click="ES6">调用Promise</el-button>
-    <el-button type="primary" @click="ES6async">调用Async</el-button>
-    <el-button type="primary" @click="ES6Arrow">箭头函数</el-button>
-    <el-button type="primary" @click="switchNet">switchNet</el-button>
     <router-link to="/">回到首页</router-link>
     <router-link to="/more/tips">tips小技巧</router-link>
+    <!-- “Lambda 表达式”(lambda expression)是匿名函数的别称 -->
+    <div v-show="vShow">ES6Lambda</div>
+    <el-input v-model="original" placeholder="测试正则表达式"></el-input>
+    <el-button type="primary" @click="regExp">正则表达</el-button>
+    <div>
+      <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
+      <el-button type="primary" @click="VueRoot">Vue root</el-button>
+      <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
+      <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
+      <el-button type="primary" @click="ES6">调用Promise</el-button>
+      <el-button type="primary" @click="ES6async">调用Async</el-button>
+      <el-button type="primary" @click="ES6Arrow">箭头函数</el-button>
+      <el-button type="primary" @click="switchNet">switchNet</el-button>
+      <el-button type="primary" @click="testMoment">时间插件moment</el-button>
+    </div>
     <div class="child">
       <router-view></router-view>
     </div>
@@ -21,7 +24,10 @@
 </template>
 
 <script>
+import moment from "moment";
+
 const count = /^\d+$/;
+
 export default {
   name: "More",
   data(){
@@ -38,22 +44,21 @@ export default {
     }
   },
   methods: {
-    regExp(value){
-      let originaValue;
+    regExp(){
       var r= /^(\d{4})-(\d{1,2})-(\d{1,2})$/; //正则表达式 匹配出生日期(简单匹配)  
       var r2= /^\d{1,2}/; //正则表达式 匹配出生日期(简单匹配)    
-      var IDcard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; //身份证
+      // var IDcard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; //身份证
       var passport = /^((1[45]\d{7})|(G\d{8})|(P\d{7})|(S\d{7,8}))?$/; //护照
       var eight = /^[0-9]{8}$/; //8位数
       var letter = /^[a-zA-Z]{1}$/; //1个字母
       // 正则校验是否中文名称组成 [\u4E00-\u9FA5]{2,4}
-      // r.exec('1985-10-15');
-      // console.log(r2.exec('-10-15'))
-      // console.log(RegExp.$1)
-      // console.log(count.test(123456))
+      r.exec("1985-10-15");
+      console.log(r2.exec("-10-15"))
+      console.log(RegExp.$1)
+      console.log(count.test(123456))
       // let capitalFn = this.capitalFn('123456')
       console.log(letter.test(this.original)&&eight.test(this.original));
-      // console.log(this.original==0?'number':'passport');
+      console.log(this.original==0 ? "number" : passport);
       var re = /(\w+)\s(\w+)/; 
       var str = "zara ali"; 
       var newstr = str.replace(re, "$2, $1, $1, $3"); 
@@ -84,13 +89,22 @@ export default {
     ES6Arrow(){
       //箭头函数的表达式和默认return
       let testObject = {
-        a:1,
-        custormElm: () => 2,
-        custormElm2: () => {return 2},
+        arrowF: num => 2 * num,
+        arrowF1: () => 2 * this.original, // 如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分
+        arrowF2: () => { if(!this.original) return 2 }, // 如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用return语句返回
+        arrowF3: num => ({ num: num }), // 由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错。
       }
-      let testF = resolve => this.
-        console.log(testObject.custormElm())
-      console.log(testObject.custormElm2())
+      console.log(testObject.arrowF(3)) // 6
+      console.log(testObject.arrowF1()) // 0
+      console.log(testObject.arrowF2()) // 2
+      console.log(testObject.arrowF3(3)) // {num: 3}
+
+      const full = ({ first, last }) => first + " " + last; // 箭头函数可以与变量解构结合使用。
+      // 等同于
+      // function full(person) {
+      //   return person.first + " " + person.last;
+      // }
+      console.log(full({ first: "kevin", last: "hoo" })) // kevin hoo
     },
     ES6Test(){
       // const person = { name: 'Scott', attractiveness: 8.5 }
@@ -99,7 +113,7 @@ export default {
       const Attributes1 = ({ name="jerry", attractiveness=0 } = {}) => {
         return [name,attractiveness]
       }
-
+      console.log(Attributes1())
       //为函数的参数指定默认值，而不是为变量name和attractiveness指定默认值，所以会得到与前一种写法不同的结果
       const Attributes2 = ({ name, attractiveness } = { name:"jerry", attractiveness:0 }) => {
         return [name,attractiveness]
@@ -153,10 +167,19 @@ export default {
         }
       })
     },
-    switchNet(){
+    switchNet() {
       let TestNet = { 1:"/a-api",203:"/b-api" }
       console.log(TestNet[1])
       console.log(TestNet[203])
+    },
+    testMoment() {
+      // moment常见用法
+      console.log(moment().format("YYYY-MM-DD HH:mm:ss")); // 2019-12-05 18:26:53 格式化时间，注意：HH为24小时
+      console.log(moment().subtract(1, "days").format("YYYY-MM-DD HH:mm:ss")); // 2019-12-04 18:26:53 计算时间段，比当前时间少一天
+      console.log(moment(moment()).diff(moment().subtract(1, "days"), "hours")); // 24 计算时间范围小时数
+    },
+    testLodash() {
+
     }
   }
 }
