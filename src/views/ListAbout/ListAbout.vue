@@ -1,5 +1,7 @@
 <template>
-  <div id="listabout">
+  <div id="list-about">
+    <el-page-header content="详情页面" @back="goBack">
+    </el-page-header>
     <div>Array数组专场</div>
     <el-button type="primary" @click="findFun">find方法</el-button>
     <el-button type="primary" @click="filterFun">filter方法</el-button>
@@ -26,8 +28,8 @@ export default {
       example1:{
         items:{
           messages:23,
-          messages:123,
-          messages:3333,
+          messages1:123,
+          messages2:3333,
         }
       },
       example2:["123","324","323","34242","12345"],
@@ -36,6 +38,9 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     findFun(){
       //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
       let findResult = this.example4.find((value)=>{

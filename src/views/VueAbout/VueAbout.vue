@@ -1,7 +1,9 @@
 <template>
   <div class="vue-about">
-    <div :class="[activeClass, errorClass,'class-array']">绑定HTML Class</div>
+    <div :class="[activeClass, errorClass, 'class-array', 'flex']">绑定HTML Class</div>
     <router-link to="/vueabout/parent">parent</router-link>
+    <router-link to="/vueabout/confirm">confirm</router-link>
+    <router-link to="/vueabout/upload">upload</router-link>
     <div class="child">
       <router-view></router-view>
     </div>
@@ -16,7 +18,8 @@
         <div @click="alert(3)">789</div>
       </a>
     </div>
-
+    <input v-model="formData['name']">
+    <el-button @click="changeFormData">123</el-button>
   </div>
 </template>
 
@@ -25,69 +28,57 @@
 export default {
   // 组件名
   name: "Vueabout",
-  // 组件
-  components: {
-
-  },
-  // 过滤器
-  filters: {
-
-  },
-  // 数组或对象，用于接收来自父组件的数据
-  props: {
-
-  },
   // 实例的数据对象
   data() {
     return {
       activeClass: "active",
-      errorClass: "text-danger"
+      errorClass: "text-danger",
+      formData: {
+        name: "",
+        sex: 0
+      }
     }
-  },
-  // 计算
-  computed: {
-
-  },
-  // 监视
-  watch: {
-
-  },
-  // 生命周期函数
-  created() {
-
-  },
-  beforeMount() {
-
-  },
-  mounted() {
-
   },
   // 方法
   methods: {
     alert(val) {
       console.log("%c%s","color: red; background: yellow; font-size: 24px;", val);
-    }
+    },
+    changeFormData() {
+      console.log(this.formData);
+    },
   },
-  // 自定义指令
-  directive: {
-
-  }
 }
 </script>
 
-<!--
-	作者：hoo790692170@163.com
-	时间：2017-03-27
-	描述：统一使用less,局部样式
--->
-<style lang="less" scoped>
-    .active {
-		color: aqua;
+<style scoped lang="scss">
+@import "style/var.scss";
+@import "style/global.scss";
+@mixin fontStyle($backgroundColor: #0d0, $fontSize: 14px) {
+  color: $font-color;
+  font-size: $fontSize;
+  // background: rgba(59, 71, 100, 1); 有默认值时可以不传值
+}
+$font-color: #919bb2;
+
+.vue-about {
+  .active {
+    color: $font-color;
+    &:hover {
+      color: #0d0;
+    }
 	}
 	.text-danger {
-		width: 200px;
+		font-size: 20px;
 	}
 	.class-array {
-		height: 30px;
-	}
+    height: 30px;
+  }
+  .child {
+    @include fontStyle($fontSize: 16px)
+  }
+  .flex {
+    @extend .display-flex
+  }
+}
 </style>

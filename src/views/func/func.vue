@@ -64,8 +64,6 @@ export default {
         return this.split("").join(" ");
       }
       console.log(this.originString.spacify());
-
-      console.log(1?"0":"-");
     },
     async(){
       setTimeout(() => {

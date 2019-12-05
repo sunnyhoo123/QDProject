@@ -13,9 +13,10 @@ import store from "./vuex/store"
 // css
 
 import "../static/css/reset.css"
-import "../static/css/element-ui.css"
+// import "../static/css/element-ui.css"
 import "../static/css/iconfont.css"
 // import 'iview/dist/styles/iview.css'
+import "element-ui/lib/theme-chalk/index.css"
 
 Vue.config.productionTip = false
 
