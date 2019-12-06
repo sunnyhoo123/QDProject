@@ -1,5 +1,6 @@
 <template>
   <div class="feature">
+    <text-scroll></text-scroll>
     <el-button @click="linkToKCD">S+D键实现删除功能</el-button>
     <span>请输入整数：</span>
     <!-- 使用懒加载，输入后点击其他地方才会显示 -->
@@ -36,12 +37,15 @@
 </template>
 
 <script>
+import TextScroll from "@/components/TextScroll/TextScroll.vue"
 import { mapActions } from "vuex"
 import { Debounce } from "@/utils/codes.js"
 export default {
   //组件名
   name: "Feature",
-  //数组或对象，用于接收来自父组件的数据
+  components: {
+    TextScroll
+  },
   //过滤器
   filters:{
     //加入过滤器

@@ -1,12 +1,14 @@
 <template>
-  <div id="more">
+  <div class="more">
     <router-link to="/">回到首页</router-link>
     <router-link to="/more/tips">tips小技巧</router-link>
     <!-- “Lambda 表达式”(lambda expression)是匿名函数的别称 -->
     <div v-show="vShow">ES6Lambda</div>
-    <el-input v-model="original" placeholder="测试正则表达式"></el-input>
-    <el-button type="primary" @click="regExp">正则表达</el-button>
-    <div>
+    <div class="regexp">
+      <el-input v-model="original" placeholder="测试正则表达式"></el-input>
+      <el-button type="primary" @click="regExp(original)">正则表达</el-button>
+    </div>
+    <div class="el-btn">
       <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
       <el-button type="primary" @click="VueRoot">Vue root</el-button>
       <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
@@ -16,6 +18,7 @@
       <el-button type="primary" @click="ES6Arrow">箭头函数</el-button>
       <el-button type="primary" @click="switchNet">switchNet</el-button>
       <el-button type="primary" @click="testMoment">时间插件moment</el-button>
+      <el-button type="primary" @click="testLodash">工具插件lodash</el-button>
     </div>
     <div class="child">
       <router-view></router-view>
@@ -25,6 +28,7 @@
 
 <script>
 import moment from "moment";
+import lodash from "lodash";
 
 const count = /^\d+$/;
 
@@ -44,7 +48,7 @@ export default {
     }
   },
   methods: {
-    regExp(){
+    regExp(val){
       var r= /^(\d{4})-(\d{1,2})-(\d{1,2})$/; //正则表达式 匹配出生日期(简单匹配)  
       var r2= /^\d{1,2}/; //正则表达式 匹配出生日期(简单匹配)    
       // var IDcard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; //身份证
@@ -63,6 +67,8 @@ export default {
       var str = "zara ali"; 
       var newstr = str.replace(re, "$2, $1, $1, $3"); 
       console.log(newstr); // ali, zara, zara, $3
+      let newMsg = val.replace(/[^\d\.]/g, "") // eslint-disable-line
+      console.log(newMsg)
     },
     ES6(){
       //前面捕获异常
@@ -177,16 +183,24 @@ export default {
       console.log(moment().format("YYYY-MM-DD HH:mm:ss")); // 2019-12-05 18:26:53 格式化时间，注意：HH为24小时
       console.log(moment().subtract(1, "days").format("YYYY-MM-DD HH:mm:ss")); // 2019-12-04 18:26:53 计算时间段，比当前时间少一天
       console.log(moment(moment()).diff(moment().subtract(1, "days"), "hours")); // 24 计算时间范围小时数
+
+      console.log(new Date(1547644771000).Format("yyyy-MM-dd HH:mm:ss"))
     },
     testLodash() {
-
+      console.log(lodash.isEmpty(null)); 
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.more {
   .el-input {
     width: 130px;
   }
+  .el-btn {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
 </style>
