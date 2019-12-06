@@ -53,7 +53,7 @@ export default {
     },
     fileChange(el) {
       console.log(el)
-      const list = this.$refs.file.files;
+      const list = this.$refs.file.files; // eslint-disable-line
       if (!el.target.files[0].size) return;
       this.fileList(el.target);
       el.target.value = "";
