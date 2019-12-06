@@ -15,8 +15,8 @@ const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], 
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout/VueAbout.vue"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
-const confirmComponent = resolve => require(["@/views/VueAbout/confirm.vue"], resolve)
-const uploadComponent = resolve => require(["@/views/VueAbout/upload.vue"], resolve)
+const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
+const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)
 
 // elementUI组件
 const elUIComponent = resolve => require(["@/views/elementCom/elUI.vue"], resolve)
