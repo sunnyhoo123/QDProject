@@ -1,7 +1,9 @@
 const listComponent = resolve => require(["@/views/ListAbout/ListAbout.vue"], resolve)
 const observeListComponent = resolve => require(["@/views/ListAbout/ObserveList.vue"], resolve)
 const numberComponent = resolve => require(["@/views/NumberAbout/NumberAbout.vue"], resolve)
+// more
 const moreComponent = resolve => require(["@/views/More/More.vue"], resolve)
+const webSocketComponent = resolve => require(["@/views/More/WebSocket/index.vue"], resolve)
 
 const feaComponent = resolve => require(["@/views/Feature/Feature.vue"], resolve)
 const KeyCodeDelComponent = resolve => require(["@/views/Feature/KeyCodeDel.vue"], resolve)
@@ -83,6 +85,10 @@ export const moreCom ={
     {
       path:"/more/tips",
       component:tipsComponent,
+    },
+    {
+      path: "/more/webSocket",
+      component: webSocketComponent,
     },
   ]
 }

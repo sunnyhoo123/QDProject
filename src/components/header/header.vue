@@ -18,7 +18,7 @@
     <el-tag >跳转到
       <router-link to="./map">Map</router-link>
     </el-tag>
-    <el-tag >
+    <el-tag >more
       <router-link to="./more">ES6等扩展</router-link>
     </el-tag>
     <el-tag >
