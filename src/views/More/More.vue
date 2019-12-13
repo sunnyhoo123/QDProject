@@ -6,7 +6,8 @@
     <!-- “Lambda 表达式”(lambda expression)是匿名函数的别称 -->
     <div v-show="vShow">ES6Lambda</div>
     <div class="regexp">
-      <el-input v-model="original" placeholder="测试正则表达式"></el-input>
+      <input v-focus>
+      <el-input v-focus v-model="original" :autofocus="true" placeholder="测试正则表达式"></el-input>
       <el-button type="primary" @click="regExp(original)">正则表达</el-button>
     </div>
     <div class="el-btn">

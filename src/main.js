@@ -9,6 +9,7 @@ import ElementUI from "element-ui"
 import i18n from "./i18n";
 // import IView from 'iview'
 import store from "./vuex/store"
+import "./directive";
 
 // css
 

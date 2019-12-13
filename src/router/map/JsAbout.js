@@ -14,7 +14,7 @@ const mapComponent = resolve => require(["@/views/map/mapView.vue"], resolve)
 const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], resolve)
 
 // Vue相关
-const vueComponent = resolve => require(["@/views/VueAbout/VueAbout.vue"], resolve)
+const vueComponent = resolve => require(["@/views/VueAbout/VueAbout"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
 const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
 const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)
@@ -28,6 +28,9 @@ const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelec
 const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)
 const elPopoverComponent = resolve => require(["@/views/elementCom/elOther/elPopoverCom.vue"], resolve)
 const elDialogComponent = resolve => require(["@/views/elementCom/elOther/elDialogCom.vue"], resolve)
+
+// demo
+const demoComponent = resolve => require(["@/demo"], resolve)
 
 export const elUICom ={
   path:"/elUI",
@@ -140,4 +143,9 @@ export const vueCom ={
       component:uploadComponent,
     },
   ]
+}
+export const demoCom ={
+  path:"/demo",
+  component: demoComponent,
+  name:"demo",
 }
