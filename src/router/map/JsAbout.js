@@ -17,6 +17,10 @@ const vueComponent = resolve => require(["@/views/VueAbout/VueAbout.vue"], resol
 const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
 const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
 const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)
+const routerComponent = resolve => require(["@/views/VueAbout/VueRouter/index.vue"], resolve)
+const RouterProfile = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/profile.vue"], resolve)
+const RouterHome = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/home.vue"], resolve)
+const RouterDefault = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/default.vue"], resolve)
 
 // elementUI组件
 const elUIComponent = resolve => require(["@/views/elementCom/elUI.vue"], resolve)
@@ -143,4 +147,70 @@ export const vueCom ={
       component:uploadComponent,
     },
   ]
+}
+// 动态路由
+export const routerCom ={
+  path: "/vueRouter/:id",
+  component: routerComponent,
+  name: "vueRouter",
+  props: true,
+  children:[
+    {
+      // 如果想匹配任意路径，我们可以使用通配符 (*)
+      path:"/vueRouter/parent/user-*",
+      component:parentComponent,
+    },
+    {
+      path:"/vueRouter/child/*",
+      component:parentComponent,
+    },
+    {
+      // 多段“路径参数
+      path:"/VueRouter/:username/post/:post_id",
+      component:confirmComponent,
+    },
+    {
+      // 当 /router/:id/profile 匹配成功，
+      // RouterProfile 会被渲染在 User 的 <router-view> 中
+      path: "profile",
+      component: RouterProfile
+    },
+    {
+      // 使用空的子路由，当 /user/:id 匹配成功，
+      // UserHome 会被渲染在 User 的 <router-view> 中
+      path: "",
+      component: RouterHome
+    }
+  ]
+}
+// 命名视图
+export const nameCom = {
+  path: "/view",
+  components: {
+    default: RouterDefault,
+    a: RouterHome,
+    b: RouterProfile,
+  }
+}
+export const nameComTwo = {
+  path: "/other",
+  components: {
+    default: RouterHome,
+    a: RouterDefault,
+    b: RouterProfile,
+  }
+}
+// 重定向和别名
+export const redirectRouter ={
+  path: "/redirectRouter",
+  redirect: "RouterDefault/"
+}
+export const defaultCom ={
+  path: "/routerDefault",
+  component: RouterDefault,
+}
+export const profileCom ={
+  path: "/routerProfile",
+  component: RouterProfile,
+  alias: "/rp"
 }
