@@ -65,6 +65,10 @@ export default {
       customValidator: "success"
     }
   },
+  created() {
+    // 当使用一个通配符时，$route.params内会自动添加一个名为pathMatch参数。它包含了URL通过通配符被匹配的部分
+    console.log(this.$route.params, "pathMatch参数");
+  },
   // 方法
   methods: {
     NotTest() {
