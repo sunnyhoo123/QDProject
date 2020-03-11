@@ -1,9 +1,17 @@
 <template>
   <div class="vue-about">
+    <el-page-header content="详情页面" @back="goBack">
+    </el-page-header>
     <div :class="[activeClass, errorClass, 'class-array', 'flex']">绑定HTML Class</div>
     <router-link to="/vueabout/parent">parent</router-link>
     <router-link to="/vueabout/confirm">confirm</router-link>
     <router-link to="/vueabout/upload">upload</router-link>
+    <!-- 动态路由 -->
+    <el-tag >
+      <router-link to="/vueRouter/foo">foo</router-link>
+      <router-link to="/vueRouter/bar">动态路径参数(dynamic segment)</router-link>
+    </el-tag>
+
     <div class="child">
       <router-view></router-view>
     </div>
@@ -77,8 +85,17 @@ export default {
     //   }
     // }
   },
+  
+  created() {
+    // console.log(this.$route.params.id);
+  },
   // 方法
   methods: {
+    goBack() {
+      this.$router.push({
+        path: "/"
+      });
+    },
     alert(val) {
       console.log("%c%s","color: red; background: yellow; font-size: 24px;", val);
     },

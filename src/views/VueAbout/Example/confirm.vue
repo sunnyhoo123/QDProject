@@ -185,6 +185,9 @@ export default {
       },
     }
   },
+  created() {
+    console.log(this.$route.params, "$route.params参数");
+  },
   methods:{
     show() {
       this.showFlag = true
