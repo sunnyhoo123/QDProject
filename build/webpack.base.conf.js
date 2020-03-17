@@ -81,7 +81,25 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      // {
+      //   test: /\.md$/,
+      //   use: [
+      //     { loader: 'html-loader' },
+      //     { loader: 'markdown-loader', options: {} }
+      //   ],
+      // },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: "vue-loader",
+          },
+          {
+            loader: resolve("./build/markdown-compiler.js"),
+          },
+        ],
+      },
     ]
   },
   node: {

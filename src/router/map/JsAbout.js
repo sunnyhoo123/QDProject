@@ -1,7 +1,9 @@
 const listComponent = resolve => require(["@/views/ListAbout/ListAbout.vue"], resolve)
 const observeListComponent = resolve => require(["@/views/ListAbout/ObserveList.vue"], resolve)
 const numberComponent = resolve => require(["@/views/NumberAbout/NumberAbout.vue"], resolve)
+// more
 const moreComponent = resolve => require(["@/views/More/More.vue"], resolve)
+const webSocketComponent = resolve => require(["@/views/More/WebSocket/index.vue"], resolve)
 
 const feaComponent = resolve => require(["@/views/Feature/Feature.vue"], resolve)
 const KeyCodeDelComponent = resolve => require(["@/views/Feature/KeyCodeDel.vue"], resolve)
@@ -13,7 +15,7 @@ const mapComponent = resolve => require(["@/views/map/mapView.vue"], resolve)
 const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], resolve)
 
 // Vue相关
-const vueComponent = resolve => require(["@/views/VueAbout/VueAbout.vue"], resolve)
+const vueComponent = resolve => require(["@/views/VueAbout/VueAbout"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
 const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
 const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)
@@ -32,6 +34,9 @@ const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom
 const elPopoverComponent = resolve => require(["@/views/elementCom/elOther/elPopoverCom.vue"], resolve)
 // 定制组件
 const customBirdComponent = resolve => require(["@/views/elementCom/CSSPlus/bird.vue"], resolve)
+
+// demo
+const demoComponent = resolve => require(["@/demo"], resolve)
 
 export const elUICom ={
   path:"/elUI",
@@ -90,6 +95,10 @@ export const moreCom ={
     {
       path:"/more/tips",
       component:tipsComponent,
+    },
+    {
+      path: "/more/webSocket",
+      component: webSocketComponent,
     },
   ]
 }
