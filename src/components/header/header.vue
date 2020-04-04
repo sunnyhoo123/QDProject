@@ -24,9 +24,9 @@
     <el-tag >
       <router-link to="./vueabout">Vue扩展</router-link>
     </el-tag>
-    <el-link @click="toModule('/demo')">
+    <!-- <el-link @click="toModule('/demo')">
       mdDemo组件
-    </el-link>
+    </el-link> -->
   </div>
 </template>
 

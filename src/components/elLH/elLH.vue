@@ -73,6 +73,9 @@ export default {
       elOthersComponent: {
         elPopoverCom: "Popover 弹出框",
         elDialogCom: "Dialog 对话框框",
+      },
+      CustomComponent: {
+        birdCom: "愤怒的小鸟",
       }
     }
   },
@@ -85,6 +88,9 @@ export default {
     },
     linkToOthers(name){
       this.$router.push({ path: "/elementCom/elOthers/" + name });
+    },
+    linkToCustom(name){
+      this.$router.push({ path: "/elementCom/custom/" + name });
     },
   },
 }

@@ -8,7 +8,6 @@
     <input v-model.lazy="content" type="number">
     <span>过滤结果为： {{ content|unit }}</span>
         
-    <div v-html="content"></div>
     <div @click="getCurrentTime">获取当前时间：{{ this.currentTime }}</div>
     <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
     <el-button type="primary" @click="outPut">0~n之和</el-button>
@@ -135,26 +134,26 @@ export default {
       // this.exec(this.selected)
     },
     getCurrentTime(){
-      // var date = new Date(); 
-      // date.getYear(); //获取当前年份(2位) 
-      // date.getFullYear(); //获取完整的年份(4位,2014) 
-      // date.getMonth(); //获取当前月份(0-11,0代表1月) 
-      // date.getDate(); //获取当前日(1-31)
-      // date.getDay(); //获取当前星期X(0-6,0代表星期天) 
-      // date.getTime(); //获取当前时间(从1970.1.1开始的毫秒数) 
-      // date.getHours(); //获取当前小时数(0-23) 
-      // date.getMinutes(); //获取当前分钟数(0-59) 
-      // date.getSeconds(); //获取当前秒数(0-59) 
-      // date.getMilliseconds(); //获取当前毫秒数(0-999) 
-      // date.toLocaleDateString(); //获取当前日期 如 2019/7/12 
-      // date.toLocaleTimeString(); //获取当前时间 如 下午4:45:06 
-      // date.toLocaleString(); //获取日期与时间 如 2019/7/12 下午4:45:06
+      var date = new Date(); 
+      date.getYear(); //获取当前年份(2位) 
+      date.getFullYear(); //获取完整的年份(4位,2014) 
+      date.getMonth(); //获取当前月份(0-11,0代表1月) 
+      date.getDate(); //获取当前日(1-31)
+      date.getDay(); //获取当前星期X(0-6,0代表星期天) 
+      date.getTime(); //获取当前时间(从1970.1.1开始的毫秒数) 
+      date.getHours(); //获取当前小时数(0-23) 
+      date.getMinutes(); //获取当前分钟数(0-59) 
+      date.getSeconds(); //获取当前秒数(0-59) 
+      date.getMilliseconds(); //获取当前毫秒数(0-999) 
+      date.toLocaleDateString(); //获取当前日期 如 2019/7/12 
+      date.toLocaleTimeString(); //获取当前时间 如 下午4:45:06 
+      date.toLocaleString(); //获取日期与时间 如 2019/7/12 下午4:45:06
                 
       // tip
       // 获取当前时间的时间戳 ~new Date();
 
       let today = new Date();
-      let date = today.toLocaleDateString(); 
+      let dateString = today.toLocaleDateString(); 
       let h = today.getHours();
       let m = today.getMinutes();
       let s = today.getSeconds();
@@ -162,7 +161,7 @@ export default {
       m = checkTime(m);
       s = checkTime(s);
 
-      this.currentTime = `${date} ${h}:${m}:${s}`;
+      this.currentTime = `${dateString} ${h}:${m}:${s}`;
       // 定时执行该方法
       setTimeout(() => { this.getCurrentTime() }, 500)
       function checkTime(i) {
@@ -180,7 +179,10 @@ export default {
       this.$router.push({ path: "/PersonalCenter" })
     },
     onSlider:Debounce(function(){
-      this.$message("这是一条消息提示");
+      this.$message({
+        showClose: true,
+        message: "这是一条消息提示"
+      });
     },1000),
     fetchIp() {
       let conn = new RTCPeerConnection({
@@ -207,11 +209,6 @@ export default {
 }
 </script>
 
-<!--
-	作者：liangyanxiangde@163.com
-	时间：2017-03-27
-	描述：统一使用less,局部样式
--->
 <style lang="less" scoped>
     .block1{
         width:500px

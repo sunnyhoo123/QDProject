@@ -146,7 +146,7 @@ export default {
 
   .background{
     width: 900px;
-    height: 700px;
+    height: 500px;
     background: url('./images/demo1.jpg') no-repeat
   }
   .contract{
