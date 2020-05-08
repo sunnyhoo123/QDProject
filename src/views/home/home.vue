@@ -124,6 +124,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less' scoped>
+.test {
+  height: 100vh
+}
   h1,h2 {
     font-weight: normal;
   }

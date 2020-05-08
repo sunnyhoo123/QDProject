@@ -15,7 +15,7 @@
     <el-tag >
       <router-link to="./func">Function专场</router-link>
     </el-tag>
-    <el-tag >跳转到
+    <el-tag >
       <router-link to="./map">Map</router-link>
     </el-tag>
     <el-tag >more

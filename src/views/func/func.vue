@@ -140,18 +140,9 @@ export default {
       console.log(addSomeNumber(1,2));
     }
   },
-  //自定义指令
-  directive:{
-
-  }
 }
 </script>
 
-<!--
-	作者：liangyanxiangde@163.com
-	时间：2017-03-27
-	描述：统一使用less,局部样式
--->
 <style lang="less" scoped>
 
 </style>
