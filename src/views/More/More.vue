@@ -2,10 +2,12 @@
   <div class="more">
     <router-link to="/">回到首页</router-link>
     <router-link to="/more/tips">tips小技巧</router-link>
+    <router-link to="/more/webSocket">webSocket</router-link>
     <!-- “Lambda 表达式”(lambda expression)是匿名函数的别称 -->
     <div v-show="vShow">ES6Lambda</div>
     <div class="regexp">
-      <el-input v-model="original" placeholder="测试正则表达式"></el-input>
+      <input v-focus>
+      <el-input v-focus v-model="original" :autofocus="true" placeholder="测试正则表达式"></el-input>
       <el-button type="primary" @click="regExp(original)">正则表达</el-button>
     </div>
     <div class="el-btn">
@@ -158,7 +160,7 @@ export default {
     },
     IteratorStr(){
       for(let codePoint of "hoo"){
-        console.log(typeof(codePoint))
+        console.log(codePoint)
       }
     },
     ES6Promise(){
@@ -194,10 +196,10 @@ export default {
     },
     testMoment() {
       // moment常见用法
-      console.log(moment().format("YYYY-MM-DD HH:mm:ss")); // 2019-12-05 18:26:53 格式化时间，注意：HH为24小时
-      console.log(moment().subtract(1, "days").format("YYYY-MM-DD HH:mm:ss")); // 2019-12-04 18:26:53 计算时间段，比当前时间少一天
+      console.log(moment().format("YYYY-MM-DD HH:mm:ss")); // 当前时间，注意：HH为24小时
+      console.log(moment().subtract(1, "days").format("YYYY-MM-DD HH:mm:ss")); // 计算时间段，当前时间的前一天
       console.log(moment(moment()).diff(moment().subtract(1, "days"), "hours")); // 24 计算时间范围小时数
-      console.log(new Date(1547644771000).Format("yyyy-MM-dd HH:mm:ss"))
+      console.log(new Date(1547644771000).Format("yyyy-MM-dd HH:mm:ss")) // 当前时间
     },
     testLodash() {
       console.log(lodash.isEmpty(null)); 

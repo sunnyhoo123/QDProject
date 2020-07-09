@@ -18,12 +18,15 @@
     <el-tag >跳转到
       <router-link to="./map">Map</router-link>
     </el-tag>
-    <el-tag >
+    <el-tag >more
       <router-link to="./more">ES6等扩展</router-link>
     </el-tag>
     <el-tag >
       <router-link to="./vueabout">Vue扩展</router-link>
     </el-tag>
+    <el-link @click="toModule('/demo')">
+      mdDemo组件
+    </el-link>
   </div>
 </template>
 
@@ -53,9 +56,10 @@ export default {
   },
   methods: {
     ...mapActions(["exec"]),
-    increment() {
-      this.count++
+    toModule(path) {
+      this.$router.push({ path });
     },
+    
   },
 }
 </script>
