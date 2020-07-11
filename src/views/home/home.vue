@@ -124,6 +124,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less' scoped>
+.test {
+  height: 100vh
+}
   h1,h2 {
     font-weight: normal;
   }
@@ -146,7 +149,7 @@ export default {
 
   .background{
     width: 900px;
-    height: 700px;
+    height: 500px;
     background: url('./images/demo1.jpg') no-repeat
   }
   .contract{

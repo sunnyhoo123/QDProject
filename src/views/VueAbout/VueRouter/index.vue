@@ -60,7 +60,10 @@
       <span>与{{ $route.params.id }}相同</span>
     </section>
 
-    <router-view></router-view>
+    <transition name="kaka" mode="out-in">
+      <router-view></router-view>
+    </transition>
+    
     <router-view name="a"></router-view>
     <router-view name="b"></router-view>
   </div>
@@ -118,5 +121,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.kaka-enter-active, .kaka-leave-active {
+  transition: opacity .5s;
+}
+.kaka-enter, .kaka-leave-to {
+  opacity: 0;
+}
 </style>

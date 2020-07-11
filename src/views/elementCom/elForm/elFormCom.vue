@@ -91,10 +91,6 @@ export default {
       console.log(args,"123");
     }
   },
-  //自定义指令
-  directive:{
-
-  }
 }
 </script>
 

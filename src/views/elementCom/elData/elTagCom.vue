@@ -54,10 +54,6 @@ export default {
   methods: {
 
   },
-  //自定义指令
-  directive:{
-
-  }
 }
 </script>
 

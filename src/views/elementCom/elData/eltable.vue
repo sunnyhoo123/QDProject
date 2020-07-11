@@ -117,24 +117,6 @@ export default {
       seenTable:false,
     }
   },
-  //计算
-  computed: {
-
-  },
-  //监视
-  watch: {
-
-  },
-  //生命周期函数
-  created() {
-
-  },
-  beforeMount() {
-
-  },
-  mounted() {
-
-  },
   //方法
   methods: {
     handleSelectionChange(val) {
@@ -159,10 +141,6 @@ export default {
       this.currPicPage = cpage;
     },
   },
-  //自定义指令
-  directive:{
-
-  }
 }
 </script>
 

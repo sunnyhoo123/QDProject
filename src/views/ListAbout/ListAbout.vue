@@ -11,6 +11,7 @@
     <el-button type="primary" @click="sortA">sort方法</el-button>
     <el-button type="primary" @click="testReverseString">reverse方法</el-button>
     <el-button type="primary" @click="testSet">响应更改数据</el-button>
+    <el-button type="primary" @click="unique">数组去重</el-button>
     <div>{{ example2 }}</div>
     <template v-for="(item,index) of example2">
       <span :key="index">{{ item }},</span>
@@ -34,7 +35,7 @@ export default {
       },
       example2:["123","324","323","34242","12345"],
       example3:[{ latitude:1,longitude:32 },{ latitude:2 },{ latitude:3 },{ latitude:4 },{ latitude:5 }],
-      example4:[0,1,15,3,7],
+      example4:[2,0,1,15,3,7],
     };
   },
   methods: {
@@ -90,6 +91,18 @@ export default {
         a-b
       ))
       console.log(this.example4) //改变了原来的数组
+      // 冒泡排序
+      for(let i=0;i<this.example4.length-1;i++) {
+        for(let y=0;y<this.example4.length-1-i;y++) {
+          let a = this.example4[y];
+          let b = this.example4[y+1];
+          if(a > b) {
+            this.example4[y] = this.example4[y+1];
+            this.example4[y+1] = a;
+          }
+        }
+      }
+      console.log(this.example4) //改变了原来的数组
     },
     testSet(){
       // v-for 列表渲染，数组无法检测：当你利用索引直接设置一个项时；当你修改数组的长度时
@@ -109,6 +122,25 @@ export default {
       }).reverse().join("")
                 
       console.log(s1)  // 321 olleh
+    },
+    unique(){
+      Array.prototype.uniq = function() {
+        var arr = [];
+        var flag = true;
+        console.log(this, "this")
+        this.forEach(function(item) {
+        // 排除 NaN (重要！！！)
+          if (item != item) {
+            flag && arr.indexOf(item) === -1 ? arr.push(item) : "";
+            flag = false;
+          } else {
+            arr.indexOf(item) === -1 ? arr.push(item) : ""
+          }
+        });
+        return arr;
+      };
+      let originArray = [false, true, undefined, null, NaN, 0, 1, {}, {},[],[], "a", "a", NaN];
+      console.log(originArray.uniq());
     }
   }
 }

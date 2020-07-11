@@ -4,7 +4,16 @@ html,body{
 	width: 100%;
 	font-family: "微软雅黑","PingFangSC-Regular","PingFang SC","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
 	font-size: 14px;
-	color: #333;
+    color: #333;
+
+    /* 快速实现网站页面变灰,用于哀悼等 */
+    /* filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); IE
+    -webkit-filter: grayscale(1); */
 }
 
 p,ul,li,h1,h2,h3,h4,h5,h6{
