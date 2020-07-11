@@ -76,7 +76,8 @@ export default {
       },
       CustomComponent: {
         birdCom: "愤怒的小鸟",
-        dragCom: "拖拽/拖动"
+        dragCom: "拖拽/拖动",
+        expandCom: "展开/收起"
       }
     };
   },

@@ -13,6 +13,7 @@ const funcComponent = resolve => require(["@/views/func/func.vue"], resolve)
 const tipsComponent = resolve => require(["@/views/more/tips.vue"], resolve)
 const mapComponent = resolve => require(["@/views/map/mapView.vue"], resolve)
 const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], resolve)
+const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"], resolve)
 
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout/VueAbout"], resolve)
@@ -37,6 +38,7 @@ const elTooltipComponent = resolve => require(["@/views/elementCom/elOther/elToo
 // 定制组件
 const customBirdComponent = resolve => require(["@/views/elementCom/CSSPlus/bird.vue"], resolve)
 const customDragComponent = resolve => require(["@/views/elementCom/CSSPlus/drag.vue"], resolve)
+const customExpandComponent = resolve => require(["@/views/elementCom/CSSPlus/Expand.vue"], resolve)
 
 // demo
 const demoComponent = resolve => require(["@/demo"], resolve)
@@ -86,6 +88,10 @@ export const elUICom = {
       path: "/elementCom/custom/dragCom",
       component: customDragComponent,
     },
+    {
+      path: "/elementCom/custom/expandCom",
+      component: customExpandComponent,
+    },
   ]
 }
 export const listCom = {
@@ -103,13 +109,13 @@ export const moreCom = {
   component: moreComponent,
   name: "More",
   children: [{
-      path: "/more/tips",
-      component: tipsComponent,
-    },
-    {
-      path: "/more/webSocket",
-      component: webSocketComponent,
-    },
+    path: "/more/tips",
+    component: tipsComponent,
+  },
+  {
+    path: "/more/webSocket",
+    component: webSocketComponent,
+  },
   ]
 }
 export const funcCom = {
@@ -148,22 +154,27 @@ export const echartsproCom = {
   component: echartsproComponent,
   name: "echartspro",
 }
+export const echartsLineCom = {
+  path: "/echartsLine",
+  component: echartsLineComponent,
+  name: "echartsLine",
+}
 export const vueCom = {
   path: "/vueabout",
   component: vueComponent,
   name: "vueabout",
   children: [{
-      path: "/vueabout/parent",
-      component: parentComponent,
-    },
-    {
-      path: "/vueabout/confirm",
-      component: confirmComponent,
-    },
-    {
-      path: "/vueabout/upload",
-      component: uploadComponent,
-    },
+    path: "/vueabout/parent",
+    component: parentComponent,
+  },
+  {
+    path: "/vueabout/confirm",
+    component: confirmComponent,
+  },
+  {
+    path: "/vueabout/upload",
+    component: uploadComponent,
+  },
   ]
 }
 // 动态路由
@@ -173,31 +184,31 @@ export const routerCom = {
   name: "vueRouter",
   props: true,
   children: [{
-      // 如果想匹配任意路径，我们可以使用通配符 (*)
-      path: "/vueRouter/parent/user-*",
-      component: parentComponent,
-    },
-    {
-      path: "/vueRouter/child/*",
-      component: parentComponent,
-    },
-    {
-      // 多段“路径参数
-      path: "/VueRouter/:username/post/:post_id",
-      component: confirmComponent,
-    },
-    {
-      // 当 /router/:id/profile 匹配成功，
-      // RouterProfile 会被渲染在 User 的 <router-view> 中
-      path: "profile",
-      component: RouterProfile
-    },
-    {
-      // 使用空的子路由，当 /user/:id 匹配成功，
-      // UserHome 会被渲染在 User 的 <router-view> 中
-      path: "",
-      component: RouterHome
-    }
+    // 如果想匹配任意路径，我们可以使用通配符 (*)
+    path: "/vueRouter/parent/user-*",
+    component: parentComponent,
+  },
+  {
+    path: "/vueRouter/child/*",
+    component: parentComponent,
+  },
+  {
+    // 多段“路径参数
+    path: "/VueRouter/:username/post/:post_id",
+    component: confirmComponent,
+  },
+  {
+    // 当 /router/:id/profile 匹配成功，
+    // RouterProfile 会被渲染在 User 的 <router-view> 中
+    path: "profile",
+    component: RouterProfile
+  },
+  {
+    // 使用空的子路由，当 /user/:id 匹配成功，
+    // UserHome 会被渲染在 User 的 <router-view> 中
+    path: "",
+    component: RouterHome
+  }
   ]
 }
 // 命名视图

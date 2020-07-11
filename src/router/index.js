@@ -7,9 +7,10 @@ import Router from "vue-router"
 // import More from '@/views/More/More'
 import home from "@/router/map/home.js"
 import Redirect from "@/router/map/Redirect.js"
-import { elUICom,vueCom,listCom,numberCom,moreCom,funcCom,
-  feaCom,KeyCodeDelCom,mapCom,echartsproCom,observeListCom,routerCom,
-  nameCom,nameComTwo,defaultCom,profileCom,redirectRouter
+import {
+  elUICom, vueCom, listCom, numberCom, moreCom, funcCom,
+  feaCom, KeyCodeDelCom, mapCom, echartsproCom, echartsLineCom, observeListCom, routerCom,
+  nameCom, nameComTwo, defaultCom, profileCom, redirectRouter
 } from "./map/JsAbout"
 
 Vue.use(Router)
@@ -35,6 +36,7 @@ export default new Router({
     defaultCom,
     profileCom,
     redirectRouter,
+    echartsLineCom,
     Redirect, //路由重定向(访问不存在的页面时，重定向到这个页面) 放最后面
   ]
 })
