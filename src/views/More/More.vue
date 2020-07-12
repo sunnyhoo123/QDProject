@@ -11,11 +11,12 @@
       <el-button type="primary" @click="regExp(original)">正则表达</el-button>
     </div>
     <div class="el-btn">
-      <el-button type="primary" @click="ES6Test">ES6 参数解构</el-button>
+      <el-button type="primary" @click="ES6Test">参数解构</el-button>
+      <el-button type="primary" @click="handleObject">删除和过滤对象中部分属性</el-button>
       <el-button type="primary" @click="VueRoot">Vue root</el-button>
       <el-button type="primary" @click="JsonDraw">解构提取Json数据</el-button>
       <el-button type="primary" @click="IteratorStr">字符串的遍历</el-button>
-      <el-button type="primary" @click="ES6">调用Promise</el-button>
+      <el-button type="primary" @click="handlePromise">调用Promise</el-button>
       <el-button type="primary" @click="ES6async">调用Async</el-button>
       <el-button type="primary" @click="ES6Arrow">箭头函数</el-button>
       <el-button type="primary" @click="switchNet">switchNet</el-button>
@@ -72,7 +73,7 @@ export default {
       let newMsg = val.replace(/[^\d\.]/g, "") // eslint-disable-line
       console.log(newMsg)
     },
-    ES6(){
+    handlePromise(){
       //前面捕获异常
       this.ES6Promise().then((value)=>{
         console.log(value,"执行成功")
@@ -128,6 +129,19 @@ export default {
       }
       console.log(Attributes2({ name:"eom" }))
       console.log(Attributes2())
+    },
+    handleObject() {
+      let student = {
+        name: "韦小宝",
+        sex: 0,
+        hp: 500,
+        high: 170
+      };
+      // func1
+      let some  = (({ name,sex }) => ({ name,sex }))(student)
+      // func2 对象中的属性不用按顺序,params可以获取剩余的所有属性
+      let { sex, ...params } = student
+      console.log(some,params)
     },
     VueRoot(){
       //根实例可以通过 $root 属性进行访问
@@ -185,7 +199,6 @@ export default {
       console.log(moment().format("YYYY-MM-DD HH:mm:ss")); // 当前时间，注意：HH为24小时
       console.log(moment().subtract(1, "days").format("YYYY-MM-DD HH:mm:ss")); // 计算时间段，当前时间的前一天
       console.log(moment(moment()).diff(moment().subtract(1, "days"), "hours")); // 24 计算时间范围小时数
-
       console.log(new Date(1547644771000).Format("yyyy-MM-dd HH:mm:ss")) // 当前时间
     },
     testLodash() {
