@@ -68,7 +68,7 @@ export default {
       console.log(this.original==0 ? "number" : passport);
       var re = /(\w+)\s(\w+)/; 
       var str = "zara ali"; 
-      var newstr = str.replace(re, "$2, $1, $1, $3"); 
+      var newstr = str.replace(re, "$2, $1, $1, $3"); // $1,$2...是表示的小括号里的内容
       console.log(newstr); // ali, zara, zara, $3
       let newMsg = val.replace(/[^\d\.]/g, "") // eslint-disable-line
       console.log(newMsg)

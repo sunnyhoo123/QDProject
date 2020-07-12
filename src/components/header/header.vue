@@ -15,7 +15,7 @@
     <el-tag >
       <router-link to="./func">Function专场</router-link>
     </el-tag>
-    <el-tag >跳转到
+    <el-tag >
       <router-link to="./map">Map</router-link>
     </el-tag>
     <el-tag >more
@@ -24,9 +24,9 @@
     <el-tag >
       <router-link to="./vueabout">Vue扩展</router-link>
     </el-tag>
-    <el-link @click="toModule('/demo')">
+    <!-- <el-link @click="toModule('/demo')">
       mdDemo组件
-    </el-link>
+    </el-link> -->
   </div>
 </template>
 

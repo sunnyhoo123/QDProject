@@ -27,7 +27,6 @@
         </div>
         <div class="nav-group">
           <div class="nav-group__title">Notice</div>
-
         </div>
         <div class="nav-group">
           <div class="nav-group__title">Navigation</div>
@@ -64,66 +63,75 @@ export default {
       elFormComponent: {
         elSelectCom: "Select 选择器",
         elUploadCom: "Upload 上传",
-        elFormCom: "Form 表单",
+        elFormCom: "Form 表单"
       },
       elDataComponent: {
         elTableCom: "Table表格",
-        elTagCom:"Tag标签",
+        elTagCom: "Tag标签"
       },
       elOthersComponent: {
         elPopoverCom: "Popover 弹出框",
-        elDialogCom: "Dialog 对话框框",
+        elTooltipCom: "Tooltip 文字提示",
+        elDialogCom: "Dialog 对话框框"
+      },
+      CustomComponent: {
+        birdCom: "愤怒的小鸟",
+        dragCom: "拖拽/拖动",
+        expandCom: "展开/收起"
       }
-    }
+    };
   },
   methods: {
-    linkToForm(name){
+    linkToForm(name) {
       this.$router.push({ path: "/elementCom/elForm/" + name });
     },
-    linkToData(name){
+    linkToData(name) {
       this.$router.push({ path: "/elementCom/elData/" + name });
     },
-    linkToOthers(name){
+    linkToOthers(name) {
       this.$router.push({ path: "/elementCom/elOthers/" + name });
     },
-  },
-}
+    linkToCustom(name) {
+      this.$router.push({ path: "/elementCom/custom/" + name });
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less' scoped>
-	.elLH-wrap{
-		width: 200px;
-		// height: 100px;
-		// position: fixed;
-		.nav-item a{
-			display: block;
-			height: 40px;
-			color: #444;
-			line-height: 40px;
-			font-size: 14px;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			font-weight: 400;
-			cursor: pointer;
-		}
-	}
-	.side-nav{
-		padding-left: 50px;
-		text-align: left;
-		.nav-group__title{
-			font-size: 12px;
-			color: #999;
-			line-height: 26px;
-			margin-top: 15px;
-		}
-	} 
+.elLH-wrap {
+  width: 200px;
+  // height: 100px;
+  // position: fixed;
+  .nav-item a {
+    display: block;
+    height: 40px;
+    color: #444;
+    line-height: 40px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+.side-nav {
+  padding-left: 50px;
+  text-align: left;
+  .nav-group__title {
+    font-size: 12px;
+    color: #999;
+    line-height: 26px;
+    margin-top: 15px;
+  }
+}
 </style>
 
 <style lang="less">
-    // 防止scrollbar出现横滚动条
-    .el-scrollbar__wrap{
-        overflow-x:hidden;
-    }
+// 防止scrollbar出现横滚动条
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
 </style>

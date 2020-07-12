@@ -8,7 +8,6 @@
 <template>
   <div class="flex">
     
-    </div>
   </div>
 </template>
 
