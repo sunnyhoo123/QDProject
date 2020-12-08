@@ -5,13 +5,14 @@
     <div>Array数组专场</div>
     <el-button type="primary" @click="findFun">find方法</el-button>
     <el-button type="primary" @click="filterFun">filter方法</el-button>
-    <el-button type="primary" @click="forEachA">forEach方法</el-button>
+    <el-button type="primary" @click="forEachFun">forEach方法</el-button>
     <el-button type="primary" @click="fromFun">from方法</el-button>
-    <el-button type="primary" @click="mapA">map方法</el-button>
-    <el-button type="primary" @click="sortA">sort方法</el-button>
-    <el-button type="primary" @click="testReverseString">reverse方法</el-button>
+    <el-button type="primary" @click="mapFun">map方法</el-button>
+    <el-button type="primary" @click="sortFun">sort方法</el-button>
+    <el-button type="primary" @click="reverseFun">reverse方法</el-button>
     <el-button type="primary" @click="testSet">响应更改数据</el-button>
     <el-button type="primary" @click="unique">数组去重</el-button>
+    <el-button type="primary" @click="extension">常用技巧</el-button>
     <div>{{ example2 }}</div>
     <template v-for="(item,index) of example2">
       <span :key="index">{{ item }},</span>
@@ -64,7 +65,7 @@ export default {
       })
       console.log(filterResult1) // ["123","12345"]
     },
-    mapA(){
+    mapFun(){
       // map与filter的区别是：map会对每个元素进行处理，并返回每个元素，而filter只会返回符合条件的元素
       this.tempArray = this.example3.map((item)=>{
         return {
@@ -74,7 +75,7 @@ export default {
       })
       console.log(this.tempArray)
     },
-    forEachA(){
+    forEachFun(){
       this.example3.forEach(function(item, index){ // eslint-disable-line
         item.latitude = item.latitude +0.1
       })
@@ -86,7 +87,7 @@ export default {
       const arr = Array.from([1, 2, 3], x => x * 10);
       console.log(arr)  //[10, 20, 30]
     },
-    sortA(){
+    sortFun(){
       this.example4.sort((a,b)=>(
         a-b
       ))
@@ -111,7 +112,7 @@ export default {
       this.example2[1]="666"
       console.log(this.example2)
     },
-    testReverseString(){
+    reverseFun(){
       // reverse() 方法用于颠倒数组中元素的顺序。
       console.log(this.example4.reverse())  // [7, 3, 15, 1, 0]
 
@@ -140,7 +141,21 @@ export default {
         return arr;
       };
       let originArray = [false, true, undefined, null, NaN, 0, 1, {}, {},[],[], "a", "a", NaN];
+      console.log(this.unique1(originArray))
       console.log(originArray.uniq());
+    },
+    unique1(arr) {
+      if(!Array.isArray(arr)){
+        console.log("type errow!");
+        return;
+      }
+      return Array.from(new Set(arr));
+    },
+    extension() {
+      // 数组转化位对象（Array to Object）
+      const arr = [1,2,12];
+      const obj = { ...arr };
+      console.log(obj)
     }
   }
 }

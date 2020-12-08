@@ -21,17 +21,24 @@ export default {
   //方法
   methods: {
     NotTest(){
+      console.log(333)
       // 按位非 转换类型
-      console.log(~~this.numString)
+      console.log(typeof(~~this.numString))
       // 使用占位符，使打印的字体变颜色
       console.log("%c%s","color: red; background: yellow; font-size: 24px;","这里是文字被%s占住");
-      console.log(typeof(~~this.numString))
       // 按位或 裁剪数字
       console.log(this.num/10|0)
       console.log(this.bigNum/100|0)
-      //类型转换
-      console.log(+this.numString)
+      // 类型转换
       console.log(typeof(+this.numString))
+      // 浮点数转为整数（Float to Integer）
+      console.log(~~6.95); // 6
+      console.log(6.95 >> 0); // 6
+      console.log(6.95 << 0); // 6
+      console.log(6.95 | 0); // 6
+      // >>>不可对负数取整
+      console.log(6.95>>>0); // 6
+      console.log(222); // 6
     },
     showNotification() {
       // callback的方式已经废弃
