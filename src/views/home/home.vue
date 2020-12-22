@@ -108,7 +108,7 @@ export default {
       let r = Math.floor((Math.random() * 10))
       console.log(r)
       if(this.seen) {
-        this.$refs.element.style.background = "url(" + require("./images/demo" + r + ".jpg") + ")no-repeat"
+        this.$refs.element.style.background = "url(" + require("@/assets/image/home/demo" + r + ".jpg") + ")no-repeat"
       }
     },
     hiddenBG() {
@@ -182,7 +182,7 @@ export default {
   .background{
     width: 900px;
     height: 500px;
-    background: url('./images/demo1.jpg') no-repeat
+    background: url('~@/assets/image/home/demo1.jpg') no-repeat
   }
   .contract{
     display: flex;
