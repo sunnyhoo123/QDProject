@@ -1,13 +1,13 @@
 <template>
   <div class="vue-about">
-    <div class="headerWrap">
+    <!-- <div class="headerWrap">
       <el-page-header content="详情页面" @back="goBack"></el-page-header>
-    </div>
+    </div> -->
     <div class="sideBar">
       <ul>
         <li v-for="(item, index) in menuList" :key="item.title" :data-scroll="item.dataScroll">
-          <h3 v-if="item.type === 'level1'">{{ item.title }}</h3>
-          <a v-else :class="{ active: index === activeAnchor }" @click="goAnchor(`#anchor-${index}`, index)" >{{ item.title }}</a>
+          <!-- <h4 v-if="item.type === 'level1'">{{ item.title }}</h4> -->
+          <a :class="{ active: index === activeAnchor }" @click="goAnchor(`#anchor-${index}`, index)" >{{ item.title }}</a>
         </li>
       </ul>
     </div>
@@ -58,14 +58,10 @@
       <input v-model="formData['name']" />
       <el-button @click="changeFormData">123</el-button>
       <div>{{ now }}</div>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
-      <h3>来一篇文章查看超长</h3>
+      <div class="article-wrap">
+        <h3 v-for="(id, index) in article" :key="id" :id="id">来{{ index }}篇文章查看超长</h3>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -125,11 +121,21 @@ export default {
       { title: "列表渲染", dataScroll: "eee", type: "level2" },
       { title: "事件处理", dataScroll: "eee", type: "level2" },
       { title: "表单输入绑定", dataScroll: "eee", type: "level2" },
-      { title: "深入", dataScroll: "eee", type: "level1" },
+      // { title: "深入", dataScroll: "eee", type: "level1" },
       { title: "插槽", dataScroll: "eee", type: "level2" },
-      { title: "规模化", dataScroll: "eee", type: "level1" },
+      // { title: "规模化", dataScroll: "eee", type: "level1" },
       { title: "路由", dataScroll: "eee", type: "level2" },
-      { title: "状态管理", dataScroll: "eee", type: "level2" },
+      // { title: "状态管理", dataScroll: "eee", type: "level2" },
+    ]
+    this.article = [
+      "anchor-0",
+      "anchor-1",
+      "anchor-2",
+      "anchor-3",
+      "anchor-4",
+      "anchor-5",
+      "anchor-6",
+      "anchor-7",
     ]
     // console.log(this.$route.params.id);
   },
@@ -177,7 +183,7 @@ export default {
       });
       //循环遍历数组，将鼠标移动距离与各dom距顶部距离进行比较，给activeAnchor赋值
       let len = heightArr.length;
-      let topHeight = document.documentElement.clientHeight - 24;
+      let topHeight = document.documentElement.clientHeight - 50;
       for (var i = 0; i < len; i++) {
         if (heightArr[i] < scrolled + topHeight && scrolled + topHeight < heightArr[i + 1]) {
           this.activeAnchor = i;
@@ -185,11 +191,21 @@ export default {
           this.activeAnchor = len -1
         }
       }
+      if(scrolled === 0) {
+        this.activeAnchor = 0;
+      }
+      console.log(scrolled)
     },
     //锚点跳转
     goAnchor(selector, index) {
       this.activeAnchor = index;
-      document.querySelector(selector).scrollIntoView();
+      window.removeEventListener("scroll", this.handleScroll)
+      let scrollLength = 300 + index * 50;
+      // document.querySelector(selector).scrollIntoView();
+      document.documentElement.scrollTop = scrollLength;
+      setTimeout(() => {
+        window.addEventListener("scroll", this.handleScroll)
+      }, 500)
     }
   }
 };
@@ -220,7 +236,7 @@ $font-color: #42b983;
   a:hover {
     color: #0d0;
   }
-  h3 {
+  h4 {
     font-weight: 600;
     color: #273849;
   }
@@ -232,6 +248,13 @@ $font-color: #42b983;
     bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+  .article-wrap {
+    h3 {
+      height: 50px;
+      font-weight: 600;
+      color: #273849;
+    }
   }
   .content {
     position: relative;
