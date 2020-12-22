@@ -75,8 +75,8 @@ export default {
       console.log(this.tempArray)
     },
     forEachA(){
-      this.example3.forEach(function(item, index){ // eslint-disable-line
-        item.latitude = item.latitude +0.1
+      this.example3.forEach((item, index) => {
+        item.latitude = item.latitude + index
       })
       console.log(this.example3,"temp")
     },

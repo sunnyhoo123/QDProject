@@ -38,7 +38,7 @@ const elTooltipComponent = resolve => require(["@/views/elementCom/elOther/elToo
 // 定制组件
 const customBirdComponent = resolve => require(["@/views/elementCom/CSSPlus/bird.vue"], resolve)
 const customDragComponent = resolve => require(["@/views/elementCom/CSSPlus/drag.vue"], resolve)
-const customExpandComponent = resolve => require(["@/views/elementCom/CSSPlus/Expand.vue"], resolve)
+const customTextEffectsComponent = resolve => require(["@/views/elementCom/CSSPlus/TextEffects.vue"], resolve)
 
 // demo
 const demoComponent = resolve => require(["@/demo"], resolve)
@@ -89,8 +89,8 @@ export const elUICom = {
       component: customDragComponent,
     },
     {
-      path: "/elementCom/custom/expandCom",
-      component: customExpandComponent,
+      path: "/elementCom/custom/textEffectsCom",
+      component: customTextEffectsComponent,
     },
   ]
 }
