@@ -8,7 +8,7 @@ import router from "./router"
 import ElementUI from "element-ui"
 import i18n from "./i18n";
 // import IView from 'iview'
-import store from "./vuex/store"
+import store from "./store"
 import "./directive";
 
 // css
@@ -31,5 +31,6 @@ new Vue({
   router,
   components: { App },
   template: "<App/>",
+  // 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
   store
 })

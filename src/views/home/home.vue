@@ -1,24 +1,27 @@
 <template>
   <div class="home">
-    <com-Header></com-Header>
-    <Carousel></Carousel>
-    <el-button type="primary" @click="changeBg">切换图片</el-button>
-    <el-button type="primary" @click="getMockdata">mock数据</el-button>
-    <el-button type="primary" @click="hiddenBG">{{ hiddenBg }}</el-button>
-    <el-button type="primary" @contextmenu.prevent.native="openMenu($event)">{{ rightClick }}</el-button>
-    <input type="button" value="原生右键" @contextmenu.prevent="openMenu($event)">
-    <div v-if="seen">
-      <ul v-for="item in getResult" :key="item.index" class="ul-api">
-        <li><img :src="item" width="800" height="600"></li>
+    <sidebar :isCollapse="isCollapse"></sidebar>
+    <div :class="classObj" class="main-container">
+      <comHeader></comHeader>
+      <Carousel></Carousel>
+      <el-button type="primary" @click="changeBg">切换图片</el-button>
+      <el-button type="primary" @click="getMockdata">mock数据</el-button>
+      <el-button type="primary" @click="hiddenBG">{{ hiddenBg }}</el-button>
+      <el-button type="primary" @contextmenu.prevent.native="openMenu($event)">{{ rightClick }}</el-button>
+      <input type="button" value="原生右键" @contextmenu.prevent="openMenu($event)">
+      <div v-if="seen">
+        <ul v-for="item in getResult" :key="item.index" class="ul-api">
+          <li><img :src="item" width="800" height="600"></li>
+        </ul>
+      </div>
+      <!-- images中的图片 -->
+      <div v-if="seen" ref="element" class="background" style="display:block"></div>
+      <!-- 右键菜单 -->
+      <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
+        <li>上移一层</li>
+        <li>下移一层</li>
       </ul>
     </div>
-    <!-- images中的图片 -->
-    <div v-if="seen" ref="element" class="background" style="display:block"></div>
-    <!-- 右键菜单 -->
-    <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li>上移一层</li>
-      <li>下移一层</li>
-    </ul>
   </div>
 </template>
 
@@ -28,14 +31,19 @@ import api from "api"
 import { cloneDeep } from "lodash";
 // import {mapActions, mapGetters} from 'vuex'
 import apiService from "@/services/API-service.js"
-import comHeader from "@/components/header/header.vue"
+import comHeader from "@/components/header"
 import Carousel from "@/components/Carousel/index.vue"
+import sidebar from "@/components/sidebar"
+
+import { createNamespacedHelpers } from "vuex";
+const { mapState } = createNamespacedHelpers("app");
 
 export default {
   name: "Home",
   components: {
     comHeader,
-    Carousel
+    Carousel,
+    sidebar
   },
   data() {
     return {
@@ -47,7 +55,19 @@ export default {
       top: 0,
       left: 0,
       responseData: null,
+      isCollapse: false,
     }
+  },
+  computed: {
+    ...mapState(["sidebar"]),
+    classObj() {
+      return {
+        menuCollapse: !this.sidebar.opened,
+      };
+    },
+    // collapseText() {
+    //   return this.isCollapse ? "展开" : "收起"
+    // }
   },
   watch: {
     visible: {
@@ -118,12 +138,24 @@ export default {
     closeMenu() {
       this.visible = false
     },
+    // change() {
+    //   this.isCollapse = !this.isCollapse;
+    // }
   },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less' scoped>
+.home {
+  .main-container {
+    margin-left: 160px;
+    transition: margin-left .28s;
+  }
+  .menuCollapse {
+    margin-left: 64px;
+  }
+}
 .test {
   height: 100vh
 }
