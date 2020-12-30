@@ -33,6 +33,7 @@ const responseFail = errorMessage => {
   else {
     if (errorMessage.response.status === 400 && errorMessage.response.config.url.includes("authorize/userInfo")) {
       // userInfo token失效时，返回异常
+      console.log("400")
     }
     // eslint-disable-next-line
     console.error({

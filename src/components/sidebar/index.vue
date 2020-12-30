@@ -73,7 +73,7 @@ export default {
 <style lang="less" scoped>
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 50px;
   bottom: 0;
   .menu-vertical:not(.el-menu--collapse) {
     width: 160px;

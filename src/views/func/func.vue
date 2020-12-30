@@ -2,7 +2,7 @@
   <div class="func">
     <el-button type="primary" @click="paramTest(1)">参数测试</el-button>
     <el-button type="primary" @click="ternary">三目运算</el-button>
-    <el-button type="primary" @click="async">异步执行</el-button>
+    <el-button type="primary" @click="asyncApi">异步执行</el-button>
     <el-button type="primary" @click="CAB">call+apply+bind</el-button>
     <el-button type="primary" @click="ExpreAndDec">函数声明和表达式的区别</el-button>
     <el-button type="primary" @click="varHoisting">变量提升</el-button>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { queryKuaidi } from "@/api/baiduCloud"
+
 export default {
   //组件名
   name: "Func",
@@ -36,7 +38,8 @@ export default {
       };
       console.log(this.originString.spacify());
     },
-    async() {
+    async asyncApi() {
+      await queryKuaidi();
       setTimeout(() => {
         console.log(1);
         Promise.resolve().then(() => {

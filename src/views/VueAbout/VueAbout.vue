@@ -196,6 +196,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// scss语法
 @import "style/var.scss";
 @import "style/global.scss";
 @mixin fontStyle($backgroundColor: #0d0, $fontSize: 14px) {

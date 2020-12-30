@@ -6,7 +6,8 @@ class ApiService{
   constructor(){
     this.TestURL ={
       imgTestURL:this.get.bind(this, API.TestURL),
-      acgclubURL:this.get.bind(this, API.AcgclubPictures)
+      acgclubURL:this.get.bind(this, API.AcgclubPictures),
+      kuaidi: this.get.bind(this, API.KuaiDi)
     }
   }
   get(url, params) {
