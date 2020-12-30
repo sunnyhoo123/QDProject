@@ -3,7 +3,10 @@
     <text-scroll></text-scroll>
     <el-button @click="linkToKCD">S+D键实现删除功能</el-button>
     <el-button @click="linkToPC">模拟个人中心</el-button>
-    <span>请输入整数：</span>
+    <el-button type="primary" @click="getMockData">mock数据</el-button>
+    <el-button type="primary" @click="getApiData">API数据</el-button>
+
+    <span title="整数">请输入整数：</span>
     <!-- 使用懒加载，输入后点击其他地方才会显示 -->
     <input v-model.lazy="content" type="number">
     <span>过滤结果为： {{ content|unit }}</span>
@@ -12,14 +15,27 @@
     <el-button type="primary" @click="GetParameter">获取浏览器URL中的参数</el-button>
     <el-button type="primary" @click="outPut">0~n之和</el-button>
     <el-button type="primary" @click="fetchIp">获取本机ip</el-button>
-    
-    <el-alert :description="showValue" title="异常时的经纬度信息" type="info" show-icon></el-alert>
 
+    <el-button @click="closeMenu">关闭右键功能</el-button>
+    <el-button type="primary" @contextmenu.prevent.native="openMenu($event)">{{ rightClick }}</el-button>
+    <input type="button" value="原生右键" @contextmenu.prevent="openMenu($event)">
+    <!-- 右键菜单 -->
+    <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
+      <li>上移一层</li>
+      <li>下移一层</li>
+    </ul>
+
+    <el-alert :description="showValue" title="异常时的经纬度信息" type="info" show-icon></el-alert>
+    <div>
+      <ul v-for="item in getResult" :key="item.index" class="ul-api">
+        <li><img :src="item" width="800" height="600"></li>
+      </ul>
+    </div>
     <el-button type="primary" @click="addCont">执行合约</el-button>
     <div>
       <select v-model="selected">
         <!-- 内联对象字面量 -->
-        <option :value="$t('feature.trade')">{{ $t("feature.trade") }}</option>
+        <option :value="$t('home.valueType')">{{ $t("home.valueType") }}</option>
         <option value="查询">查询</option>
         <option :value="{ number: 123 }">初始化</option>
       </select>
@@ -33,13 +49,21 @@
       </div>
     </div>
     <el-slider v-model="value1" class="block1" @input="onSlider"></el-slider>
+    <!-- images中的图片 -->
+    <el-button type="primary" @click="changeBg">{{ $t("home.switch") }}</el-button>
+    <el-button type="primary" @click="hiddenBG">{{ hiddenBg }}</el-button>
+    <div v-if="seen" ref="element" class="background" style="display:block"></div>
   </div>
 </template>
 
 <script>
+import api from "api"
+import { cloneDeep } from "lodash";
 import TextScroll from "@/components/TextScroll/TextScroll.vue"
 import { mapActions } from "vuex"
 import { Debounce } from "@/utils/codes.js"
+import apiService from "@/services/API-service.js"
+
 export default {
   //组件名
   name: "Feature",
@@ -78,12 +102,31 @@ export default {
       showValue:"",
       selected: "",
       contList:[],
+      seen: true,
+      hiddenBg: "隐藏图片",
+      responseData: null,
+      rightClick: "鼠标右键",
+      visible: false,
+      top: 0,
+      left: 0,
+      getResult: [],
     }
   },
   
   //计算
   computed: {
 
+  },
+  watch: {
+    visible: {
+      handler(value) {
+        if(value) {
+          document.body.addEventListener("click", this.closeMenu)
+        }else {
+          document.body.removeEventListener("click", this.closeMenu)
+        }
+      }
+    }
   },
   //方法
   methods: {
@@ -199,14 +242,103 @@ export default {
       }
       conn.createDataChannel("dog")
       conn.createOffer(conn.setLocalDescription.bind(conn),noop)
-    }
+    },
+    changeBg() {
+      let r = Math.floor((Math.random() * 10))
+      if(this.seen) {
+        this.$refs.element.style.background = "url(" + require("./images/demo" + r + ".jpg") + ")no-repeat"
+      }
+    },
+    hiddenBG() {
+      this.seen = !this.seen
+      if (this.seen) {
+        this.hiddenBg = "隐藏图片"
+      } else {
+        this.hiddenBg = "显示图片"
+      }
+    },
+    getMockData() {
+      // axios.get("http://localhost:8080/static/mock/alarmList.json").then(res => {
+      api.get("/static/mock/alarmList.json").then(res => {
+        this.responseData = cloneDeep(res)
+        this.responseData.image.url = "www"
+        console.log(res, "res"); // 使用cloneDeep，赋值后res不会随之改变
+        console.log(this.responseData, "responseData");
+      });
+    },
+    async getApiData() {
+      // 未封装请求方法
+      // axios.post('http://test.admin.broker.hm.com:10010/exchange_api/base/listFiatCurrency', {id: 2}
+      // ).then(function (rep) {
+      // console.log(rep)
+      // })
+
+      // 将参数封装到API-config.js中，将方法封装到API-service.js中
+      // apiService.TestURL.imgTestURL().then(res => {
+      //   this.getResult = res.results
+      // }).catch()
+
+      apiService.TestURL.kuaidi().then(res => {
+        // this.getResult = res.results
+      }).catch();
+    },
+    openMenu(e) {
+      const menuMinWidth = 105;
+      const offsetLeft = this.$el.getBoundingClientRect().left
+      const offsetWidth = this.$el.offsetWidth // container width
+      const maxLeft = offsetWidth - menuMinWidth // left boundary
+      const left = e.clientX - offsetLeft // 15: margin right
+      
+      if (left > maxLeft) {
+        this.left = maxLeft
+      } else {
+        this.left = left
+      }
+
+      this.top = e.clientY - 60 // fix 位置bug
+      this.visible = true
+    },
+    closeMenu() {
+      this.visible = false
+    },
   },
   
 }
 </script>
 
 <style lang="less" scoped>
-    .block1{
-        width:500px
+.feature {
+  .background{
+    width: 900px;
+    height: 500px;
+    background: url('./images/demo1.jpg') no-repeat
+  }
+  .block1{
+    width:500px
+  }
+  [title]{
+    background: #42b983
+  }
+  .contextmenu {
+    margin: 0;
+    background: #fff;
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+    li {
+      margin: 0;
+      padding: 7px 16px;
+      cursor: pointer;
+      &:hover {
+        background: #eee;
+      }
     }
+  }
+}
 </style>
