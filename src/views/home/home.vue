@@ -4,19 +4,16 @@
     <div class="main">
       <sidebar></sidebar>
       <div :class="classObj" class="main-container">
+        <!-- 走马灯 -->
         <!-- <carousel></carousel> -->
-        <typeOut></typeOut>
-        <!-- <div>
-          <section class="grid-4">
-            <div>
-              <img :src="acgImg">
-            </div>
-          </section>
-        </div> -->
+        <!-- <typeOut></typeOut> -->
+        <movie v-if="movie.opened"></movie>
+        <typeOut v-else></typeOut>
       </div>
-      <!-- 每日一言：诗句 -->
       <div class="main-right">
+        <!-- 天气预报 -->
         <weather></weather>
+        <!-- 每日一言：诗句 -->
         <poem></poem>
       </div>
     </div>
@@ -26,6 +23,7 @@
 <script>
 // import fsObj from '@/services/fs-service.js'
 // import {mapActions, mapGetters} from 'vuex'
+import movie from "@/components/Movie"
 import sidebar from "@/components/sidebar"
 import weather from "@/components/Weather"
 import carousel from "@/components/Carousel"
@@ -44,14 +42,15 @@ export default {
     sidebar,
     weather,
     typeOut,
-    poem
+    poem,
+    movie
   },
   data() {
     return {
     }
   },
   computed: {
-    ...mapState(["sidebar"]),
+    ...mapState(["sidebar", "movie"]),
     classObj() {
       return {
         menuCollapse: !this.sidebar.opened,
@@ -86,5 +85,4 @@ export default {
     }
   }
 }
-  
 </style>

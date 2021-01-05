@@ -32,7 +32,7 @@ module.exports = {
     quotes: ["error", "double", { allowTemplateLiterals: true }],
     indent: ["error", 2],
     "no-empty-pattern": "off",
-    "no-debugger": rule,
+    "no-debugger": "off",
     "no-console": "off", // 允许有console
     "no-alert": rule,
     "no-unreachable": rule,

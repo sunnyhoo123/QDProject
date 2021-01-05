@@ -1,7 +1,7 @@
 <template>
   <el-popover
     placement="left"
-    width="400"
+    width="420"
     trigger="click">
     <div v-if="poem" class="poem-wrap" @click="handleClick(poem.url)">
       <div>{{ poem.title }}</div>
@@ -17,7 +17,7 @@
   </el-popover>
 </template>
 <script>
-import { queryPoem, queryAcgImg } from "@/api/baiduCloud"
+import { queryPoem } from "@/api/freeApi.js"
 
 export default {
   //组件名
@@ -40,7 +40,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .poem-wrap {
   > * {
     padding: 8px;

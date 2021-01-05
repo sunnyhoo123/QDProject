@@ -1,6 +1,12 @@
 <template>
   <header class="header">
     <i :class="isCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold'" @click="toggleSide"></i>
+    <el-switch
+      v-model="value"
+      active-text="默认首页"
+      inactive-text="查看上映电影"
+      @change="handleChange">
+    </el-switch>
     <div class="header-right">
       <langSelect/>
       <el-avatar icon="el-icon-user-solid"></el-avatar>
@@ -20,7 +26,8 @@ export default {
   },
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+      value: true
     }
   },
   computed: {
@@ -34,10 +41,13 @@ export default {
 
   },
   methods: {
-    ...mapActions(["toggleSideBar","closeSideBar","exec"]),
+    ...mapActions(["toggleSideBar","closeSideBar","exec","changeSwitch"]),
     toggleSide() {
       this.isCollapse = !this.isCollapse;
       this.toggleSideBar();
+    },
+    handleChange() {
+      this.changeSwitch();
     }
   },
 }
@@ -54,6 +64,8 @@ export default {
   line-height: 48px;
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
   transition: background-color 0.3s ease-in-out;
+  z-index: 3;
+  position: relative;
   .flex-between();
   > i {
     font-size: 32px;

@@ -7,6 +7,9 @@ const app = {
       opened: true,
       withoutAnimation: false
     },
+    movie: {
+      opened: false,
+    }
     // language: Cookies.get('language') || 'en',
     // size: Cookies.get('size') || 'medium'
   },
@@ -18,6 +21,9 @@ const app = {
     CLOSE_SIDEBAR: (state, withoutAnimation) => {
       state.sidebar.opened = false
       state.sidebar.withoutAnimation = withoutAnimation
+    },
+    CHANGE_SWITCH: state => {
+      state.movie.opened = !state.movie.opened
     },
     // TOGGLE_DEVICE: (state, device) => {
     //   state.device = device
@@ -38,6 +44,10 @@ const app = {
     closeSideBar({ commit }, { withoutAnimation }) {
       commit("CLOSE_SIDEBAR", withoutAnimation)
     },
+    changeSwitch({ commit }) {
+      commit("CHANGE_SWITCH")
+    },
+    
     // toggleDevice({ commit }, device) {
     //   commit('TOGGLE_DEVICE', device)
     // },

@@ -20,6 +20,7 @@
       <div>{{ weather.templow }} °C ~ {{ weather.temphigh }} °C</div>
       <div>{{ weather.winddirect }} : {{ weather.windpower }}</div>
     </div>
+    <div v-else>{{ weatherMsg }}</div>
   </div>
 </template>
 
@@ -34,7 +35,8 @@ export default {
     return {
       city: "",
       weather: null,
-      options: []
+      options: [],
+      weatherMsg: ""
     }
   },
   methods: {
@@ -46,8 +48,9 @@ export default {
       const params = {
         cityid: this.city,
       }
-      const { result } = await queryWeather(params);
+      const { result, msg } = await queryWeather(params);
       this.weather = result;
+      this.weatherMsg = msg;
     },
     handleChange() {
       this.getWeather()
