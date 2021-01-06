@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { queryKuaidi } from "@/api/baiduCloud"
+import { queryKuaidi } from "@/api/freeApi.js"
 
 export default {
   //组件名

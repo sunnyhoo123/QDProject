@@ -1,18 +1,20 @@
 <template>
   <div class="vue-about">
-    <!-- <div class="headerWrap">
-      <el-page-header content="详情页面" @back="goBack"></el-page-header>
-    </div> -->
+    <div class="headerWrap">
+      <el-page-header content="Vue介绍" @back="goBack"></el-page-header>
+    </div>
     <div class="sideBar">
       <ul>
         <li v-for="(item, index) in menuList" :key="item.title" :data-scroll="item.dataScroll">
-          <!-- <h4 v-if="item.type === 'level1'">{{ item.title }}</h4> -->
-          <a :class="{ active: index === activeAnchor }" @click="goAnchor(`#anchor-${index}`, index)" >{{ item.title }}</a>
+          <h3 v-if="item.type === 'level1'">{{ item.title }}</h3>
+          <a v-else :class="{ active: index === activeAnchor }" @click="goAnchor(`#anchor-${index}`, index, item)" >{{ item.title }}</a>
         </li>
       </ul>
     </div>
     <div class="content">
-      <div :class="[activeClass, errorClass, 'class-array', 'flex']">绑定HTML Class</div>
+      <keep-alive>
+        <component :is="curComponent"></component>
+      </keep-alive>
       <router-link to="/vueabout/parent">parent</router-link>
       <router-link to="/vueabout/confirm">confirm</router-link>
       <router-link to="/vueabout/upload">upload</router-link>
@@ -61,18 +63,21 @@
       <div class="article-wrap">
         <h3 v-for="(id, index) in article" :key="id" :id="id">来{{ index }}篇文章查看超长</h3>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions } from "vuex";
+import bindClass from "./components/bindClass";
 
 export default {
   // 组件名
   name: "Vueabout",
   // 实例的数据对象
+  components: {
+    bindClass,
+  },
   data() {
     return {
       toCalc: "",
@@ -80,13 +85,12 @@ export default {
       msg1: "",
       msg2: "",
       msg3: "",
-      activeClass: "active",
-      errorClass: "text-danger",
       formData: {
         name: "",
         sex: 0
       },
-      activeAnchor: 0
+      activeAnchor: 0,
+      curComponent: ""
     };
   },
   computed: {
@@ -116,7 +120,7 @@ export default {
   created() {
     this.menuList = [
       { title: "计算属性和侦听器", dataScroll: "sdf", type: "level2" },
-      { title: "class与Style绑定", dataScroll: "eee", type: "level2" },
+      { title: "class与Style绑定", dataScroll: "eee", type: "level2", value: "bindClass" },
       { title: "条件渲染", dataScroll: "eee", type: "level2" },
       { title: "列表渲染", dataScroll: "eee", type: "level2" },
       { title: "事件处理", dataScroll: "eee", type: "level2" },
@@ -197,7 +201,8 @@ export default {
       console.log(scrolled)
     },
     //锚点跳转
-    goAnchor(selector, index) {
+    goAnchor(selector, index, v) {
+      this.curComponent = v.value;
       this.activeAnchor = index;
       window.removeEventListener("scroll", this.handleScroll)
       let scrollLength = 300 + index * 50;
@@ -272,9 +277,7 @@ $font-color: #42b983;
   .text-danger {
     font-size: 20px;
   }
-  .class-array {
-    height: 30px;
-  }
+  
   .child {
     @include fontStyle($fontSize: 16px);
   }

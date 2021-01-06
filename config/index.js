@@ -10,7 +10,24 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/bdapi': {  // "/api"---拦截以“/api”开头的接口地址
+        target: 'http://jisuweather.api.bdymkt.com/', // 开发环境下要跨域访问的接口域名
+        changeOrigin: true,  //是否跨域
+        pathRewrite: {
+          '^/bdapi': ''   //表示访问接口时/api/会被重写成''
+        },
+        // secure: false,// 如果是https接口，需要配置这个参数
+      },
+      // 配置多个代理
+      '/mApi': {
+        target: 'http://jisuapimovie.api.bdymkt.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/mApi': ''
+        },
+      },
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

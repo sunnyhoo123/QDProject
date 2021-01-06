@@ -6,7 +6,7 @@
     <el-button type="primary" @click="getMockData">mock数据</el-button>
     <el-button type="primary" @click="getApiData">API数据</el-button>
 
-    <span title="整数">请输入整数：</span>
+    <span>请输入整数：</span>
     <!-- 使用懒加载，输入后点击其他地方才会显示 -->
     <input v-model.lazy="content" type="number">
     <span>过滤结果为： {{ content|unit }}</span>
@@ -315,9 +315,6 @@ export default {
   }
   .block1{
     width:500px
-  }
-  [title]{
-    background: #42b983
   }
   .contextmenu {
     margin: 0;

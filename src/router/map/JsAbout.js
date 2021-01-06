@@ -5,7 +5,7 @@ const numberComponent = resolve => require(["@/views/NumberAbout/NumberAbout.vue
 const moreComponent = resolve => require(["@/views/More/More.vue"], resolve)
 const webSocketComponent = resolve => require(["@/views/More/WebSocket/index.vue"], resolve)
 
-const feaComponent = resolve => require(["@/views/Feature/Feature.vue"], resolve)
+const feaComponent = resolve => require(["@/views/Feature"], resolve)
 const KeyCodeDelComponent = resolve => require(["@/views/Feature/KeyCodeDel.vue"], resolve)
 const PersonalCenterComponent = resolve => require(["@/views/Feature/PersonalCenter/index.vue"], resolve)
 
@@ -16,7 +16,7 @@ const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], 
 const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"], resolve)
 
 // Vue相关
-const vueComponent = resolve => require(["@/views/VueAbout/VueAbout"], resolve)
+const vueComponent = resolve => require(["@/views/VueAbout"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
 const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
 const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)

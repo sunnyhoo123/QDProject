@@ -15,8 +15,6 @@
           <el-button type="text" @click="testRouter">返回到上一个Vue</el-button>
         </el-header>
         <div class="body">
-          <div class="main">
-          </div>
           <router-view></router-view>
         </div>
         <!-- 页脚 -->
@@ -78,15 +76,13 @@ export default {
     text-align: center;
     line-height: 160px;
   }
-  .main{
-    width: auto;
-  }
   .body{
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: auto;
   }
   .div1{
     height: 40px;
