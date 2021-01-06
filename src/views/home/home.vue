@@ -6,7 +6,6 @@
       <div :class="classObj" class="main-container">
         <!-- 走马灯 -->
         <!-- <carousel></carousel> -->
-        <!-- <typeOut></typeOut> -->
         <movie v-if="movie.opened"></movie>
         <typeOut v-else></typeOut>
       </div>
