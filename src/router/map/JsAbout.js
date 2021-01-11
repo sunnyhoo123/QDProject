@@ -17,13 +17,14 @@ const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"],
 
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout"], resolve)
-const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
-const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
-const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)
-const routerComponent = resolve => require(["@/views/VueAbout/VueRouter/index.vue"], resolve)
-const RouterProfile = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/profile.vue"], resolve)
-const RouterHome = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/home.vue"], resolve)
-const RouterDefault = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/default.vue"], resolve)
+const parentComponent = resolve => require(["@/views/VueAbout/components/slotCom.vue"], resolve)
+const confirmComponent = resolve => require(["@/views/Feature/components/Example/confirm.vue"], resolve)
+const uploadComponent = resolve => require(["@/views/Feature/components/Example/upload.vue"], resolve)
+// router
+const routerComponent = resolve => require(["@/views/VueAbout/components/VueRouter/index.vue"], resolve)
+const RouterProfile = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/profile.vue"], resolve)
+const RouterHome = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/home.vue"], resolve)
+const RouterDefault = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/default.vue"], resolve)
 
 // elementUI组件
 const elUIComponent = resolve => require(["@/views/elementCom/elUI.vue"], resolve)
@@ -127,6 +128,16 @@ export const feaCom = {
   path: "/fea",
   component: feaComponent,
   name: "fea",
+  children: [
+    {
+      path: "/fea/confirm",
+      component: confirmComponent,
+    },
+    {
+      path: "/fea/upload",
+      component: uploadComponent,
+    },
+  ]
 }
 export const KeyCodeDelCom = {
   path: "/KeyCodeDel",
@@ -166,14 +177,6 @@ export const vueCom = {
   children: [{
     path: "/vueabout/parent",
     component: parentComponent,
-  },
-  {
-    path: "/vueabout/confirm",
-    component: confirmComponent,
-  },
-  {
-    path: "/vueabout/upload",
-    component: uploadComponent,
   },
   ]
 }

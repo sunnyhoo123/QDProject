@@ -15,54 +15,21 @@
       <keep-alive>
         <component :is="curComponent"></component>
       </keep-alive>
-      <router-link to="/vueabout/parent">parent</router-link>
-      <router-link to="/vueabout/confirm">confirm</router-link>
-      <router-link to="/vueabout/upload">upload</router-link>
-      <!-- 动态路由 -->
+      
+      <!-- 动态路由：/vueRouter/foo 和 /vueRouter/bar 都将映射到相同的路由 -->
       <el-tag>
         <router-link to="/vueRouter/foo">foo</router-link>
-        <router-link to="/vueRouter/bar">动态路径参数(dynamic segment)</router-link>
       </el-tag>
+      <el-link type="primary">
+        <router-link to="/vueRouter/bar">动态路径参数(dynamic segment)</router-link>
+      </el-link>
 
       <div class="child">
         <router-view></router-view>
       </div>
-      <!-- Vue computed -->
-      <div class="computed">
-        <el-input v-model="toCalc" placeholder="请输入要翻转的文字" class="input-width"></el-input>
-        <span>computed后的值：{{ reversedMessage }}</span>
-      </div>
-      <!-- Vue 事件处理 -->
-      <!-- v-on:click.self.prevent 会阻止对元素自身的点击，点击div3，会alert3,alert1,跳转到/#。只阻止了alert(2)。 -->
-      <div @click="alert(1)">
-        123
-        <a href="/#" @click.self.prevent="alert(2)">
-          456
-          <div @click="alert(3)">789</div>
-        </a>
-      </div>
-      <!-- v-on:click.prevent.self 会阻止所有的点击，点击div3，会alert3,alert1。不但阻止了alert(2)，还阻止了a的默认跳转 -->
-      <div @click="alert(1)">
-        123
-        <a href="/#" @click.prevent.self="alert(2)">
-          456
-          <div @click="alert(3)">789</div>
-        </a>
-      </div>
-      <!-- Vue nextTick -->
-      <!-- 在Vue生命周期的created()钩子函数进行的DOM操作一定要放在Vue.nextTick()的回调函数中 -->
-      <!-- 在数据变化后要执行的某个操作，而这个操作需要使用随数据改变而改变的DOM结构的时候，这个操作都应该放进Vue.nextTick()的回调函数中 -->
-      <div ref="msgDiv">{{ msg }}</div>
-      <div v-if="msg1">Message got outside $nextTick: {{ msg1 }}</div>
-      <div v-if="msg2">Message got inside $nextTick: {{ msg2 }}</div>
-      <div v-if="msg3">Message got outside $nextTick: {{ msg3 }}</div>
-      <el-button @click="changeMsg">Change the Message</el-button>
-      <input v-model="formData['name']" />
-      <el-button @click="changeFormData">123</el-button>
-      <div>{{ now }}</div>
-      <div class="article-wrap">
+      <!-- <div class="article-wrap">
         <h3 v-for="(id, index) in article" :key="id" :id="id">来{{ index }}篇文章查看超长</h3>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -70,6 +37,10 @@
 <script>
 import { mapActions } from "vuex";
 import bindClass from "./components/bindClass";
+import slotCom from "./components/slotCom";
+import computedCom from "./components/computedCom";
+import nextTickCom from "./components/nextTickCom";
+import eventCom from "./components/eventCom";
 
 export default {
   // 组件名
@@ -77,59 +48,35 @@ export default {
   // 实例的数据对象
   components: {
     bindClass,
+    slotCom,
+    eventCom,
+    computedCom,
+    nextTickCom
   },
   data() {
     return {
       toCalc: "",
-      msg: "test nextTick",
-      msg1: "",
-      msg2: "",
-      msg3: "",
-      formData: {
-        name: "",
-        sex: 0
-      },
       activeAnchor: 0,
       curComponent: ""
     };
   },
-  computed: {
-    // ...mapGetters(['contractExecListGetter']),
-    reversedMessage() {
-      return this.toCalc
-        .split("")
-        .reverse()
-        .join("");
-    },
-    now() {
-      return Date.now();
-    }
-    // reversedMessage:{
-    //   get:function(){
-    //     return this.msg
-    //   },
-    //   set:function(newValue){
-    //     let names = newValue.split(' ');
-    //     console.log(names)
-    //   }
-    // }
-  },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll)
+    // window.addEventListener("scroll", this.handleScroll)
   },
   created() {
     this.menuList = [
-      { title: "计算属性和侦听器", dataScroll: "sdf", type: "level2" },
+      { title: "计算属性和侦听器", dataScroll: "sdf", type: "level2", value: "computedCom" },
       { title: "class与Style绑定", dataScroll: "eee", type: "level2", value: "bindClass" },
       { title: "条件渲染", dataScroll: "eee", type: "level2" },
       { title: "列表渲染", dataScroll: "eee", type: "level2" },
-      { title: "事件处理", dataScroll: "eee", type: "level2" },
+      { title: "事件处理", dataScroll: "eee", type: "level2", value: "eventCom" },
       { title: "表单输入绑定", dataScroll: "eee", type: "level2" },
-      // { title: "深入", dataScroll: "eee", type: "level1" },
-      { title: "插槽", dataScroll: "eee", type: "level2" },
-      // { title: "规模化", dataScroll: "eee", type: "level1" },
+      { title: "nextTick", dataScroll: "eee", type: "level2", value: "nextTickCom" },
+      { title: "深入了解组件", dataScroll: "eee", type: "level1" },
+      { title: "插槽", dataScroll: "eee", type: "level2", value: "slotCom" },
+      { title: "规模化", dataScroll: "eee", type: "level1" },
       { title: "路由", dataScroll: "eee", type: "level2" },
-      // { title: "状态管理", dataScroll: "eee", type: "level2" },
+      { title: "状态管理", dataScroll: "eee", type: "level2" },
     ]
     this.article = [
       "anchor-0",
@@ -155,25 +102,6 @@ export default {
       this.$router.push({
         path: "/"
       });
-    },
-    alert(val) {
-      console.log(
-        "%c%s",
-        "color: red; background: yellow; font-size: 24px;",
-        val
-      );
-    },
-    changeFormData() {
-      console.log(this.formData);
-    },
-    changeMsg() {
-      this.msg = "chang";
-      this.msg1 = this.$refs.msgDiv.innerHTML;
-      this.$nextTick(() => {
-        this.msg2 = this.$refs.msgDiv.innerHTML;
-      });
-      this.msg3 = this.$refs.msgDiv.innerHTML;
-      this.increment();
     },
     // 滚动时联动菜单
     handleScroll() {
@@ -204,28 +132,22 @@ export default {
     goAnchor(selector, index, v) {
       this.curComponent = v.value;
       this.activeAnchor = index;
-      window.removeEventListener("scroll", this.handleScroll)
-      let scrollLength = 300 + index * 50;
+      // window.removeEventListener("scroll", this.handleScroll)
+      // let scrollLength = 300 + index * 50;
       // document.querySelector(selector).scrollIntoView();
-      document.documentElement.scrollTop = scrollLength;
-      setTimeout(() => {
-        window.addEventListener("scroll", this.handleScroll)
-      }, 500)
+      // document.documentElement.scrollTop = scrollLength;
+      // 回到顶部
+      document.documentElement.scrollTop = 0;
+      // setTimeout(() => {
+      //   window.addEventListener("scroll", this.handleScroll)
+      // }, 500)
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
-// scss语法
-@import "style/var.scss";
-@import "style/global.scss";
-@mixin fontStyle($backgroundColor: #0d0, $fontSize: 14px) {
-  color: $font-color;
-  font-size: $fontSize;
-  // background: rgba(59, 71, 100, 1); 有默认值时可以不传值
-}
-$font-color: #42b983;
+<style scoped lang="less">
+@font-color: #42b983;
 
 .vue-about {
   padding-top: 48px;
@@ -242,7 +164,7 @@ $font-color: #42b983;
   a:hover {
     color: #0d0;
   }
-  h4 {
+  h3 {
     font-weight: 600;
     color: #273849;
   }
@@ -255,13 +177,6 @@ $font-color: #42b983;
     overflow-x: hidden;
     overflow-y: auto;
   }
-  .article-wrap {
-    h3 {
-      height: 50px;
-      font-weight: 600;
-      color: #273849;
-    }
-  }
   .content {
     position: relative;
     padding: 35px 0;
@@ -271,25 +186,7 @@ $font-color: #42b983;
   }
   .active {
     font-weight: bold;
-    color: $font-color;
-    
-  }
-  .text-danger {
-    font-size: 20px;
-  }
-  
-  .child {
-    @include fontStyle($fontSize: 16px);
-  }
-  .flex {
-    align-items: center;
-    @extend .display-flex;
-  }
-  .computed {
-    @extend .flex;
-    .input-width {
-      width: 300px;
-    }
+    color: @font-color;
   }
 }
 </style>

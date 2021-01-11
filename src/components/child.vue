@@ -2,8 +2,8 @@
   <div class="child">
     <el-button type="primary" @click="testEmit">child传值给parent</el-button>
 
-    <!-- props -->
-    <span>{{ formList }}</span>
+    <!-- props, 在样式中使用组件中接收的参数 -->
+    <div :style="styleVar" class="box">{{ formList }}</div>
     <span @click="changeChildData">{{ propData }}</span>
 
     <!-- 默认/default插槽 -->
@@ -59,7 +59,11 @@ export default {
     label: {
     },
     value: {
-    }
+    },
+    height: {
+      type: Number,
+      default: 54,
+    },
   },
   // 实例的数据对象
   data() {
@@ -72,6 +76,13 @@ export default {
         { id: 2, text: "第2段" },
         { id: 3, text: "第3段" }
       ]
+    }
+  },
+  computed: {
+    styleVar() {
+      return {
+        "--box-height": this.height + "px"
+      }
     }
   },
   // 方法
@@ -87,6 +98,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-
+<style scoped>
+.box {
+  height: var(--box-height);
+}
 </style>

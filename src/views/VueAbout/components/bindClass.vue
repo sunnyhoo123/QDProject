@@ -19,6 +19,7 @@
     <div :style="[styleObject, overridingStyles]">内联-数组</div>
     <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">多重值</div>
     <span title="整数">选择器</span>
+    <input v-model="formData['name']" />
   </div>
 </template>
 
@@ -47,7 +48,11 @@ export default {
       },
       overridingStyles: {
         margin: "10px"
-      }
+      },
+      formData: {
+        name: "",
+        sex: 0
+      },
     };
   },
   computed: {

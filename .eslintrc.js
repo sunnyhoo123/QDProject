@@ -67,7 +67,7 @@ module.exports = {
     "require-unicode-regexp": "off",
     "no-process-env": "off",
     "one-var": "off",
-    "max-lines": ["warn", 350],
+    "max-lines": ["warn", 450],
     "callback-return": "off",
     "no-magic-numbers": "off",
     "no-negated-condition": "off",

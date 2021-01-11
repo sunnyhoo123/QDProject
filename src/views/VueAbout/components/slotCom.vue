@@ -11,6 +11,7 @@
       :label="msg"
       :value.sync="parentString"  
       :gender="customValidator"
+      :height="33"
       class="parentClass"
     >
       <!-- 父组件在子组件里面插入标签，然后子组件引用slot就可以看到插槽内容 -->
@@ -42,7 +43,7 @@ import comAnimal from "@/components/animal.vue"
 
 export default {
   // 组件名
-  name: "Parent",
+  name: "SlotCom",
   // 组件
   components: {
     comChild,

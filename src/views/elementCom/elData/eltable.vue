@@ -1,6 +1,6 @@
 <template>
   <div class="eltable">
-    <el-button type="primary" @click="seenTable=true">查看表格</el-button>
+    <el-button type="primary" @click="seenTable=true">基础表格</el-button>
     <el-button type="primary" @click="getClubPictures">获取壁纸</el-button>
     <div v-show="seenTable" class="table">
       <el-table
@@ -54,12 +54,77 @@
         @current-change="handleCurrPicChange">
       </el-pagination>
     </div>
+    <el-divider content-position="left">合并相同行</el-divider>
+    <div>
+      <el-tabs v-model="activeName" @tab-click="handleClickTab">
+        <el-tab-pane label="用户管理" name="first">
+          <el-table
+            :data="spanTableData"
+            :span-method="objectSpanMethod"
+            border
+            style="width: 100%; margin-top: 20px">
+            <el-table-column
+              prop="functionGroupName"
+              label="功能组名称"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="typeDesc"
+              label="流程说明">
+            </el-table-column>
+            <el-table-column
+              prop="orderNum"
+              label="操作">
+              <template slot-scope="scope">
+                <el-button type="text" size="small" @click="handleClick(scope.row)">编辑1</el-button>
+                <el-button type="text" size="small">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="角色管理" name="third">
+          <el-table
+            :data="spanTableData"
+            :span-method="objectSpanMethod"
+            border
+            style="width: 100%; margin-top: 20px">
+            <el-table-column
+              prop="functionGroupName"
+              label="功能组名称"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="typeDesc"
+              label="流程说明">
+            </el-table-column>
+            <el-table-column
+              prop="orderNum"
+              label="操作">
+              <template slot-scope="scope">
+                <el-button type="text" size="small" @click="handleClick(scope.row)">编辑2</el-button>
+                <el-button type="text" size="small">删除</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane>
+      </el-tabs>
+      <el-dialog
+        :visible.sync="dialogVisible"
+        title="提示"
+        width="30%">
+        <span>这是一段信息</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
 <script>
-//import  from ''
 import apiService from "@/services/API-service.js"
+import { tableRowData, tableData } from "./mockData"
 
 export default {
   //组件名
@@ -79,35 +144,7 @@ export default {
   //实例的数据对象
   data() {
     return {
-      tableData: [{
-        date: "2016-05-03",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }, {
-        date: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }, {
-        date: "2016-05-04",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }, {
-        date: "2016-05-01",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }, {
-        date: "2016-05-08",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }, {
-        date: "2016-05-06",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }, {
-        date: "2016-05-07",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }],
+      tableData,
       multipleSelection: [],
       currpage: 1,
       pagesize: 5,
@@ -115,7 +152,17 @@ export default {
       pictures:[],
       currPicPage: 1,
       seenTable:false,
+      spanTableData: tableRowData,
+      cur: "",
+      num: 0,
+      spanArr: [],
+      position: 0,
+      activeName: "",
+      dialogVisible: false
     }
+  },
+  created() {
+    this.rowSpan();
   },
   //方法
   methods: {
@@ -140,21 +187,59 @@ export default {
     handleCurrPicChange(cpage) {
       this.currPicPage = cpage;
     },
+    handleClickTab(tab, event) {
+      // console.log(tab, event);
+    },
+    rowSpan() {
+      this.spanTableData.forEach((item, index) => {
+        if (index === 0) {
+          this.spanArr.push(1);
+          this.position = 0;
+        } else {
+          if (this.spanTableData[index].functionGroupName === this.spanTableData[index - 1].functionGroupName) {
+            this.spanArr[this.position] += 1;
+            this.spanArr.push(0);
+          } else {
+            this.spanArr.push(1);
+            this.position = index;
+          }
+        }
+      });
+    },
+    objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+      console.log(777)
+      if (columnIndex === 0 || columnIndex === 2) {
+        const _row = this.spanArr[rowIndex];
+        const _col = _row > 0 ? 1 : 0;
+        return {
+          rowspan: _row,
+          colspan: _col
+        };
+      }
+    },
+    handleClick(row) {
+      this.dialogVisible = true;
+      console.log("编辑",row)
+    }
   },
 }
 </script>
 
 
 <style lang="less" scoped>
-    .wallpaper{
-        width: 820px;
-        height: 600px;
-    }
+.eltable {
+  width: 100%;
+  height: 100%;
+}
+.wallpaper{
+  width: 820px;
+  height: 600px;
+}
 </style>
 
 <style lang="less">
-    // 防止scrollbar出现横滚动条
-    .el-scrollbar__wrap{
-        overflow-x:hidden;
-    }
+// 防止scrollbar出现横滚动条
+.el-scrollbar__wrap{
+  overflow-x:hidden;
+}
 </style>

@@ -53,6 +53,16 @@
     <el-button type="primary" @click="changeBg">{{ $t("home.switch") }}</el-button>
     <el-button type="primary" @click="hiddenBG">{{ hiddenBg }}</el-button>
     <div v-if="seen" ref="element" class="background" style="display:block"></div>
+    <section>
+      <img src="./images/demo0.jpg" hide="image1.jpg">
+      <img src="./images/demo1.jpg" hide="image2.jpg">
+      <p class="special"></p>
+      <div id="myId" @click="cusEvent">myId</div>
+    </section>
+    <router-link to="/fea/confirm">confirm</router-link>
+    <router-link to="/fea/upload">upload</router-link>
+    <router-view></router-view>
+    <el-button @click="snippet">snippet</el-button>
   </div>
 </template>
 
@@ -61,8 +71,13 @@ import api from "api"
 import { cloneDeep } from "lodash";
 import TextScroll from "@/components/TextScroll/TextScroll.vue"
 import { mapActions } from "vuex"
-import { Debounce } from "@/utils/codes.js"
+import {
+  Debounce, hide, hasClass, getScrollPosition, getImages, detectDeviceType, getURLParameters,
+  elementContains, elementIsVisibleInViewport, getDeep, triggerEvent, getDaysDiffBetweenDates,
+  isBrowserTabFocused, scrollToTop
+} from "@/utils/codes.js"
 import apiService from "@/services/API-service.js"
+import { tableData } from "./mock.js"
 
 export default {
   //组件名
@@ -94,7 +109,7 @@ export default {
   //实例的数据对象
   data() {
     return {
-      value1:0,
+      value1: 0,
       content:"",
       showCurrentTime:false,
       currentTime:"",
@@ -102,14 +117,18 @@ export default {
       showValue:"",
       selected: "",
       contList:[],
-      seen: true,
-      hiddenBg: "隐藏图片",
+      seen: false,
+      hiddenBg: "显示图片",
       responseData: null,
       rightClick: "鼠标右键",
       visible: false,
       top: 0,
       left: 0,
       getResult: [],
+      tempList: [],
+      tempBoolean: false,
+      tempObj: null,
+      tempNum: 0,
     }
   },
   
@@ -146,13 +165,13 @@ export default {
       let _this = this
       function getQueryString(name) {
         // var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
-        var result = _this.urlTest.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+        var result = _this.urlTest.match(new RegExp("[?&]" + name + "=([^&]+)", "i"));
         if (result == null || result.length < 1) {
           return "";
         }
         return result[1];
       }
-      console.log(getQueryString("screen")) //输入参数名得到参数值
+      console.log(getQueryString("screen"),"getQueryString") //输入参数名得到参数值
     },
     outPut(){
       let param = {
@@ -301,6 +320,41 @@ export default {
     closeMenu() {
       this.visible = false
     },
+    snippet() {
+      // 隐藏页面上所有的<img/> 元素
+      hide(document.querySelectorAll("img"));
+      this.tempBoolean = hasClass(document.querySelector("p.special"), "special"); // true
+      this.tempObj = getScrollPosition();
+      // 平滑置顶
+      // scrollToTop();
+      // 注意： querySelector() 方法只返回匹配指定选择器的第一个元素。如果你要返回所有匹配元素，请使用 querySelectorAll() 方法替代
+      let a = elementContains(document.querySelector("section"), document.querySelector("img"));  // true  
+      let a1 = elementContains(document.querySelector("section"), document.querySelector("section")); // false
+      const el = document.querySelector("input[type]");
+      let b = elementIsVisibleInViewport(el); // (不完全可见) 
+      let b1 = elementIsVisibleInViewport(el, true); // (部分可见)
+      let c = getImages(document, true)
+      let c1 = getImages(document, false)
+      let d = detectDeviceType(); // "Mobile" or "Desktop"
+      let e = getURLParameters(this.urlTest)
+      const obj = { selector: { to: { val: "val to select" } }, target: [1, 2, { a: "test" }] }; 
+      let f = getDeep(obj, "selector.to.val", "target[0]", "target[2].a"); // ["val to select", 1, "test"]
+      
+      // triggerEvent(document.getElementById( "myId" ), "click"); 
+      // dispatchEvent可以直接触发点击事件：cusEvent，并将参数传人detail中
+      triggerEvent(document.getElementById("myId"), "click", { username: "bob" });
+      
+      let g = getDaysDiffBetweenDates(new Date("2017-12-13"), new Date("2017-12-22")); // 9
+
+      setInterval(() => {
+        console.log(isBrowserTabFocused())
+      }, 3000)
+      
+      console.log(a, a1, b, b1, c, c1, d, e, f, g);
+    },
+    cusEvent(e) {
+      console.log(e)
+    }
   },
   
 }
@@ -309,8 +363,8 @@ export default {
 <style lang="less" scoped>
 .feature {
   .background{
-    width: 900px;
-    height: 500px;
+    // width: 900px;
+    height: 200px;
     background: url('./images/demo1.jpg') no-repeat
   }
   .block1{
