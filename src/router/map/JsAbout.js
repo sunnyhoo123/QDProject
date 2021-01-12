@@ -27,7 +27,7 @@ const RouterHome = resolve => require(["@/views/VueAbout/components/VueRouter/Ch
 const RouterDefault = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/default.vue"], resolve)
 
 // elementUI组件
-const elUIComponent = resolve => require(["@/views/elementCom/elUI.vue"], resolve)
+const elUIComponent = resolve => require(["@/views/elementCom"], resolve)
 const elTableComponent = resolve => require(["@/views/elementCom/elData/eltable.vue"], resolve)
 const elTagComponent = resolve => require(["@/views/elementCom/elData/elTagCom.vue"], resolve)
 const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
@@ -49,6 +49,11 @@ export const elUICom = {
   component: elUIComponent,
   name: "elUI",
   children: [
+    // basic
+    {
+      path: "/elementCom/elBasic/elContainerCom",
+      component: () => import("@/views/elementCom/elBasic/elContainerCom.vue"),
+    },
     // Data
     {
       path: "/elementCom/elData/elTableCom",
@@ -70,6 +75,16 @@ export const elUICom = {
     {
       path: "/elementCom/elForm/elFormCom",
       component: elFormComponent,
+    },
+    // Notice
+    {
+      path: "/elementCom/elNotice/elMessageCom",
+      component: () => import("@/views/elementCom/elNotice/elMessageCom.vue"),
+    },
+    // Navigation
+    {
+      path: "/elementCom/elNavigation/elBreadcrumbCom",
+      component: () => import("@/views/elementCom/elNavigation/elBreadcrumbCom.vue"),
     },
     // Others
     {

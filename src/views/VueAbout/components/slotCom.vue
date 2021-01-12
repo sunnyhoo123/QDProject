@@ -13,6 +13,7 @@
       :gender="customValidator"
       :height="33"
       class="parentClass"
+      @child="handleEmit"
     >
       <!-- 父组件在子组件里面插入标签，然后子组件引用slot就可以看到插槽内容 -->
       <span>{{ msg }}</span> 可以不用标签
@@ -87,8 +88,8 @@ export default {
     getChildData(txtChild) {
       this.parentString = txtChild
     },
-    getValue(val) {
-      console.log(val)
+    handleEmit(val) {
+      console.log(val, "emit")
     }
   },
 }

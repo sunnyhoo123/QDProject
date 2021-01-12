@@ -17,12 +17,15 @@
       </keep-alive>
       
       <!-- 动态路由：/vueRouter/foo 和 /vueRouter/bar 都将映射到相同的路由 -->
-      <el-tag>
-        <router-link to="/vueRouter/foo">foo</router-link>
-      </el-tag>
-      <el-link type="primary">
-        <router-link to="/vueRouter/bar">动态路径参数(dynamic segment)</router-link>
-      </el-link>
+      <div v-show="activeAnchor === 10">
+        <el-tag>
+          <router-link to="/vueRouter/foo">foo</router-link>
+        </el-tag>
+        <el-link type="primary">
+          <router-link to="/vueRouter/bar">动态路径参数(dynamic segment)</router-link>
+        </el-link>
+      </div>
+      
 
       <div class="child">
         <router-view></router-view>
@@ -57,7 +60,7 @@ export default {
     return {
       toCalc: "",
       activeAnchor: 0,
-      curComponent: ""
+      curComponent: "computedCom"
     };
   },
   mounted() {
