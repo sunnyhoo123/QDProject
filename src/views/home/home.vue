@@ -14,6 +14,7 @@
         <weather></weather>
         <!-- 每日一言：诗句 -->
         <poem></poem>
+        <div id="pic"></div>
       </div>
     </div>
   </div>
@@ -78,9 +79,29 @@ export default {
   .main-right {
     position: absolute;
     top: 8px;
-    right: 8px;
+    right: 0;
     :first-child {
       padding: 8px;
+    }
+    // 参考 https://www.runoob.com/cssref/css3-pr-animation-timing-function.html
+    #pic {
+      position: fixed;
+      bottom: 1em;
+      right: 5em;
+      height: 90px;
+      width: 65px;
+      background-position: -40px -44px;
+      background-image: url("https://static.runoob.com/images/mix/space-to-top.png");
+      animation: .6s go steps(7) infinite;
+    }
+
+    @keyframes go {
+      0% {
+        background-position-x: -40px;
+      }
+      100% {
+        background-position-x: -1040px;
+      }
     }
   }
 }

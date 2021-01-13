@@ -52,7 +52,8 @@ export const navList = [
     elComs: {
       birdCom: "愤怒的小鸟",
       dragCom: "拖拽/拖动",
-      textEffectsCom: "文字效果"
+      textEffectsCom: "文字效果",
+      commonCom: "常用技巧"
     }
   },
 ]
