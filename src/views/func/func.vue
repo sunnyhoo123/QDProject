@@ -8,6 +8,7 @@
     <el-button type="primary" @click="varHoisting">变量提升</el-button>
     <el-button type="primary" @click="overload">没有重载</el-button>
     <el-button type="primary" @click="addSelf">对象item自增</el-button>
+    <button @click="$event.target.style.display = 'none'">点击消失</button>
   </div>
 </template>
 
@@ -56,27 +57,23 @@ export default {
     },
     CAB() {
       // call+apply+bind的区别：参数有区别，bind返回的是函数
-      let name = "小王",
-        age = "20"; // eslint-disable-line
-      let obj = {
-        name: "objname",
-        objAge: age,
-        myFun: function(m, n) {
+      var obj = {
+        name: "小明",
+        select: "芝芝芒芒",
+        myFun: function(m,n) {
           console.log(
-            this.name + "的年龄是" + this.age + "参数1" + m + "参数2" + n
+            this.name + "选择" + this.select + "加" + m + "加" + n
           );
-          return 1; // 如果不return，这里会打印一个undefined
         }
       };
-      let db = {
-        name: "大D",
-        age: 18
+      var db = {
+        name: "大江",
+        select: "杨枝甘露酸奶"
       };
-      console.log(obj.myFun());
-      console.log(obj.myFun.apply(db, ["奶茶", "去冰"]));
-      console.log(obj.myFun.bind(db, "奶茶", "去冰")());
-      console.log(obj.myFun.bind(db, ["奶茶", "去冰"])());
-      console.log(obj.myFun.call(db, "奶茶", "去冰"));
+      obj.myFun.apply(db, ["椰果", "珍珠"]);
+      obj.myFun.bind(db, "椰果", "珍珠")();
+      obj.myFun.bind(db, ["椰果", "珍珠"])();
+      obj.myFun.call(db, "椰果", "珍珠");
     },
     spacify(str) {
       return str.split("").join(" ");
@@ -120,7 +117,7 @@ export default {
       let itemList = [];
       itemList.push([{ caseId: this.id++ }]);
       console.log(itemList, "itemList");
-    }
+    },
   }
 };
 </script>

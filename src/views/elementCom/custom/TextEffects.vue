@@ -1,7 +1,7 @@
 <template>
   <div class="TextEffects">
-    <div class="expands">选择合适的导航可以让用户在产品的使用过程中非常流畅，相反若是不合适就会引起用户操作不适（方向不明确），以下是「侧栏导航」和 「顶部导航」的区别。</div>
-    <button>展开</button>
+    <div ref="expand" class="expands">选择合适的导航可以让用户在产品的使用过程中非常流畅，相反若是不合适就会引起用户操作不适（方向不明确），以下是「侧栏导航」和 「顶部导航」的区别。</div>
+    <button @click="isEllipsis">展开</button>
     <!-- HTML5规范允许使用：data-* 属性来嵌入自定义数据 -->
     <p class="text">
       请你打开电视看看，多少人为生命在努力勇敢的走下去 ——
@@ -18,20 +18,28 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    isEllipsis(){
+      // scrollWidth和clientWidth判断是否出现省略号
+      const sw = this.$refs.expand.scrollWidth;
+      const cw = this.$refs.expand.clientWidth;
+      // 如果是多行则可以用scrollHeight判断
+      const sh = this.$refs.expand.scrollHeight;
+      const ch = this.$refs.expand.clientHeight;
+      console.log(sw ,cw, sh, ch )
+    }
+  }
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+@import "style/var.scss";
+
 .TextEffects {
   .expands {
     width: 300px;
-    word-break: break-all;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    // @include eps;
+    @include mEps;
   }
   .text {
     font-size: 16px;

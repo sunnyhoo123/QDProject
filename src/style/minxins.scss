@@ -1,5 +1,5 @@
 // 超出部分显示省略号：单行文本
-@mixin ellipsis {
+@mixin eps {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

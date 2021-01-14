@@ -17,6 +17,17 @@
       content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
     </el-popover>
     <el-button v-popover:popover>focus 激活</el-button>
+    <el-popover
+      v-model="visible"
+      placement="top"
+      width="160">
+      <p>这是一段内容这是一段内容确定删除吗？</p>
+      <div style="text-align: right; margin: 0">
+        <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+        <el-button type="primary" size="mini" @click="visible = false">确定</el-button>
+      </div>
+      <el-button slot="reference">删除</el-button>
+    </el-popover>
   </div>
 </template>
 
@@ -25,7 +36,7 @@ export default {
   name: "ElPopoverCom",
   data() {
     return {
-     
+      visible: false
     };
   },
   created() {

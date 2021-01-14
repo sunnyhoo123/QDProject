@@ -55,7 +55,8 @@
     <div v-if="seen" ref="element" class="background" style="display:block"></div>
     <section>
       <img src="./images/demo0.jpg" hide="image1.jpg">
-      <img src="./images/demo1.jpg" hide="image2.jpg">
+      <!-- 引入本地图片 -->
+      <!-- <img :src="require('/Users/hufu/Downloads/photo/爱宠25.png')" hide="image3.jpg"> -->
       <p class="special"></p>
       <div id="myId" @click="cusEvent">myId</div>
     </section>

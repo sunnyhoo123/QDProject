@@ -28,12 +28,12 @@ export default {
     };
   },
   created() {
-    this.linkTo("/elementCom/elBasic/","elContainerCom")
+    // this.linkTo("/elementCom/elBasic/","elContainerCom")
   },
   methods: {
     linkTo(path, name) {
       this.curName = name;
-      this.$router.push({ path: `${path}${name}` });
+      this.$router.push({ path: name === "elContainerCom" ? "/elUI" : `/elementCom${path}${name}` });
       this.$emit("showPage", name)
     },
   }

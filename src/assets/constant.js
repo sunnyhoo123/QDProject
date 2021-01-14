@@ -1,14 +1,14 @@
 export const navList = [
   {
     title: "Basic",
-    path: "/elementCom/elBasic/",
+    path: "/elBasic/",
     elComs: {
       elContainerCom: "Container 布局容器",
     },
   },
   {
     title: "Form",
-    path: "/elementCom/elForm/",
+    path: "/elForm/",
     elComs: {
       elSelectCom: "Select 选择器",
       elUploadCom: "Upload 上传",
@@ -17,7 +17,7 @@ export const navList = [
   },
   {
     title: "Data",
-    path: "/elementCom/elData/",
+    path: "/elData/",
     elComs: {
       elTableCom: "Table表格",
       elTagCom: "Tag标签"
@@ -25,21 +25,21 @@ export const navList = [
   },
   {
     title: "Notice",
-    path: "/elementCom/elNotice/",
+    path: "/elNotice/",
     elComs: {
       elMessageCom: "Message 消息提示"
     },
   },
   {
     title: "Navigation",
-    path: "/elementCom/elNavigation/",
+    path: "/elNavigation/",
     elComs: {
       elBreadcrumbCom: "Breadcrumb 面包屑"
     },
   },
   {
     title: "Others",
-    path: "/elementCom/elOthers/",
+    path: "/elOthers/",
     elComs: {
       elPopoverCom: "Popover 弹出框",
       elTooltipCom: "Tooltip 文字提示",
@@ -48,7 +48,7 @@ export const navList = [
   },
   {
     title: "Custom",
-    path: "/elementCom/custom/",
+    path: "/custom/",
     elComs: {
       birdCom: "愤怒的小鸟",
       dragCom: "拖拽/拖动",
