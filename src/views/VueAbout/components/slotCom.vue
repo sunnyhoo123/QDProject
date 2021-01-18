@@ -33,14 +33,12 @@
       </template>
     </com-child>
     <!-- 传入一个对象给子组件 -->
-    <!-- <com-child :form-list='post'></com-child> -->
-    <!-- <com-animal></com-animal> -->
+    <com-child :form-list="post"></com-child>
   </div>
 </template>
 
 <script>
 import comChild from "@/components/child.vue"
-import comAnimal from "@/components/animal.vue"
 
 export default {
   // 组件名
@@ -48,7 +46,6 @@ export default {
   // 组件
   components: {
     comChild,
-    comAnimal
   },
   // 实例的数据对象
   data() {

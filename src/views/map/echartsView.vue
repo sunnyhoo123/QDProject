@@ -5,7 +5,7 @@
       <router-link to="./echartsLine">折线图</router-link>
     </el-button>
     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    <div :id="mapType" style="width: 600px;height:400px;"></div>
+    <div :id="mapType" style="width: 1200px;height:400px;"></div>
   </div>
 </template>
 <script>
@@ -76,8 +76,19 @@ export default {
       ],
       yAxis: [
         {
-          type: "value"
+          type: "value",
+          // show: false 是否显示坐标
           // splitArea : {show : true}
+          // data: [],
+          // axisLabel: {
+          //   show: false
+          // }
+          axisLine: {
+            show: false
+          },
+          splitLine: {
+            show: false // 分割线
+          }
         }
       ],
       series: [
