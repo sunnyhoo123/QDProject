@@ -1,6 +1,6 @@
 <template>
   <div class="common">
-    <el-select v-model="curPage" placeholder="请选择" class="cus">
+    <el-select v-model="curPage" placeholder="请选择" class="topSelect">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -9,13 +9,13 @@
       </el-option>
     </el-select>
     <!-- 绘制铅笔 -->
-    <div v-show="'pencil' === curPage" class="pencil">
+    <div v-show="isShow('pencil')" class="pencil">
       <span class="taper"></span>
       <span class="barrel">2B</span>
       <span class="eraser"></span>
     </div>
     <!-- 伪类(Pseudo-classes) -->
-    <div v-show="'pseudo' === curPage" class="pseudos">
+    <div v-show="isShow('pseudo')" class="pseudos">
       <p class="first">
         伪类可以看作以选中元素为基准点，此元素的一些状态或属性。
         chrome消除 div 滚动条的宽度，通过箭头键直接控制滚动
@@ -32,37 +32,28 @@
       </div>
       <div></div>
     </div>
-    <div v-show="'plus' === curPage" class="css-plus">
-      <div>
-        <span class="css-1">文本1</span>
-        <span>文本2</span>
-      </div>
-      <p :class="['css-2', 'css_word-2', 'justify']">{{ msg }}</p>
-    </div>
-    <layoutCom v-show="'layoutCom' === curPage"></layoutCom>
-    <com-animal v-show="'animalCom' === curPage"></com-animal>
+    <animalCom v-show="isShow('animalCom')"></animalCom>
+    <layoutCom v-show="isShow('layoutCom')"></layoutCom>
+    <advancedCom v-show="isShow('advancedCom')"></advancedCom>
   </div>
 </template>
 
 <script>
 import layoutCom from "./components/LayoutCom";
-import comAnimal from "./components/animal.vue"
-
-const defaultPassage = `Things will come to you as it is planned for you.
-The firmer you grip, the easier you lose. We’ve tried and cherished, we have a clear conscience. 
-Let the fate take care of the rest. --是你的，就是你的。越是紧握，越容易失去。我们努力了，珍惜了，问心无愧。其他的，交给命运。`
+import advancedCom from "./components/advanced";
+import animalCom from "./components/animal.vue"
 
 export default {
   //组件名
   name: "Common",
   components: {
     layoutCom,
-    comAnimal
+    animalCom,
+    advancedCom,
   },
   //实例的数据对象
   data() {
     return {
-      msg: defaultPassage,
       curPage: "pencil",
       options: [
         {
@@ -72,7 +63,7 @@ export default {
           value: "pseudo",
           label: "伪类"
         }, {
-          value: "plus",
+          value: "advancedCom",
           label: "技巧"
         }, {
           value: "layoutCom",
@@ -84,7 +75,11 @@ export default {
       ],
     };
   },
-  methods: {}
+  methods: {
+    isShow(com) {
+      return this.curPage === com;
+    }
+  }
 };
 </script>
 
@@ -96,7 +91,6 @@ export default {
   font-size: $fontSize;
   // background: rgba(59, 71, 100, 1); 有默认值时可以不传值
 }
-$font-color: #42b983;
 .common {
   .pseudos {
     .first::first-line {
@@ -175,42 +169,8 @@ $font-color: #42b983;
       }
     }
   }
-  .css-plus {
-    // 解决inline-block元素设置overflow: hidden属性导致相邻行内元素向下偏移
-    .css-1 {
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: bottom;
-    }
-    .css-2 {
-      width: 200px;
-      // @include ellipsis;
-      // @include mEps;
-    }
-    // 不换行
-    .css_word-1 {
-      white-space: nowrap;
-    }
-    // 自动换行
-    .css_word-2 {
-      // word-wrap: break-word;
-      // word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap。
-      overflow-wrap: break-word;
-      word-break: normal;
-    }
-    // 强制换行
-    .css_word-3 {
-      word-break: break-all;
-    }
-    .justify {
-      text-align: justify;
-      text-justify: distribute-all-lines;
-      text-align-last: justify;
-      -moz-text-align-last: justify;
-      -webkit-text-align-last: justify;
-    }
-  }
-  .cus {
+  
+  .topSelect {
     float: right;
     margin-top: -50px;
     margin-right: 10px;

@@ -3,8 +3,8 @@
     <div v-for="v in 4" :key="v" :style="`--line-index: ${v}`" :class="`item${v}`">{{ v }}</div>
   </div>
 </template>
-<script>
 
+<script>
 export default {
   //组件名
   name: "Animal",
@@ -16,6 +16,7 @@ export default {
   },
 }
 </script>
+
 <style lang="less" scoped>
 .animal-wrap {
   display: flex;
