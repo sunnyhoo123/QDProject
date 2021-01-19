@@ -45,7 +45,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
   .flex {
     display: flex;
   }
@@ -76,5 +76,5 @@
       box-shadow: 0px 0px 1000px 1px rgba(66, 133, 244, 1) inset;
     }
   }
-</style>
+</style> -->
 ```

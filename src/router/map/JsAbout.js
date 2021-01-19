@@ -17,28 +17,28 @@ const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"],
 
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout"], resolve)
-const parentComponent = resolve => require(["@/views/VueAbout/parent.vue"], resolve)
-const confirmComponent = resolve => require(["@/views/VueAbout/Example/confirm.vue"], resolve)
-const uploadComponent = resolve => require(["@/views/VueAbout/Example/upload.vue"], resolve)
-const routerComponent = resolve => require(["@/views/VueAbout/VueRouter/index.vue"], resolve)
-const RouterProfile = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/profile.vue"], resolve)
-const RouterHome = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/home.vue"], resolve)
-const RouterDefault = resolve => require(["@/views/VueAbout/VueRouter/ChildCom/default.vue"], resolve)
+const parentComponent = resolve => require(["@/views/VueAbout/components/slotCom.vue"], resolve)
+// const uploadComponent = resolve => require(["@/views/Feature/components/Example/upload.vue"], resolve)
+
+// router
+const routerComponent = resolve => require(["@/views/VueAbout/components/VueRouter/index.vue"], resolve)
+const RouterProfile = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/profile.vue"], resolve)
+const RouterHome = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/home.vue"], resolve)
+const RouterDefault = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/default.vue"], resolve)
 
 // elementUI组件
-const elUIComponent = resolve => require(["@/views/elementCom/elUI.vue"], resolve)
+const elUIComponent = resolve => require(["@/views/elementCom"], resolve)
 const elTableComponent = resolve => require(["@/views/elementCom/elData/eltable.vue"], resolve)
 const elTagComponent = resolve => require(["@/views/elementCom/elData/elTagCom.vue"], resolve)
 const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
 const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelect.vue"], resolve)
 const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)
-const elPopoverComponent = resolve => require(["@/views/elementCom/elOther/elPopoverCom.vue"], resolve)
-const elTooltipComponent = resolve => require(["@/views/elementCom/elOther/elTooltipCom.vue"], resolve)
+const elPopoverComponent = resolve => require(["@/views/elementCom/elOthers/elPopoverCom.vue"], resolve)
+const elTooltipComponent = resolve => require(["@/views/elementCom/elOthers/elTooltipCom.vue"], resolve)
 
 // 定制组件
-const customBirdComponent = resolve => require(["@/views/elementCom/CSSPlus/bird.vue"], resolve)
-const customDragComponent = resolve => require(["@/views/elementCom/CSSPlus/drag.vue"], resolve)
-const customTextEffectsComponent = resolve => require(["@/views/elementCom/CSSPlus/TextEffects.vue"], resolve)
+const customBirdComponent = resolve => require(["@/views/elementCom/custom/bird.vue"], resolve)
+const customDragComponent = resolve => require(["@/views/elementCom/custom/drag.vue"], resolve)
 
 // demo
 const demoComponent = resolve => require(["@/demo"], resolve)
@@ -48,6 +48,12 @@ export const elUICom = {
   component: elUIComponent,
   name: "elUI",
   children: [
+    // basic
+    {
+      path: "", // 使用空的子路由，router-view默认渲染此页面
+      name: "elContainerCom",
+      component: () => import("@/views/elementCom/elBasic/elContainerCom.vue"),
+    },
     // Data
     {
       path: "/elementCom/elData/elTableCom",
@@ -70,6 +76,16 @@ export const elUICom = {
       path: "/elementCom/elForm/elFormCom",
       component: elFormComponent,
     },
+    // Notice
+    {
+      path: "/elementCom/elNotice/elMessageCom",
+      component: () => import("@/views/elementCom/elNotice/elMessageCom.vue"),
+    },
+    // Navigation
+    {
+      path: "/elementCom/elNavigation/elBreadcrumbCom",
+      component: () => import("@/views/elementCom/elNavigation/elBreadcrumbCom.vue"),
+    },
     // Others
     {
       path: "/elementCom/elOthers/elPopoverCom",
@@ -78,6 +94,10 @@ export const elUICom = {
     {
       path: "/elementCom/elOthers/elTooltipCom",
       component: elTooltipComponent,
+    },
+    {
+      path: "/elementCom/elOthers/elImageCom",
+      component: () => import("@/views/elementCom/elOthers/elImageCom.vue"),
     },
     // custom
     {
@@ -89,8 +109,8 @@ export const elUICom = {
       component: customDragComponent,
     },
     {
-      path: "/elementCom/custom/textEffectsCom",
-      component: customTextEffectsComponent,
+      path: "/elementCom/custom/commonCom",
+      component: () => import("@/views/elementCom/custom/common.vue"),
     },
   ]
 }
@@ -127,6 +147,12 @@ export const feaCom = {
   path: "/fea",
   component: feaComponent,
   name: "fea",
+  // children: [
+  //   {
+  //     path: "/fea/upload",
+  //     component: uploadComponent,
+  //   },
+  // ]
 }
 export const KeyCodeDelCom = {
   path: "/KeyCodeDel",
@@ -167,14 +193,6 @@ export const vueCom = {
     path: "/vueabout/parent",
     component: parentComponent,
   },
-  {
-    path: "/vueabout/confirm",
-    component: confirmComponent,
-  },
-  {
-    path: "/vueabout/upload",
-    component: uploadComponent,
-  },
   ]
 }
 // 动态路由
@@ -195,7 +213,7 @@ export const routerCom = {
   {
     // 多段“路径参数
     path: "/VueRouter/:username/post/:post_id",
-    component: confirmComponent,
+    component: () => import("@/views/VueAbout/components/VueRouter/confirm.vue"),
   },
   {
     // 当 /router/:id/profile 匹配成功，
@@ -205,7 +223,7 @@ export const routerCom = {
   },
   {
     // 使用空的子路由，当 /user/:id 匹配成功，
-    // UserHome 会被渲染在 User 的 <router-view> 中
+    // RouterHome 会被渲染在 routerCom 的 <router-view> 中
     path: "",
     component: RouterHome
   }

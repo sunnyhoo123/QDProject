@@ -27,8 +27,6 @@
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "sass-loader": "7.1.0",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
     "vue": "^2.5.2",
     "vue-i18n": "^8.14.0",
     "vue-markdown-loader": "^2.4.1",

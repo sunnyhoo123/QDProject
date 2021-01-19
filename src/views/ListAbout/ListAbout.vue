@@ -57,13 +57,17 @@ export default {
       let filterResult = this.example4.filter(function(value){ // eslint-disable-line
         return value >= 1
       })
-      // console.log(filterResult) // [1, 15, 3, 7]
 
+      // 返回的是指定的值，而不是指定值在字符串中的位置
       let filterResult1 = this.example2.filter(function(value){
-        // 返回的是指定的值，而不是指定值在字符串中的位置
         return value.match("123")
       })
-      console.log(filterResult1) // ["123","12345"]
+
+      // 从数组中删除虚值
+      const mixedArr = [ 0, "blue", "", NaN, 9, true, undefined, "white", false];
+      const trueArr = mixedArr.filter(Boolean);
+
+      console.log(filterResult, filterResult1, trueArr)
     },
     mapFun(){
       // map与filter的区别是：map会对每个元素进行处理，并返回每个元素，而filter只会返回符合条件的元素
@@ -78,7 +82,6 @@ export default {
     forEachFun(){
       this.example3.forEach(function(item, index){ // eslint-disable-line
         item.latitude = item.latitude +0.1
-
       })
       console.log(this.example3,"temp")
     },

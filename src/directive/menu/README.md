@@ -54,12 +54,12 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
   .flex {
     display: flex;
     justify-content: space-around;
   }
-</style>
+</style> -->
 ```
 
 ## Attributes
