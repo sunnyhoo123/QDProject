@@ -39,7 +39,6 @@ const elTooltipComponent = resolve => require(["@/views/elementCom/elOther/elToo
 // 定制组件
 const customBirdComponent = resolve => require(["@/views/elementCom/custom/bird.vue"], resolve)
 const customDragComponent = resolve => require(["@/views/elementCom/custom/drag.vue"], resolve)
-const customTextEffectsComponent = resolve => require(["@/views/elementCom/custom/TextEffects.vue"], resolve)
 
 // demo
 const demoComponent = resolve => require(["@/demo"], resolve)
@@ -96,6 +95,10 @@ export const elUICom = {
       path: "/elementCom/elOthers/elTooltipCom",
       component: elTooltipComponent,
     },
+    {
+      path: "/elementCom/elOthers/elImageCom",
+      component: () => import("@/views/elementCom/elOthers/elImageCom.vue"),
+    },
     // custom
     {
       path: "/elementCom/custom/birdCom",
@@ -104,10 +107,6 @@ export const elUICom = {
     {
       path: "/elementCom/custom/dragCom",
       component: customDragComponent,
-    },
-    {
-      path: "/elementCom/custom/textEffectsCom",
-      component: customTextEffectsComponent,
     },
     {
       path: "/elementCom/custom/commonCom",

@@ -43,6 +43,7 @@ export const navList = [
     elComs: {
       elPopoverCom: "Popover 弹出框",
       elTooltipCom: "Tooltip 文字提示",
+      elImageCom: "Image 图像",
       // elDialogCom: "Dialog 对话框框"
     },
   },
@@ -52,7 +53,6 @@ export const navList = [
     elComs: {
       birdCom: "愤怒的小鸟",
       dragCom: "拖拽/拖动",
-      textEffectsCom: "文字效果",
       commonCom: "常用技巧"
     }
   },
