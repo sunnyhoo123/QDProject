@@ -18,8 +18,8 @@ const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"],
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/components/slotCom.vue"], resolve)
-const confirmComponent = resolve => require(["@/views/Feature/components/Example/confirm.vue"], resolve)
-const uploadComponent = resolve => require(["@/views/Feature/components/Example/upload.vue"], resolve)
+// const uploadComponent = resolve => require(["@/views/Feature/components/Example/upload.vue"], resolve)
+
 // router
 const routerComponent = resolve => require(["@/views/VueAbout/components/VueRouter/index.vue"], resolve)
 const RouterProfile = resolve => require(["@/views/VueAbout/components/VueRouter/ChildCom/profile.vue"], resolve)
@@ -33,8 +33,8 @@ const elTagComponent = resolve => require(["@/views/elementCom/elData/elTagCom.v
 const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
 const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelect.vue"], resolve)
 const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)
-const elPopoverComponent = resolve => require(["@/views/elementCom/elOther/elPopoverCom.vue"], resolve)
-const elTooltipComponent = resolve => require(["@/views/elementCom/elOther/elTooltipCom.vue"], resolve)
+const elPopoverComponent = resolve => require(["@/views/elementCom/elOthers/elPopoverCom.vue"], resolve)
+const elTooltipComponent = resolve => require(["@/views/elementCom/elOthers/elTooltipCom.vue"], resolve)
 
 // 定制组件
 const customBirdComponent = resolve => require(["@/views/elementCom/custom/bird.vue"], resolve)
@@ -147,16 +147,12 @@ export const feaCom = {
   path: "/fea",
   component: feaComponent,
   name: "fea",
-  children: [
-    {
-      path: "/fea/confirm",
-      component: confirmComponent,
-    },
-    {
-      path: "/fea/upload",
-      component: uploadComponent,
-    },
-  ]
+  // children: [
+  //   {
+  //     path: "/fea/upload",
+  //     component: uploadComponent,
+  //   },
+  // ]
 }
 export const KeyCodeDelCom = {
   path: "/KeyCodeDel",
@@ -217,7 +213,7 @@ export const routerCom = {
   {
     // 多段“路径参数
     path: "/VueRouter/:username/post/:post_id",
-    component: confirmComponent,
+    component: () => import("@/views/VueAbout/components/VueRouter/confirm.vue"),
   },
   {
     // 当 /router/:id/profile 匹配成功，

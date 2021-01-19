@@ -60,9 +60,6 @@
       <p class="special"></p>
       <div id="myId" @click="cusEvent">myId</div>
     </section>
-    <router-link to="/fea/confirm">confirm</router-link>
-    <router-link to="/fea/upload">upload</router-link>
-    <router-view></router-view>
     <el-button @click="snippet">snippet</el-button>
   </div>
 </template>
