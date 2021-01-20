@@ -41,10 +41,10 @@ export const navList = [
     title: "Others",
     path: "/elOthers/",
     elComs: {
+      elDialogCom: "Dialog 对话框框",
       elPopoverCom: "Popover 弹出框",
       elTooltipCom: "Tooltip 文字提示",
       elImageCom: "Image 图像",
-      // elDialogCom: "Dialog 对话框框"
     },
   },
   {

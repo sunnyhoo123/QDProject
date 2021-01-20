@@ -88,6 +88,10 @@ export const elUICom = {
     },
     // Others
     {
+      path: "/elementCom/elOthers/elDialogCom",
+      component: () => import("@/views/elementCom/elOthers/elDialogCom.vue"),
+    },
+    {
       path: "/elementCom/elOthers/elPopoverCom",
       component: elPopoverComponent,
     },

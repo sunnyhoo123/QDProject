@@ -9,26 +9,33 @@
     </el-switch>
     <div class="header-right">
       <langSelect/>
-      <el-avatar icon="el-icon-user-solid" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+      <div @click="showDialog">
+        <el-avatar :src="avatarImg" icon="el-icon-user-solid"></el-avatar>
+      </div>
     </div>
+    <LoginDialog :loginVisible="loginVisible" @closeDialog="closeDialog"></LoginDialog>
   </header>
 </template>
 
 <script>
 import LangSelect from "@/components/LangSelect"
+import LoginDialog from "@/views/elementCom/elOthers/components/LoginDialog.vue"
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("app");
+import { queryAvatar } from "@/api/freeApi.js"
 
 export default {
   name: "HeaderWrap",
   components: {
     LangSelect,
+    LoginDialog
   },
   data() {
     return {
       isCollapse: false,
       value: true,
-      acgImg: "",
+      avatarImg: "",
+      loginVisible: false
     }
   },
   computed: {
@@ -50,10 +57,19 @@ export default {
     handleChange() {
       this.changeSwitch();
     },
-    async test(e) {
-      // const { data } = await queryAcgImg();
-      // this.acgImg = data.url
-      console.log(e,123)
+    async getAvatar(account) {
+      const params = {
+        email: account,
+      }
+      const res = await queryAvatar(params);
+      this.avatarImg = window.URL.createObjectURL(res)//这里也是关键,调用window的这个方法URL方法
+    },
+    showDialog() {
+      this.loginVisible = true;
+    },
+    closeDialog(visible, account) {
+      this.loginVisible = false;
+      account && this.getAvatar(account);
     }
   },
 }
@@ -67,7 +83,6 @@ export default {
 .header {
   height: 48px;
   padding: 0 20px;
-  line-height: 48px;
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
   transition: background-color 0.3s ease-in-out;
   z-index: 3;
@@ -82,6 +97,7 @@ export default {
   .header-right {
     * + * {
       margin-left: 8px;
+      .flex-between();
     }
     .flex-between();
   }
