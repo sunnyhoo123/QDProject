@@ -1,10 +1,13 @@
 <template>
-  <div class="type-out">
+  <div ref="typeOut" class="type-out" @click="change" >
     <h1 class="glowIn">The first step is as good as half over</h1>
     <p class="glowIn">{{ quote }}</p>
   </div>
 </template>
+
 <script>
+import { queryAcgImg } from "@/api/freeApi.js"
+
 const defaultPassage = `Things will come to you as it is planned for you. 
 The firmer you grip, the easier you lose. We’ve tried and cherished, we have a clear conscience. 
 Let the fate take care of the rest. --是你的，就是你的。越是紧握，越容易失去。我们努力了，珍惜了，问心无愧。其他的，交给命运。`
@@ -15,7 +18,7 @@ export default {
   //实例的数据对象
   data() {
     return {
-      quote: ""
+      quote: "",
     }
   },
   created() {
@@ -38,13 +41,9 @@ export default {
         });
       });
     },
-    change() {
-      // this.quote = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-      //   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      //   Mattis pellentesque id nibh tortor. 
-      //   Suspendisse ultrices gravida dictum fusce ut placerat orci nulla. A lacus vestibulum sed arcu.`
-      // this.startType()
-      // let a = await queryAcgImg();
+    async change() {
+      const { data }  = await queryAcgImg();
+      this.$refs.typeOut.style.background = `url(${data.url}) no-repeat`;
     }
   }
 }

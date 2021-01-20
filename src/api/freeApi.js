@@ -15,6 +15,15 @@ export const queryPoem = async(params, callback, options) => {
 }
 
 export const queryAcgImg = async(params, callback, options) => {
-  const res = await axios.get("https://v1.alapi.cn/api/acg");
-  return res;
+  const res = await axios({
+    params: {
+      format: "json"
+    },
+    method: "post",
+    url: "https://v1.alapi.cn/api/acg",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+  });
+  return res.data;
 }

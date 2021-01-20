@@ -1,2 +1,0 @@
-webpackJsonp([32],{I0YH:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"default-router"},[this._v("\n  默认命名视图\n")])},staticRenderFns:[]};var a=n("VU/8")({name:"DefaultRouter",components:{},data:function(){return{}},created:function(){},methods:{}},r,!1,function(e){n("U7Gd")},"data-v-17141b9e",null);t.default=a.exports},U7Gd:function(e,t){}});
-//# sourceMappingURL=32.e9f77cff843c6b294223.js.map

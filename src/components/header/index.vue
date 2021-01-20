@@ -9,7 +9,7 @@
     </el-switch>
     <div class="header-right">
       <langSelect/>
-      <el-avatar icon="el-icon-user-solid"></el-avatar>
+      <el-avatar icon="el-icon-user-solid" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
     </div>
   </header>
 </template>
@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       isCollapse: false,
-      value: true
+      value: true,
+      acgImg: "",
     }
   },
   computed: {
@@ -48,6 +49,11 @@ export default {
     },
     handleChange() {
       this.changeSwitch();
+    },
+    async test(e) {
+      // const { data } = await queryAcgImg();
+      // this.acgImg = data.url
+      console.log(e,123)
     }
   },
 }

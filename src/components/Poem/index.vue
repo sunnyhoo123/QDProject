@@ -26,13 +26,11 @@ export default {
   data() {
     return {
       poem: null,
-      acgImg: "",
     }
   },
   methods:{
     async getPoem() {
       this.poem = await queryPoem();
-      // this.acgImg = await queryAcgImg()
     },
     handleClick(url) {
       window.open(url)
