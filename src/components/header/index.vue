@@ -22,7 +22,7 @@ import LangSelect from "@/components/LangSelect"
 import LoginDialog from "@/views/elementCom/elOthers/components/LoginDialog.vue"
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("app");
-import { queryAvatar } from "@/api/freeApi.js"
+import { queryAvatar } from "api/freeApi.js"
 
 export default {
   name: "HeaderWrap",

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { queryKuaidi } from "@/api/freeApi.js"
+import { queryKuaidi } from "api/freeApi.js"
 
 export default {
   //组件名

@@ -43,3 +43,33 @@ export const queryAvatar = async(params, callback, options) => {
   });
   return res.data
 }
+
+// 获取诗词
+export const queryWea = async( params ) => {
+  const res = await axios({
+    params,
+    method: "get",
+    url: "https://tenapi.cn/wether"
+  });
+  return res.data;
+}
+
+// 历史事件
+export const queryHistory = async( params ) => {
+  const res = await axios({
+    params,
+    method: "get",
+    url: "https://tenapi.cn/lishi"
+  });
+  return res.data;
+}
+
+// 热搜
+export const queryHotSearch = async( params ) => {
+  const res = await axios({
+    params,
+    method: "get",
+    url: "https://tenapi.cn/resou"
+  });
+  return res.data;
+}

@@ -57,3 +57,11 @@ export const navList = [
     }
   },
 ]
+
+export const cityList = [
+  { "value": "北京" },
+  { "value": "深圳" },
+  { "value": "武汉" },
+  { "value": "上海" },
+  { "value": "广州" },
+]

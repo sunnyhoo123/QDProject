@@ -11,7 +11,8 @@
       </div>
       <div class="main-right">
         <!-- 天气预报 -->
-        <weather></weather>
+        <!-- <weather></weather> -->
+        <hotSearch></hotSearch>
         <!-- 每日一言：诗句 -->
         <poem></poem>
         <div id="pic"></div>
@@ -25,6 +26,7 @@
 // import {mapActions, mapGetters} from 'vuex'
 import movie from "@/components/Movie"
 import sidebar from "@/components/sidebar"
+import hotSearch from "@/components/HotSearch"
 import weather from "@/components/Weather"
 import carousel from "@/components/Carousel"
 import comHeader from "@/components/header"
@@ -37,13 +39,14 @@ const { mapState } = createNamespacedHelpers("app");
 export default {
   name: "Home",
   components: {
-    comHeader,
-    carousel,
+    poem,
+    movie,
     sidebar,
     weather,
     typeOut,
-    poem,
-    movie
+    carousel,
+    comHeader,
+    hotSearch
   },
   data() {
     return {
@@ -70,7 +73,7 @@ export default {
     position: relative;
   }
   .main-container {
-    margin: 0 200px 0 160px;
+    margin: 0 280px 0 160px;
     transition: margin-left .28s;
   }
   .menuCollapse {
@@ -80,14 +83,17 @@ export default {
     position: absolute;
     top: 8px;
     right: 0;
-    :first-child {
+    > div {
+      max-width: 270px;
+    }
+    > :first-child {
       padding: 8px;
     }
-    // 参考 https://www.runoob.com/cssref/css3-pr-animation-timing-function.html
+    // 下图参考 https://www.runoob.com/cssref/css3-pr-animation-timing-function.html
     #pic {
       position: fixed;
       bottom: 1em;
-      right: 5em;
+      right: 7em;
       height: 90px;
       width: 65px;
       background-position: -40px -44px;

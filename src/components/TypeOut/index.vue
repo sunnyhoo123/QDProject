@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { queryAcgImg } from "@/api/freeApi.js"
+import { queryAcgImg } from "api/freeApi.js"
 
 const quote = `Things will come to you as it is planned for you. 
 The firmer you grip, the easier you lose. We’ve tried and cherished, we have a clear conscience. 
@@ -41,7 +41,7 @@ export default {
     },
     async change() {
       const { data }  = await queryAcgImg();
-      this.$refs.typeOut.style.background = `url(${data.url}) no-repeat`;
+      this.$refs.typeOut.style.backgroundImage = `url(${data.url})`;
     }
   }
 }
@@ -57,6 +57,7 @@ export default {
   align-items: center;
   background-image: linear-gradient(rgba(16, 16, 16, 0.8),rgba(16, 16, 16, 0.8)), url(https://i.loli.net/2019/11/03/RtVq2wxQYySDb8L.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
   p {
     margin: 0em 5em 4em 5em;
   }
