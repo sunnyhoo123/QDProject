@@ -47,7 +47,7 @@ module.exports = {
   },
   module: {
     rules: [
-      // ...(config.dev.useEslint ? [createLintingRule()] : []),
+      ...(config.dev.useEslint ? [createLintingRule()] : []), //解决：build打包部署后字体图标丢失问题
       {
         test: /\.vue$/,
         loader: 'vue-loader',
