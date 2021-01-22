@@ -83,9 +83,7 @@ export default {
     position: absolute;
     top: 8px;
     right: 0;
-    > div {
-      max-width: 280px;
-    }
+    width: 270px;
     > :first-child {
       padding: 8px;
     }

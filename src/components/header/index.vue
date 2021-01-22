@@ -18,11 +18,11 @@
 </template>
 
 <script>
+import { queryAvatar } from "api/freeApi.js"
 import LangSelect from "@/components/LangSelect"
 import LoginDialog from "@/views/elementCom/elOthers/components/LoginDialog.vue"
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("app");
-import { queryAvatar } from "api/freeApi.js"
 
 export default {
   name: "HeaderWrap",
@@ -46,7 +46,8 @@ export default {
     // }),
   },
   created() {
-
+    const avatarImg = sessionStorage.getItem("avatarImg");
+    this.avatarImg = avatarImg;
   },
   methods: {
     ...mapActions(["toggleSideBar","closeSideBar","exec","changeSwitch"]),
@@ -63,6 +64,7 @@ export default {
       }
       const res = await queryAvatar(params);
       this.avatarImg = window.URL.createObjectURL(res)//这里也是关键,调用window的这个方法URL方法
+      sessionStorage.setItem("avatarImg", this.avatarImg);
     },
     showDialog() {
       this.loginVisible = true;

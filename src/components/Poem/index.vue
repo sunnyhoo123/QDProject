@@ -23,7 +23,7 @@
     <div v-if="poem" class="poem-wrap" @click="handleClick(poem.url)">
       <div>{{ poem.title }}</div>
       <div>
-        <span>{{ poem.chaodai || '未知' }}</span>
+        <span>{{ poem.chaodai || '未知朝代' }}</span>
         <el-divider direction="vertical"></el-divider>
         <span>{{ poem.zuozhe || '佚名' }}</span>
       </div>
@@ -46,11 +46,13 @@ export default {
     }
   },
   mounted() {
-    this.getPoem();
+    const poemData = sessionStorage.getItem("poem");
+    !poemData ? this.getPoem() : this.poem = JSON.parse(poemData);
   },
   methods: {
     async getPoem() {
       this.poem = await queryPoem();
+      sessionStorage.setItem("poem", JSON.stringify(this.poem));
     },
     handleClick(url) {
       window.open(url)

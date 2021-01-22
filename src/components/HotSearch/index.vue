@@ -3,7 +3,7 @@
     <el-tooltip effect="light" content="点击刷新" placement="top">
       <a @click="getHotList">微博热搜</a>
     </el-tooltip>
-    <p v-for="(title, index) in list" :key="index" class="hot-item">
+    <p v-for="(title, index) in hotList" :key="index" class="hot-item">
       <span :style="{ backgroundColor: getColor(index) }">{{ index + 1 }}</span>
       <a :href="title.url">{{ title.name }}</a>
     </p>
@@ -19,17 +19,19 @@ export default {
   //实例的数据对象
   data() {
     return {
-      list: []
+      hotList: []
     }
   },
   mounted() {
-    this.getHotList();
+    const hotSearchData = sessionStorage.getItem("hotSearch");
+    !hotSearchData ? this.getHotList() : this.hotList = JSON.parse(hotSearchData);
   },
   methods: {
     // 百度api
     async getHotList() {
       const { list } = await queryHotSearch();
-      this.list = list;
+      this.hotList = list;
+      sessionStorage.setItem("hotSearch", JSON.stringify(this.hotList));
     },
     getColor(num) {
       const colors = {
