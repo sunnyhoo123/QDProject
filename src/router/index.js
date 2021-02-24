@@ -16,7 +16,7 @@ import {
 Vue.use(Router)
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   routes: [
     home, //主页
     elUICom,
@@ -37,6 +37,6 @@ export default new Router({
     profileCom,
     redirectRouter,
     echartsLineCom,
-    Redirect, //路由重定向(访问不存在的页面时，重定向到这个页面) 放最后面
+    Redirect, //路由重定向(访问不存在的页面时，重定向到这个页面) 放最后面，可以加个404页面
   ]
 })

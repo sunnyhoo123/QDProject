@@ -32,7 +32,7 @@ module.exports = {
     quotes: ["error", "double", { allowTemplateLiterals: true }],
     indent: ["error", 2],
     "no-empty-pattern": "off",
-    "no-debugger": rule,
+    "no-debugger": "off",
     "no-console": "off", // 允许有console
     "no-alert": rule,
     "no-unreachable": rule,
@@ -67,7 +67,7 @@ module.exports = {
     "require-unicode-regexp": "off",
     "no-process-env": "off",
     "one-var": "off",
-    "max-lines": ["warn", 350],
+    "max-lines": ["warn", 450],
     "callback-return": "off",
     "no-magic-numbers": "off",
     "no-negated-condition": "off",

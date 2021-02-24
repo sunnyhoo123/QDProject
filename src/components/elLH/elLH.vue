@@ -3,47 +3,11 @@
   <div class="elLH-wrap">
     <el-scrollbar style="height:100%">
       <div class="side-nav">
-        <div class="nav-group">
-          <div class="nav-group__title">Basic</div>
+        <div v-for="i in navList" :key="i.title" class="nav-group">
+          <div class="nav-group__title">{{ i.title }}</div>
           <ul class="pure-menu-list" style="height: auto">
-            <li class="nav-item"></li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Form</div>
-          <ul class="pure-menu-list" style="height: auto">
-            <li v-for="(value,name) in elFormComponent" :key="name" class="nav-item">
-              <a @click="linkToForm(name)">{{ value }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Data</div>
-          <ul class="pure-menu-list" style="height: auto">
-            <li v-for="(value,name) in elDataComponent" :key="name" class="nav-item">
-              <a @click="linkToData(name)">{{ value }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Notice</div>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Navigation</div>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">Others</div>
-          <ul class="pure-menu-list" style="height: auto">
-            <li v-for="(value,name) in elOthersComponent" :key="name" class="nav-item">
-              <a @click="linkToOthers(name)">{{ value }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="nav-group">
-          <div class="nav-group__title">custom</div>
-          <ul class="pure-menu-list" style="height: auto">
-            <li v-for="(value,name) in CustomComponent" :key="name" class="nav-item">
-              <a @click="linkToCustom(name)">{{ value }}</a>
+            <li v-for="(value, name) in i.elComs" :key="name" class="nav-item">
+              <a :class="{active: name === curName}" @click="linkTo(i.path, name)">{{ value }}</a>
             </li>
           </ul>
         </div>
@@ -53,47 +17,25 @@
 </template>
 
 <script>
+import { navList } from "@/assets/constant.js"
+
 export default {
   name: "ElLHWrap",
-  components: {
-    // TestDemo
-  },
   data() {
     return {
-      elFormComponent: {
-        elSelectCom: "Select 选择器",
-        elUploadCom: "Upload 上传",
-        elFormCom: "Form 表单"
-      },
-      elDataComponent: {
-        elTableCom: "Table表格",
-        elTagCom: "Tag标签"
-      },
-      elOthersComponent: {
-        elPopoverCom: "Popover 弹出框",
-        elTooltipCom: "Tooltip 文字提示",
-        elDialogCom: "Dialog 对话框框"
-      },
-      CustomComponent: {
-        birdCom: "愤怒的小鸟",
-        dragCom: "拖拽/拖动",
-        textEffectsCom: "文字效果"
-      }
+      curName: "",
+      navList: navList
     };
   },
+  created() {
+    // this.linkTo("/elementCom/elBasic/","elContainerCom")
+  },
   methods: {
-    linkToForm(name) {
-      this.$router.push({ path: "/elementCom/elForm/" + name });
+    linkTo(path, name) {
+      this.curName = name;
+      this.$router.push({ path: name === "elContainerCom" ? "/elUI" : `/elementCom${path}${name}` });
+      this.$emit("showPage", name)
     },
-    linkToData(name) {
-      this.$router.push({ path: "/elementCom/elData/" + name });
-    },
-    linkToOthers(name) {
-      this.$router.push({ path: "/elementCom/elOthers/" + name });
-    },
-    linkToCustom(name) {
-      this.$router.push({ path: "/elementCom/custom/" + name });
-    }
   }
 };
 </script>
@@ -102,12 +44,14 @@ export default {
 <style lang='less' scoped>
 .elLH-wrap {
   width: 200px;
-  // height: 100px;
-  // position: fixed;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  transition: padding-top .3s;
   .nav-item a {
     display: block;
     height: 40px;
-    color: #444;
+    // color: #444;
     line-height: 40px;
     font-size: 14px;
     overflow: hidden;
@@ -115,6 +59,12 @@ export default {
     text-overflow: ellipsis;
     font-weight: 400;
     cursor: pointer;
+    &:hover{
+      color: #409eff;
+    }
+  }
+  .active {
+    color: #409eff;
   }
 }
 .side-nav {
@@ -131,7 +81,7 @@ export default {
 
 <style lang="less">
 // 防止scrollbar出现横滚动条
-.el-scrollbar__wrap {
-  overflow-x: hidden;
-}
+// .el-scrollbar__wrap {
+//   overflow-x: hidden;
+// }
 </style>

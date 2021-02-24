@@ -203,6 +203,14 @@ export default {
     },
     testLodash() {
       console.log(lodash.isEmpty(null)); 
+      console.log(lodash.range(10)); 
+      console.log(lodash.uniqueId());
+      console.log(lodash.times(3, String));
+      const sepString = lodash.truncate("hi? this is a good day, hahahah", {
+        "length": 25,
+        "separator": /,? +/
+      });
+      console.log(sepString);
     }
   }
 }
