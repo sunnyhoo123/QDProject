@@ -35,13 +35,15 @@
     <animalCom v-show="isShow('animalCom')"></animalCom>
     <layoutCom v-show="isShow('layoutCom')"></layoutCom>
     <advancedCom v-show="isShow('advancedCom')"></advancedCom>
+    <flexLayout v-show="isShow('flexLayout')"></flexLayout>
   </div>
 </template>
 
 <script>
 import layoutCom from "./components/LayoutCom";
 import advancedCom from "./components/advanced";
-import animalCom from "./components/animal.vue"
+import animalCom from "./components/animal";
+import flexLayout from "./components/flexLayout.vue";
 
 export default {
   //组件名
@@ -50,6 +52,7 @@ export default {
     layoutCom,
     animalCom,
     advancedCom,
+    flexLayout
   },
   //实例的数据对象
   data() {
@@ -67,10 +70,13 @@ export default {
           label: "技巧"
         }, {
           value: "layoutCom",
-          label: "定位"
+          label: "定位-固定底部"
         }, {
           value: "animalCom",
           label: "动画"
+        }, {
+          value: "flexLayout",
+          label: "flex布局"
         }
       ],
     };
