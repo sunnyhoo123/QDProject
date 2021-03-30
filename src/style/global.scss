@@ -1,0 +1,20 @@
+.flex-center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .4s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.display-flex {
+  display: flex;
+}

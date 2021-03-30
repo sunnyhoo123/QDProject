@@ -1,0 +1,45 @@
+{
+  "data": {
+    "image": {
+      "url":"https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+    },
+    "targets": [
+      {
+        "name": "吕李辉",
+        "url": "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+        "identityId": "42019911234567891011",
+        "gender": "男性",
+        "age": "29岁",
+        "nativePlace": "广东省中山市",
+        "remark": "连环",
+        "address": "蛇口工业八路与荔园路十字口",
+        "createTime": "2018-12-31 03:12:19",
+        "similarity": "90%",
+        "tarLibName": [
+          "A库",
+          "B库",
+          "C库"
+        ]
+      }
+    ],
+    "similars": [
+      { 
+        "score": 50,
+        "target": {
+          "name": "吕老大", 
+          "url": "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+        }
+      },
+      { 
+        "score": 30,
+        "target": {
+          "name": "吕老二", 
+          "url": "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+        }
+      }
+    ]
+  },
+	"errorCode":"0",
+	"errorMsg":"成功",
+	"success":true
+}

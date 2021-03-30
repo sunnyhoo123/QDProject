@@ -36,6 +36,13 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      "#": resolve("src/components"),
+      // "~": resolve("src/features"),
+      api: resolve("src/api"),
+      global: resolve("src/global"),
+      style: resolve("src/style"),
+      utils: resolve("src/utils"),
+      i18n: resolve("src/i18n"),
     }
   },
   module: {
@@ -74,7 +81,25 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      // {
+      //   test: /\.md$/,
+      //   use: [
+      //     { loader: 'html-loader' },
+      //     { loader: 'markdown-loader', options: {} }
+      //   ],
+      // },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: "vue-loader",
+          },
+          {
+            loader: resolve("./build/markdown-compiler.js"),
+          },
+        ],
+      },
     ]
   },
   node: {
