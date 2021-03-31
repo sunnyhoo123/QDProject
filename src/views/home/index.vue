@@ -60,6 +60,11 @@ export default {
       };
     },
   },
+  created() {
+    if(window.ActiveXObject || "ActiveXObject" in window) {
+      alert("不支持IE浏览器"); //eslint-disable-line
+    }
+  },
   methods: {
     
   },

@@ -5,6 +5,7 @@ import axios from "axios";
 // TODO后面这个需要拉配置的, 或者从系统信息中获取设置
 const api = axios.create({
   timeout: 8000,
+  withCredentials: true  //当前请求为跨域类型时是否在请求中协带cookie,要注意domain:访问网站是否和set-cookie中一样，都是域名或者都是ip
 });
 
 const responseSuccess = response => {
