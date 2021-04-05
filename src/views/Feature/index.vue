@@ -61,6 +61,7 @@
       <div id="myId" @click="cusEvent">myId</div>
     </section>
     <el-button @click="snippet">snippet</el-button>
+    <ztree></ztree>
   </div>
 </template>
 
@@ -76,12 +77,14 @@ import {
 } from "@/utils/codes.js"
 import apiService from "@/services/API-service.js"
 import { tableData } from "./mock.js"
+import ztree from "./components/zTree"
 
 export default {
   //组件名
   name: "Feature",
   components: {
-    TextScroll
+    TextScroll,
+    ztree
   },
   //过滤器
   filters:{
