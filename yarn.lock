@@ -104,8 +104,8 @@
 
 "@ztree/ztree_v3@^3.5.46":
   version "3.5.46"
-  resolved "http://npm.tool.wezhuiyi.com/@ztree%2fztree_v3/-/ztree_v3-3.5.46.tgz#aedf2dcf3f999550ff7af6786f7dac9b80a00900"
-  integrity sha1-rt8tzz+ZlVD/evZ4b32sm4CgCQA=
+  resolved "https://registry.yarnpkg.com/@ztree/ztree_v3/-/ztree_v3-3.5.46.tgz#aedf2dcf3f999550ff7af6786f7dac9b80a00900"
+  integrity sha512-/W07Xj5YgBNtUdLD6q2kiE5u6Be5ZnrxALVx8h+GrujHwsGomBxO82EU4JQym7Rljy3tVm/QwwyLkthr1LRGuQ==
   dependencies:
     jquery ">=1.4.4"
 
@@ -4451,9 +4451,9 @@ iview@^3.2.1:
     v-click-outside-x "^4.0.19"
 
 jquery@>=1.4.4, jquery@^3.5.1:
-  version "3.5.1"
-  resolved "http://npm.tool.wezhuiyi.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
-  integrity sha1-17TQjhv9uGrS8aPQOeoXMEcXq7U=
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
 
 js-base64@^2.1.8:
   version "2.6.4"

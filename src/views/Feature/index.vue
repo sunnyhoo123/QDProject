@@ -78,6 +78,7 @@ import {
 import apiService from "@/services/API-service.js"
 import { tableData } from "./mock.js"
 import ztree from "./ztree.vue"
+import ztreec from "./components/zTree"
 
 export default {
   //组件名
@@ -85,6 +86,7 @@ export default {
   components: {
     TextScroll,
     ztree,
+    ztreec
   },
   //过滤器
   filters:{
