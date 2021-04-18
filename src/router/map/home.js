@@ -3,6 +3,6 @@
 export default {
   path: "/",
   // component: home,
-  component: () => import("@/views/home/home.vue"),
+  component: () => import("@/views/home"),
   name: "home",
 }

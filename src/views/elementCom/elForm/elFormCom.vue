@@ -5,18 +5,21 @@
         <select-tree :options="options" v-model="selected" :treeProps="defaultProps" @selected="selectedTest"></select-tree>
       </el-form-item>
     </el-form>
+    <neomorphicForm></neomorphicForm>
   </div>
 </template>
 
 <script>
 import selectTree from "@/components/elSelectTree/elSelectTree.vue" 
+import neomorphicForm from "./components/NeomorphicForm" 
 
 export default {
   //组件名
   name: "ElFormCom",
   //组件
   components: {
-    selectTree
+    selectTree,
+    neomorphicForm
   },
   //过滤器
   filters:{

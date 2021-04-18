@@ -8,13 +8,68 @@ export const queryKuaidi = async(params, callback, options) => {
   return res;
 }
 
+// 获取诗词
 export const queryPoem = async(params, callback, options) => {
   // https://www.meiriyiyan.com/api/v1/one.svg (svg格式)
   const res = await axios.get("https://www.meiriyiyan.com/api/v1/");
   return res.data;
 }
 
+// 获取背景图片
 export const queryAcgImg = async(params, callback, options) => {
-  const res = await axios.get("https://v1.alapi.cn/api/acg");
-  return res;
+  const res = await axios({
+    params: {
+      format: "json"
+    },
+    method: "post",
+    url: "https://v1.alapi.cn/api/acg",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+  });
+  return res.data
+}
+
+// 获取头像
+export const queryAvatar = async(params, callback, options) => {
+  const res = await axios({
+    params,
+    method: "post",
+    url: "https://v1.alapi.cn/api/avatar",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    responseType: "blob"
+  });
+  return res.data
+}
+
+// 获取诗词
+export const queryWea = async( params ) => {
+  const res = await axios({
+    params,
+    method: "get",
+    url: "https://tenapi.cn/wether"
+  });
+  return res.data;
+}
+
+// 历史事件
+export const queryHistory = async( params ) => {
+  const res = await axios({
+    params,
+    method: "get",
+    url: "https://tenapi.cn/lishi"
+  });
+  return res.data;
+}
+
+// 热搜
+export const queryHotSearch = async( params ) => {
+  const res = await axios({
+    params,
+    method: "get",
+    url: "https://tenapi.cn/resou"
+  });
+  return res.data;
 }

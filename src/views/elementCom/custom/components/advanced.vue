@@ -31,7 +31,20 @@
           <div class="right">right</div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="居中" name="fourth">
+        <div class="skill-center">
+          <div class="p1">
+            <div class="c1">
+              绝对定位居中
+            </div>
+          </div>
+          <div class="p2">
+            <div class="c2">
+              水平垂直居中（四）diplay：table-cell
+            </div>
+          </div>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -66,6 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./advanced.scss";
 @import "style/var.scss";
 @import "style/global.scss";
 @mixin fontStyle($backgroundColor: #0d0, $fontSize: 14px) {

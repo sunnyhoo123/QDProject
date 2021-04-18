@@ -6,9 +6,9 @@
     </nav>
     <main :class="{dark: isDark}" @click="changeClass">
       <p>可以添加更多内容看底部的变化</p>
-      <!-- skill-1 悬停放大图片 -->
+      <!-- skill-2 悬停放大图片 -->
       <div class="img-wrapper">
-        <img :src="require('@/assets/image/home/demo1.jpg')">
+        <img :src="require('assets/image/home/demo1.jpg')">
       </div>
     </main>
     <footer>
