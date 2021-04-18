@@ -25,6 +25,9 @@ import axios from "axios";
 export default {
   // 组件名
   name: "ComputedCom",
+  props: {
+    cusData: ""
+  },
   // 实例的数据对象
   data() {
     return {
@@ -66,6 +69,7 @@ export default {
   },
   created() {
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+    console.log(this.cusData,9090)
   },
   // 方法
   methods: {

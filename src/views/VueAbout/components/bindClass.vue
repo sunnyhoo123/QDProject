@@ -30,6 +30,9 @@ export default {
   components: {
     carousel,
   },
+  props: {
+    cusData: ""
+  },
   data() {
     return {
       activeClass: true,
@@ -63,9 +66,12 @@ export default {
       }
     }
   },
+  created() {
+    console.log(this.cusData,777)
+  },
   methods: {
     
-  }
+  },
 };
 </script>
 

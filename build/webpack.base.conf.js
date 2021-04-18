@@ -43,11 +43,13 @@ module.exports = {
       style: resolve("src/style"),
       utils: resolve("src/utils"),
       i18n: resolve("src/i18n"),
+      assets: resolve("src/assets"),
+      static: resolve("src/static"),
     }
   },
   module: {
     rules: [
-      // ...(config.dev.useEslint ? [createLintingRule()] : []),
+      // ...(config.dev.useEslint ? [createLintingRule()] : []), //解决：build打包部署后字体图标丢失问题
       {
         test: /\.vue$/,
         loader: 'vue-loader',

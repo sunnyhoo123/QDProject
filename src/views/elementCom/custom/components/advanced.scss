@@ -1,0 +1,28 @@
+.skill-center {
+  display: flex;
+  > div {
+    width: 400px;
+    height: 400px;
+    background-color: aquamarine;
+    margin-right: 20px;
+    > div {
+      width: 50%;
+      height: 50%;
+      background-color: bisque;
+    }
+  }
+  .p1 {
+    position: relative;
+    .c1 {
+      margin: auto;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+    }
+  }
+  .p2 {
+    display: table-cell;
+    .c2 {
+      
+    }
+  }
+}

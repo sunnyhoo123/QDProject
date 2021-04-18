@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { navList } from "@/assets/constant.js"
+import { navList } from "assets/constant.js"
 
 export default {
   name: "ElLHWrap",

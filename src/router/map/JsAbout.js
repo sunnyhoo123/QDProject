@@ -1,20 +1,3 @@
-const listComponent = resolve => require(["@/views/ListAbout/ListAbout.vue"], resolve)
-const observeListComponent = resolve => require(["@/views/ListAbout/ObserveList.vue"], resolve)
-const numberComponent = resolve => require(["@/views/NumberAbout/NumberAbout.vue"], resolve)
-// more
-const moreComponent = resolve => require(["@/views/More/More.vue"], resolve)
-const webSocketComponent = resolve => require(["@/views/More/WebSocket/index.vue"], resolve)
-
-const feaComponent = resolve => require(["@/views/Feature"], resolve)
-const KeyCodeDelComponent = resolve => require(["@/views/Feature/KeyCodeDel.vue"], resolve)
-const PersonalCenterComponent = resolve => require(["@/views/Feature/PersonalCenter/index.vue"], resolve)
-
-const funcComponent = resolve => require(["@/views/func/func.vue"], resolve)
-const tipsComponent = resolve => require(["@/views/more/tips.vue"], resolve)
-const mapComponent = resolve => require(["@/views/map/mapView.vue"], resolve)
-const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], resolve)
-const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"], resolve)
-
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/components/slotCom.vue"], resolve)
@@ -88,6 +71,10 @@ export const elUICom = {
     },
     // Others
     {
+      path: "/elementCom/elOthers/elDialogCom",
+      component: () => import("@/views/elementCom/elOthers/elDialogCom.vue"),
+    },
+    {
       path: "/elementCom/elOthers/elPopoverCom",
       component: elPopoverComponent,
     },
@@ -116,36 +103,36 @@ export const elUICom = {
 }
 export const listCom = {
   path: "/listabout",
-  component: listComponent,
+  component: () => import("@/views/ListAbout"),
   name: "ListAbout",
 }
 export const numberCom = {
   path: "/numberabout",
-  component: numberComponent,
+  component: () => import("@/views/NumberAbout"),
   name: "NumberAbout",
 }
 export const moreCom = {
   path: "/more",
-  component: moreComponent,
+  component: () => import("@/views/More"),
   name: "More",
   children: [{
     path: "/more/tips",
-    component: tipsComponent,
+    component: () => import("@/views/more/tips.vue"),
   },
   {
     path: "/more/webSocket",
-    component: webSocketComponent,
+    component: () => import("@/views/More/WebSocket"),
   },
   ]
 }
 export const funcCom = {
   path: "/func",
-  component: funcComponent,
+  component: () => import("@/views/func"),
   name: "func",
 }
 export const feaCom = {
   path: "/fea",
-  component: feaComponent,
+  component: () => import("@/views/Feature"),
   name: "fea",
   // children: [
   //   {
@@ -156,33 +143,34 @@ export const feaCom = {
 }
 export const KeyCodeDelCom = {
   path: "/KeyCodeDel",
-  component: KeyCodeDelComponent,
+  component: () => import("@/views/Feature/KeyCodeDel.vue"),
   name: "KeyCodeDel",
 }
 export const PersonalCenterCom = {
   path: "/PersonalCenter",
-  component: PersonalCenterComponent,
+  component: () => import("@/views/Feature/PersonalCenter"),
   name: "PersonalCenter",
 }
 
 export const mapCom = {
   path: "/map",
-  component: mapComponent,
+  component: () => import("@/views/map/mapView.vue"),
   name: "BDmap",
 }
 export const observeListCom = {
   path: "/observelist",
-  component: observeListComponent,
+  component: () => import("@/views/ListAbout/ObserveList.vue"),
   name: "observelist",
 }
 export const echartsproCom = {
   path: "/echartspro",
-  component: echartsproComponent,
+  component: () => import("@/views/map/echartsView.vue"),
+
   name: "echartspro",
 }
 export const echartsLineCom = {
   path: "/echartsLine",
-  component: echartsLineComponent,
+  component: () => import("@/views/map/echartsLine.vue"),
   name: "echartsLine",
 }
 export const vueCom = {

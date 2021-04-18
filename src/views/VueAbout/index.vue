@@ -13,7 +13,7 @@
     </div>
     <div class="content">
       <keep-alive>
-        <component :is="curComponent"></component>
+        <component :is="curComponent" cusData="cusparams"></component>
       </keep-alive>
       
       <!-- 动态路由：/vueRouter/foo 和 /vueRouter/bar 都将映射到相同的路由 -->

@@ -3,7 +3,7 @@ const actions = {
     commit("INCREMENT");
   },
   setLanguage({ commit }, language) {
-    commit('SET_LANGUAGE', language)
+    commit("SET_LANGUAGE", language)
   },
 }
 

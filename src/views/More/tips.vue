@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import logoImage from "@/assets/image/cat.jpg"
+import logoImage from "assets/image/cat.jpg"
 export default {
   //组件名
   name: "Tips",

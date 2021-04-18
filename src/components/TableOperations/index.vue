@@ -1,7 +1,7 @@
 <template>
   <div class="table-operations">
     <template v-for="(item, index) in trueStatusOperations">
-      <rz-tooltip
+      <el-tooltip
         v-if="index < visibleSize && item.disabled"
         :content="item.disabledDescription"
         :key="index"
@@ -9,38 +9,38 @@
       >
         <span
           v-if="index < visibleSize"
-          @click="handleTableOperationsClick(item.type)"
           class="table-operations-item table-operations-item-disabled"
+          @click="handleTableOperationsClick(item.type)"
         >{{ item.text }}</span>
-      </rz-tooltip>
+      </el-tooltip>
       <span
-        :key="index"
         v-if="index < visibleSize && !item.disabled"
-        @click="handleTableOperationsClick(item.type)"
+        :key="index"
         class="table-operations-item"
+        @click="handleTableOperationsClick(item.type)"
       >{{ item.text }}</span>
     </template>
     <rz-popover v-if="trueStatusOperations.length > visibleSize" popper-class="table-operations-more" placement="bottom">
       <div slot="reference" class="table-operations-item"><i class="rz-icon-more"></i></div>
       <template v-for="(item, index) in trueStatusOperations">
-        <rz-tooltip
+        <el-tooltip
           v-if="index >= visibleSize && item.disabled"
           :content="item.disabledDescription"
           :key="index"
           placement="top"
         >
           <span
-            :key="index"
             v-if="index >= visibleSize"
-            @click="handleTableOperationsClick(item.type)"
+            :key="index"
             class="table-operations-more-item table-operations-more-item-disabled"
+            @click="handleTableOperationsClick(item.type)"
           >{{ item.text }}</span>
-        </rz-tooltip>
+        </el-tooltip>
         <span
-          :key="index"
           v-if="index >= visibleSize && !item.disabled"
-          @click="handleTableOperationsClick(item.type)"
+          :key="index"
           class="table-operations-more-item"
+          @click="handleTableOperationsClick(item.type)"
         >{{ item.text }}</span>
       </template>
     </rz-popover>

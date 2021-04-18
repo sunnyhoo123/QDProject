@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import { queryMovieOn, queryMovieDetail } from "@/api/baiduCloud"
+import { queryMovieOn, queryMovieDetail } from "api/baiduCloud"
 
 export default {
   //组件名
