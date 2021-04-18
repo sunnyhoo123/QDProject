@@ -77,14 +77,16 @@ import {
 } from "@/utils/codes.js"
 import apiService from "@/services/API-service.js"
 import { tableData } from "./mock.js"
-import ztree from "./components/zTree"
+import ztree from "./ztree.vue"
+import ztreec from "./components/zTree"
 
 export default {
   //组件名
   name: "Feature",
   components: {
     TextScroll,
-    ztree
+    ztree,
+    ztreec
   },
   //过滤器
   filters:{
@@ -327,7 +329,7 @@ export default {
       this.tempBoolean = hasClass(document.querySelector("p.special"), "special"); // true
       this.tempObj = getScrollPosition();
       // 平滑置顶
-      // scrollToTop();
+      scrollToTop();
       // 注意： querySelector() 方法只返回匹配指定选择器的第一个元素。如果你要返回所有匹配元素，请使用 querySelectorAll() 方法替代
       let a = elementContains(document.querySelector("section"), document.querySelector("img"));  // true  
       let a1 = elementContains(document.querySelector("section"), document.querySelector("section")); // false

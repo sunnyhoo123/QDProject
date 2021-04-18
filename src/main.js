@@ -21,6 +21,12 @@ import "element-ui/lib/theme-chalk/index.css"
 
 import $ from "jquery"
 window.jQuery = $;
+import "@ztree/ztree_v3/js/jquery.ztree.core.min.js"
+import "@ztree/ztree_v3/js/jquery.ztree.excheck.min.js"
+import "@ztree/ztree_v3/js/jquery.ztree.exhide.min.js"
+import "@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css"
+import "@ztree/ztree_v3/css/metroStyle/metroStyle.css"
+// import "@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css";
 
 Vue.config.productionTip = false
 
