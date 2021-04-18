@@ -19,6 +19,9 @@ import "../static/css/iconfont.css"
 // import 'iview/dist/styles/iview.css'
 import "element-ui/lib/theme-chalk/index.css"
 
+import $ from "jquery"
+window.jQuery = $;
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI, {

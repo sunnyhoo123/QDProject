@@ -22,6 +22,18 @@ export default {
         check: {
           autoCheckTrigger: true,
           enable: true
+        },
+        data: {
+          key: {
+            name: "fullName",
+          },
+        },
+        view: {
+          nameIsHTML: true,
+          showIcon: false
+        },
+        simpleData: {
+          enable: true
         }
       },
       treeObj: {},
@@ -29,14 +41,27 @@ export default {
     }
   },
   mounted() {
-    this.treeObj = $.fn.zTree.init($("#treeDemo"), this.setting, zTreeNodes);
-    this.treeObj.expandAll(true);
-    let a = this.treeObj.getNodes();
-    console.log(a);
+    this.initTree();
   },
   methods: {
+    initTree() {
+      const formatName = (nodes) => {
+        nodes.forEach(node => {
+          const { name, children } = node;
+          node.fullName = `${name}`
+          if(children && children.length) {
+            formatName(children);
+          }
+        })
+      }
+      formatName(zTreeNodes);
+      console.log(zTreeNodes);
+      this.treeObj = $.fn.zTree.init($("#treeDemo"), this.setting, zTreeNodes);
+      let allNodes = this.treeObj.getNodes();
+      console.log(allNodes);
+      this.treeObj.expandAll(true);
+    },
     filterTree() {
-      console.log( 88);
       this.filterTreeList = _.cloneDeep(this.treeObj.transformToArray(this.treeObj.getNodes()));
       console.log(this.filterTreeList, 88);
       const reg = new RegExp(`(${this.inputText.replace(/([/*.\\])/g, "\\$1")})`, "ig");
@@ -44,10 +69,10 @@ export default {
       const highlight = (str) => str.replace(reg, `<span style="color:#fc652f;margin:0">$1</span>`);
       const filter = (nodes) => {
         nodes.forEach(node => {
-          const { main, sub, name, code, children } = node;
+          const { main, fullName, sub, name, code, children } = node;
           // let main = main;
           // let sub = sub;
-          if(matcher(name) || matcher(sub)) {
+          if(matcher(fullName)) {
             // if(!node.isHidden) {
             //   this.setVisible(node.getPath(), true);
             // }
@@ -56,7 +81,7 @@ export default {
             this.setVisible([node], false);
           }
           // node.fullName = `${highlight(main)}`;
-          node.name = `${highlight(name)}`;
+          node.fullName = `${highlight(fullName)}`;
           this.treeObj.updateNode(node, false);
           if(children && children.length) {
             filter(node.children);
@@ -64,9 +89,10 @@ export default {
         })
       }
       // filter(this.treeObj.transformToZtreeNodes(this.filterTreeList.filter(i => i.isHidden === false)));
-      console.log(this.treeObj, 900)
-      filter(this.treeObj.transformTozTreeNodes(this.filterTreeList));
-      this.treeObj.expendAll(true);
+      const treeNodes = this.treeObj.transformTozTreeNodes(this.filterTreeList);
+      console.log(treeNodes, 900);
+      filter(treeNodes);
+      this.treeObj.expandAll(true);
     },
     setVisible(nodes, visible) {
       nodes.forEach(node => {
@@ -83,6 +109,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang='less' scoped>
+.fullName {
+  color: red;
+}
 </style>
