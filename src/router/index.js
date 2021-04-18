@@ -1,42 +1,21 @@
 import Vue from "vue"
 import Router from "vue-router"
-// import home from '@/components/Home/home'
-// import Demo from '@/components/Demo'
-// import ListAbout from '@/views/ListAbout/ListAbout'
-// import NumberAbout from '@/views/NumberAbout/NumberAbout'
-// import More from '@/views/More/More'
+import _ from "lodash"
 import home from "@/router/map/home.js"
 import Redirect from "@/router/map/Redirect.js"
-import {
-  elUICom, vueCom, listCom, numberCom, moreCom, funcCom,
-  feaCom, KeyCodeDelCom, mapCom, echartsproCom, echartsLineCom, observeListCom, routerCom,
-  nameCom, nameComTwo, defaultCom, profileCom, redirectRouter
-} from "./map/JsAbout"
-
+import pageRoute from "./map/page"
 Vue.use(Router)
 
+const routes = []
+_.map(pageRoute, (item) => {
+  routes.push(item)
+})
+
 export default new Router({
-  // mode: "history",
+  mode: "history",
   routes: [
     home, //主页
-    elUICom,
-    listCom,
-    observeListCom,
-    numberCom,
-    moreCom,
-    funcCom,
-    feaCom,
-    KeyCodeDelCom,
-    mapCom,
-    echartsproCom,
-    vueCom,
-    routerCom,
-    nameCom,
-    nameComTwo,
-    defaultCom,
-    profileCom,
-    redirectRouter,
-    echartsLineCom,
+    ...routes,
     Redirect, //路由重定向(访问不存在的页面时，重定向到这个页面) 放最后面，可以加个404页面
   ]
 })

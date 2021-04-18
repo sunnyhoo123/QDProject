@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@ztree/ztree_v3": "^3.5.46",
     "axios": "^0.21.1",
     "echarts": "^4.2.1",
     "element-ui": "^2.13.0",
@@ -19,6 +20,7 @@
     "highlight.js": "^9.17.1",
     "html-loader": "^0.5.5",
     "iview": "^3.2.1",
+    "jquery": "^3.5.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.19",

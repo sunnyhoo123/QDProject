@@ -1,6 +1,6 @@
 <template>
   <div class="elselectcom">
-    <el-select v-model="food" placeholder="请选择">
+    <el-select ref="mySelect" v-model="food" placeholder="请选择">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -8,7 +8,7 @@
         :value="item.label">
       </el-option>
     </el-select>
-    <span>
+    <span @click="focusInput">
       您选择的是：{{ food }}
     </span>
   </div>
@@ -18,10 +18,8 @@
 <script>
 export default {
   name: "Elselectcom",
-  components: {
-  },
   data() {
-    return {
+    return {      
       options: [{
         value: "选项0",
         label: "所有"
@@ -47,6 +45,13 @@ export default {
   computed: {
   },
   methods: {
+    focusInput() {
+      if (this.$refs.mySelect == document.activeElement) {
+        console.log("获取焦点");
+      } else {
+        console.log("未获取焦点");
+      }
+    }
   },
 }
 </script>
