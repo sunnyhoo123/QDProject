@@ -1,15 +1,17 @@
-const listComponent = resolve => require(["@/views/ListAbout/ListAbout.vue"], resolve)
+// 数组
+const listComponent = resolve => require(["@/views/ListAbout"], resolve)
 const observeListComponent = resolve => require(["@/views/ListAbout/ObserveList.vue"], resolve)
-const numberComponent = resolve => require(["@/views/NumberAbout/NumberAbout.vue"], resolve)
+// 值类型
+const numberComponent = resolve => require(["@/views/BaseType"], resolve)
 // more
-const moreComponent = resolve => require(["@/views/More/More.vue"], resolve)
+const moreComponent = resolve => require(["@/views/More"], resolve)
 const webSocketComponent = resolve => require(["@/views/More/WebSocket/index.vue"], resolve)
-
+// 功能
 const feaComponent = resolve => require(["@/views/Feature"], resolve)
 const KeyCodeDelComponent = resolve => require(["@/views/Feature/KeyCodeDel.vue"], resolve)
 const PersonalCenterComponent = resolve => require(["@/views/Feature/PersonalCenter/index.vue"], resolve)
-
-const funcComponent = resolve => require(["@/views/func/func.vue"], resolve)
+// 函数
+const funcComponent = resolve => require(["@/views/func"], resolve)
 const tipsComponent = resolve => require(["@/views/more/tips.vue"], resolve)
 const mapComponent = resolve => require(["@/views/map/mapView.vue"], resolve)
 const echartsproComponent = resolve => require(["@/views/map/echartsView.vue"], resolve)
@@ -18,7 +20,6 @@ const echartsLineComponent = resolve => require(["@/views/map/echartsLine.vue"],
 // Vue相关
 const vueComponent = resolve => require(["@/views/VueAbout"], resolve)
 const parentComponent = resolve => require(["@/views/VueAbout/components/slotCom.vue"], resolve)
-// const uploadComponent = resolve => require(["@/views/Feature/components/Example/upload.vue"], resolve)
 
 // router
 const routerComponent = resolve => require(["@/views/VueAbout/components/VueRouter/index.vue"], resolve)
@@ -120,9 +121,9 @@ const listCom = {
   name: "ListAbout",
 }
 const numberCom = {
-  path: "/numberabout",
+  path: "/baseType",
   component: numberComponent,
-  name: "NumberAbout",
+  name: "BaseType",
 }
 const moreCom = {
   path: "/more",
@@ -147,12 +148,6 @@ const feaCom = {
   path: "/fea",
   component: feaComponent,
   name: "fea",
-  // children: [
-  //   {
-  //     path: "/fea/upload",
-  //     component: uploadComponent,
-  //   },
-  // ]
 }
 const KeyCodeDelCom = {
   path: "/KeyCodeDel",

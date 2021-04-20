@@ -39,7 +39,7 @@ export const queryAvatar = async(params, callback, options) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    responseType: "blob"
+    responseType: "blob"  //下载文件，转换为blob时，接口需要添加responseType
   });
   return res.data
 }

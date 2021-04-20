@@ -2,17 +2,21 @@
   <div>
     <el-input v-model="inputText" @input="filterTree"></el-input>
     <ul id="treeDemo" class="ztree"></ul>
+    <el-button type="primary" icon="el-icon-back" circle @click="getNode"></el-button>
   </div>
 </template>
 
 <script>
 import _ from "lodash";
 import $ from "jquery"
-import "@ztree/ztree_v3/js/jquery.ztree.core.js"
-import "@ztree/ztree_v3/js/jquery.ztree.excheck.js"
+import "@ztree/ztree_v3/js/jquery.ztree.core.min.js"
+import "@ztree/ztree_v3/js/jquery.ztree.excheck.min.js"
+import "@ztree/ztree_v3/js/jquery.ztree.exhide.min.js"
 import "@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css"
+// import "@ztree/ztree_v3/css/metroStyle/metroStyle.css"
 import { zTreeNodes } from "../mock"
 // import { filterTree } from  "@/utils/Filter/treeFilter.js"
+
 export default {
   name: "Ztree",
   data() {
@@ -44,6 +48,7 @@ export default {
     this.initTree();
   },
   methods: {
+    // 初始化
     initTree() {
       const formatName = (nodes) => {
         nodes.forEach(node => {
@@ -61,6 +66,7 @@ export default {
       console.log(allNodes);
       this.treeObj.expandAll(true);
     },
+    // 搜索
     filterTree() {
       this.filterTreeList = _.cloneDeep(this.treeObj.transformToArray(this.treeObj.getNodes()));
       console.log(this.filterTreeList, 88);
@@ -80,8 +86,7 @@ export default {
           }else {
             this.setVisible([node], false);
           }
-          // node.fullName = `${highlight(main)}`;
-          node.fullName = `${highlight(fullName)}`;
+          node.fullName = `${highlight(name)}`;
           this.treeObj.updateNode(node, false);
           if(children && children.length) {
             filter(node.children);
@@ -104,6 +109,12 @@ export default {
           dom.hide();
         }
       })
+    },
+    getNode() {
+      let nodes = this.treeObj.getSelectedNodes();
+      let nodes2 = this.treeObj.getNodesByParam("isHidden", true);
+      console.log( nodes, nodes2)
+      this.treeObj.hideNodes(nodes);
     }
   }
 }

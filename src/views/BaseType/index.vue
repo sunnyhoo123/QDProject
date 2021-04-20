@@ -1,5 +1,5 @@
 <template>
-  <div id="numberabout">
+  <div id="baseType">
     <div>数字专场</div>
     <el-input v-model.number="original" class="input-num" placeholder="输入要拆分的数字" type="number"></el-input>
     <el-input :value="original" class="input-num" type="number" @input="typeTest"></el-input>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "Numberabout",
+  name: "BaseType",
   data(){
     return{
       original:0,
@@ -20,10 +20,9 @@ export default {
     }
   },
   methods: {
-    PrefixInteger(num,n){
-      let originaValue;
-      originaValue = String(this.original).split("")
-      console.log((Array(9).join(0)+this.original).slice(-9))
+    PrefixInteger(){
+      let originaValue = String(this.original).split("")
+      console.log((Array(9).join(0)+this.original).slice(-9), originaValue)
     },
     precisionTest(){
       // 解决精度问题，toPrecision：把数字格式化为指定的长度

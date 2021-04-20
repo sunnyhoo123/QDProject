@@ -1,21 +1,13 @@
 <template>
   <div id="app">
     <router-view/>
-    <!-- <qee>
-      <p>父组件插槽</p>
-    </qee> -->
-    <!-- <p>父组件插槽</p> -->
   </div>
 </template>
 
 <script>
 
-// import qee from './components/Home/home.vue'
 export default {
   name: "App",
-  components: {
-    // qee
-  }
 }
 </script>
 

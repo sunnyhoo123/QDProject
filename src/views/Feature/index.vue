@@ -76,9 +76,7 @@ import {
   isBrowserTabFocused, scrollToTop
 } from "@/utils/codes.js"
 import apiService from "@/services/API-service.js"
-import { tableData } from "./mock.js"
-import ztree from "./ztree.vue"
-import ztreec from "./components/zTree"
+import ztree from "./components/zTree"
 
 export default {
   //组件名
@@ -86,7 +84,6 @@ export default {
   components: {
     TextScroll,
     ztree,
-    ztreec
   },
   //过滤器
   filters:{
@@ -105,9 +102,6 @@ export default {
         return (value/1000000).toFixed(2)+"M"
       }
     }
-  },
-  props: {
-
   },
   //实例的数据对象
   data() {
@@ -301,7 +295,7 @@ export default {
       // }).catch()
 
       apiService.TestURL.kuaidi().then(res => {
-        // this.getResult = res.results
+        this.getResult = res.results
       }).catch();
     },
     openMenu(e) {

@@ -54,7 +54,7 @@ export default {
     // 在钩子函数created中定义一个变量来使用常量
     this.menuList = [
       { routerLink: "elUI", title: "Element UI", iconClass: "el-icon-eleme" },
-      { routerLink: "./numberabout", title: "值类型", iconClass: "el-icon-document"  },
+      { routerLink: "./baseType", title: "值类型", iconClass: "el-icon-document"  },
       { routerLink: "./listabout", title: "Array", iconClass: "el-icon-bell"  },
       { routerLink: "./fea", title: "Feature", iconClass: "el-icon-menu"  },
       { routerLink: "./func", title: "Function", iconClass: "el-icon-reading"  },
