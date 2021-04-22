@@ -1,10 +1,23 @@
-const BASE_URL = ""
+
+
 /**
  * @description: 在本地dev下默认拿url，如果是线上环境拿当前的host
  * @param {String} downloadUrl 
  * @param {String} fileName 
  * @returns {type}
  */
+const userAgent = navigator.userAgent;
+const isIE = (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) || (userAgent.indexOf("Trident") > -1 && userAgent.indexOf("rv:11.0") > -1)
+
+/**
+ * @description: 在本地dev下默认拿url，如果是线上环境拿当前的host
+ * @param {String} downloadUrl 
+ * @param {String} fileName 
+ * @returns {type}
+ */
+
+const BASE_URL = ""
+
 function download(downloadUrl, fileName) {
   const down = document.createElement("a");
   let host ="";
@@ -65,5 +78,6 @@ const downloadFile = function(blob, fileName, that) {
 export {
   download,
   downloadGetFile,
-  downloadFile
+  downloadFile,
+  isIE
 }

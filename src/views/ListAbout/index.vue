@@ -2,19 +2,19 @@
   <div id="list-about">
     <el-page-header content="详情页面" @back="goBack">
     </el-page-header>
-    <div>Array数组专场</div>
-    <el-button type="primary" @click="findFun">find方法</el-button>
-    <el-button type="primary" @click="filterFun">filter方法</el-button>
-    <el-button type="primary" @click="forEachFun">forEach方法</el-button>
-    <el-button type="primary" @click="fromFun">from方法</el-button>
-    <el-button type="primary" @click="mapFun">map方法</el-button>
-    <el-button type="primary" @click="sortFun">sort方法</el-button>
-    <el-button type="primary" @click="reverseFun">reverse方法</el-button>
-    <el-button type="primary" @click="testSet">响应更改数据</el-button>
-    <el-button type="primary" @click="unique">数组去重</el-button>
-    <el-button type="primary" @click="extension">常用技巧</el-button>
-    <div>{{ example2 }}</div>
-    <template v-for="(item,index) of example2">
+    <el-button type="text" @click="findFun">find</el-button>
+    <el-button type="text" @click="filterFun">filter</el-button>
+    <el-button type="text" @click="forEachFun">forEach</el-button>
+    <el-button type="text" @click="fromFun">from</el-button>
+    <el-button type="text" @click="mapFun">map</el-button>
+    <el-button type="text" @click="sortFun">sort</el-button>
+    <el-button type="text" @click="reverseFun">reverse</el-button>
+    <el-button type="text" @click="testSet">响应更改数据</el-button>
+    <el-button type="text" @click="unique">数组去重</el-button>
+    <el-button type="text" @click="extension">常用技巧</el-button>
+    <el-button type="text" @click="queryApi">接口获取数组</el-button>
+    <div>{{ stringList }}</div>
+    <template v-for="(item,index) of stringList">
       <span :key="index">{{ item }},</span>
     </template>
     <router-link to="./observelist">观察数组</router-link>
@@ -22,21 +22,19 @@
 </template>
 
 <script>
+import { queryList } from "api/eolinker.js"
+
 export default {
   name: "Listabout",
   data(){
     return{
-      tempArray:[],
-      example1:{
-        items:{
-          messages:23,
-          messages1:123,
-          messages2:3333,
-        }
-      },
-      example2:["123","324","323","34242","12345"],
-      example3:[{ latitude:1,longitude:32 },{ latitude:2 },{ latitude:3 },{ latitude:4 },{ latitude:5 }],
-      example4:[2,0,1,15,3,7],
+      numList: [2,0,1,15,3,7],
+      stringList: ["123","324","323","34242","12345"],
+      objectList:[
+        { latitude:1, longitude:32 },
+        { latitude:2 },{ latitude:3 },{ latitude:4 },{ latitude:5 }
+      ],
+      apiData: []
     };
   },
   methods: {
@@ -45,7 +43,7 @@ export default {
     },
     findFun(){
       //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
-      let findResult = this.example4.find((value)=>{
+      let findResult = this.numList.find((value)=>{
         return value > 1
       })
       console.log(findResult) // 15
@@ -54,12 +52,12 @@ export default {
       // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
       // 注意： filter() 不会对空数组进行检测。
       // 注意： filter() 不会改变原始数组。
-      let filterResult = this.example4.filter(function(value){ // eslint-disable-line
+      let filterResult = this.numList.filter(function(value){ // eslint-disable-line
         return value >= 1
       })
 
       // 返回的是指定的值，而不是指定值在字符串中的位置
-      let filterResult1 = this.example2.filter(function(value){
+      let filterResult1 = this.stringList.filter(function(value){
         return value.match("123")
       })
 
@@ -71,19 +69,19 @@ export default {
     },
     mapFun(){
       // map与filter的区别是：map会对每个元素进行处理，并返回每个元素，而filter只会返回符合条件的元素
-      this.tempArray = this.example3.map((item)=>{
+      const tempArray = this.objectList.map((item)=>{
         return {
           ...item,   //map这样写不影响原有对象
           latitude:item.latitude + 0.1
         }
       })
-      console.log(this.tempArray)
+      console.log(tempArray)
     },
     forEachFun(){
-      this.example3.forEach(function(item, index){ // eslint-disable-line
+      this.objectList.forEach(function(item, index){ // eslint-disable-line
         item.latitude = item.latitude +0.1
       })
-      console.log(this.example3,"temp")
+      console.log(this.objectList,"temp")
     },
     fromFun(){
       // from() 方法用于通过拥有 length 属性的对象或可迭代的对象来返回一个数组。
@@ -92,33 +90,33 @@ export default {
       console.log(arr)  //[10, 20, 30]
     },
     sortFun(){
-      this.example4.sort((a,b)=>(
+      this.numList.sort((a,b)=>(
         a-b
       ))
-      console.log(this.example4) //改变了原来的数组
+      console.log(this.numList) //改变了原来的数组
       // 冒泡排序
-      for(let i=0;i<this.example4.length-1;i++) {
-        for(let y=0;y<this.example4.length-1-i;y++) {
-          let a = this.example4[y];
-          let b = this.example4[y+1];
+      for(let i=0;i<this.numList.length-1;i++) {
+        for(let y=0;y<this.numList.length-1-i;y++) {
+          let a = this.numList[y];
+          let b = this.numList[y+1];
           if(a > b) {
-            this.example4[y] = this.example4[y+1];
-            this.example4[y+1] = a;
+            this.numList[y] = this.numList[y+1];
+            this.numList[y+1] = a;
           }
         }
       }
-      console.log(this.example4) //改变了原来的数组
+      console.log(this.numList) //改变了原来的数组
     },
     testSet(){
       // v-for 列表渲染，数组无法检测：当你利用索引直接设置一个项时；当你修改数组的长度时
-      // this.$set(this.example2,2,'222')
-      this.example2.length = 3;
-      this.example2[1]="666"
-      console.log(this.example2)
+      // this.$set(this.stringList,2,'222')
+      this.stringList.length = 3;
+      this.stringList[1]="666"
+      console.log(this.stringList)
     },
     reverseFun(){
       // reverse() 方法用于颠倒数组中元素的顺序。
-      console.log(this.example4.reverse())  // [7, 3, 15, 1, 0]
+      console.log(this.numList.reverse())  // [7, 3, 15, 1, 0]
 
       // 反转字符串
       let s1,s = "hello 123"
@@ -160,6 +158,10 @@ export default {
       const arr = [1,2,12];
       const obj = { ...arr };
       console.log(obj)
+    },
+    async queryApi() {
+      const { data } = await queryList();
+      this.apiData = data.plan;
     }
   }
 }
