@@ -10,6 +10,7 @@ export const navList = [
     title: "Form",
     path: "/elForm/",
     elComs: {
+      elInputCom: "Input 输入框",
       elSelectCom: "Select 选择器",
       elUploadCom: "Upload 上传",
       elFormCom: "Form 表单"

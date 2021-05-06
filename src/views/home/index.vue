@@ -7,6 +7,7 @@
         <!-- 走马灯 -->
         <!-- <carousel></carousel> -->
         <movie v-if="movie.opened"></movie>
+        <!-- 首页大图 -->
         <typeOut v-else></typeOut>
       </div>
       <div class="main-right">

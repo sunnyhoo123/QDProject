@@ -1,5 +1,6 @@
 <template>
   <div class="el-ui">
+    <!-- 左侧选项 -->
     <elLH @showPage="showPage"></elLH>
     <div class="page-component__content">
       <el-header class="headerWrapper">

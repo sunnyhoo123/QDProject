@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import { queryList } from "api/eolinker.js"
+import api from "api/eolinker.js"
+import { downloadFile } from "utils/common.js"
 
 export default {
   name: "Listabout",
@@ -160,8 +161,20 @@ export default {
       console.log(obj)
     },
     async queryApi() {
-      const { data } = await queryList();
+      const { data } = await api.queryList();
+      const params = {
+        id: 23
+      }
+      api.queryList({ ...params }).then(res => {
+        console.log(res);
+      }).catch(() => {
+        this.$message.error("系统异常");
+      });
       this.apiData = data.plan;
+      api.download({ id: 23 }).then(res => {
+        let blob = new Blob([res], { type: "application/octet-stream" });
+        downloadFile(blob, "12.xlsx", this.$message);
+      })
     }
   }
 }

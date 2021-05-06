@@ -31,9 +31,19 @@ const RouterDefault = resolve => require(["@/views/VueAbout/components/VueRouter
 const elUIComponent = resolve => require(["@/views/elementCom"], resolve)
 const elTableComponent = resolve => require(["@/views/elementCom/elData/eltable.vue"], resolve)
 const elTagComponent = resolve => require(["@/views/elementCom/elData/elTagCom.vue"], resolve)
-const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
+
+/**
+ * Form
+ * @param elInputComponent
+ * @param elFormComponent
+ * @param elFormComponent
+ * @param elFormComponent
+*/
+const elInputComponent = resolve => require(["@/views/elementCom/elForm/elInput.vue"], resolve)
 const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelect.vue"], resolve)
+const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
 const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)
+
 const elPopoverComponent = resolve => require(["@/views/elementCom/elOthers/elPopoverCom.vue"], resolve)
 const elTooltipComponent = resolve => require(["@/views/elementCom/elOthers/elTooltipCom.vue"], resolve)
 
@@ -72,6 +82,10 @@ const elUICom = {
     {
       path: "/elementCom/elForm/elSelectCom",
       component: elSelectComponent,
+    },
+    {
+      path: "/elementCom/elForm/elInputCom",
+      component: elInputComponent,
     },
     {
       path: "/elementCom/elForm/elFormCom",
