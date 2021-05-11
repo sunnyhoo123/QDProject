@@ -1,27 +1,4 @@
 <template>
-  <!-- 天气预报: 百度API -->
-  <!-- <div class="weather">
-    <el-tooltip effect="light" content="点击获取城市" placement="top">
-      <a @click="getCity">{{ $t('home.weather') }}</a>
-    </el-tooltip>
-    <el-select v-model="city" filterable placeholder="请选择城市" @change="handleChange">
-      <el-option
-        v-for="item in options"
-        :key="item.cityid"
-        :label="item.city"
-        :value="item.cityid">
-      </el-option>
-    </el-select>
-    <div v-if="weather">
-      <div>{{ weather.week }} / {{ weather.date }}</div>
-      <i :style="{fontSize: '48px'}" class="el-icon-sunny"></i>
-      <h1>{{ weather.weather }}</h1>
-      <h1>{{ weather.temp }} °C</h1>
-      <div>{{ weather.templow }} °C ~ {{ weather.temphigh }} °C</div>
-      <div>{{ weather.winddirect }} : {{ weather.windpower }}</div>
-    </div>
-    <div v-else>{{ weatherMsg }}</div>
-  </div> -->
   <div class="weather">
     <a>{{ $t('home.weather') }}</a>
     <el-tag type="danger" effect="dark">1</el-tag>

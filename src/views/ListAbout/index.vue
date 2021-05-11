@@ -1,18 +1,20 @@
 <template>
   <div id="list-about">
-    <el-page-header content="详情页面" @back="goBack">
-    </el-page-header>
-    <el-button type="text" @click="findFun">find</el-button>
+    <fieldset>
+      <legend>JavaScript 版本:ECMAScript 6</legend>
+      <el-button type="text" @click="findFun">find</el-button>
+      <el-button type="text" @click="findFun">findIndex</el-button>
+    </fieldset>
     <el-button type="text" @click="filterFun">filter</el-button>
     <el-button type="text" @click="forEachFun">forEach</el-button>
     <el-button type="text" @click="fromFun">from</el-button>
     <el-button type="text" @click="mapFun">map</el-button>
     <el-button type="text" @click="sortFun">sort</el-button>
     <el-button type="text" @click="reverseFun">reverse</el-button>
-    <el-button type="text" @click="testSet">响应更改数据</el-button>
-    <el-button type="text" @click="unique">数组去重</el-button>
-    <el-button type="text" @click="extension">常用技巧</el-button>
-    <el-button type="text" @click="queryApi">接口获取数组</el-button>
+    <el-button type="primary" @click="testSet">响应更改数据</el-button>
+    <el-button type="primary" @click="unique">数组去重</el-button>
+    <el-button type="primary" @click="extension">常用技巧</el-button>
+    <el-button type="primary" @click="queryApi">接口获取数组</el-button>
     <div>{{ stringList }}</div>
     <template v-for="(item,index) of stringList">
       <span :key="index">{{ item }},</span>
@@ -24,6 +26,7 @@
 <script>
 import api from "api/eolinker.js"
 import { downloadFile } from "utils/common.js"
+const originArray = [false, true, undefined, null, NaN, 0, 1, {}, {},[],[], "a", "a", NaN, { name: 1 },{ name:1 }];
 
 export default {
   name: "Listabout",
@@ -39,9 +42,6 @@ export default {
     };
   },
   methods: {
-    goBack() {
-      this.$router.go(-1);
-    },
     findFun(){
       //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
       let findResult = this.numList.find((value)=>{
@@ -128,10 +128,11 @@ export default {
       console.log(s1)  // 321 olleh
     },
     unique(){
+      // 对象无法去重
       Array.prototype.uniq = function() {
         var arr = [];
         var flag = true;
-        console.log(this, "this")
+        console.log(this, "this is a list")
         this.forEach(function(item) {
         // 排除 NaN (重要！！！)
           if (item != item) {
@@ -143,8 +144,8 @@ export default {
         });
         return arr;
       };
-      let originArray = [false, true, undefined, null, NaN, 0, 1, {}, {},[],[], "a", "a", NaN];
       console.log(this.unique1(originArray))
+      console.log(this.unique2(originArray))
       console.log(originArray.uniq());
     },
     unique1(arr) {
@@ -152,7 +153,14 @@ export default {
         console.log("type errow!");
         return;
       }
+      // 对象无法去重
       return Array.from(new Set(arr));
+    },
+    unique2(arr) {
+      var obj = {};
+      return arr.filter((item) => {
+        return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+      });
     },
     extension() {
       // 数组转化位对象（Array to Object）

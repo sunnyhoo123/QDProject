@@ -9,9 +9,14 @@ export const queryKuaidi = async(params, callback, options) => {
 }
 
 // 获取诗词
-export const queryPoem = async(params, callback, options) => {
-  // https://www.meiriyiyan.com/api/v1/one.svg (svg格式)
+export const queryPoems = async(params, callback, options) => {
   const res = await axios.get("https://www.meiriyiyan.com/api/v1/");
+  return res.data;
+}
+
+// 获取诗词
+export const queryPoem = async(params, callback, options) => {
+  const res = await axios.get("https://tenapi.cn/yiyan/");
   return res.data;
 }
 
@@ -45,11 +50,11 @@ export const queryAvatar = async(params, callback, options) => {
 }
 
 // 获取诗词
-export const queryWea = async( params ) => {
+export const getyiyan = async( params ) => {
   const res = await axios({
     params,
     method: "get",
-    url: "https://tenapi.cn/wether"
+    url: "https://tenapi.cn/yiyan"
   });
   return res.data;
 }
