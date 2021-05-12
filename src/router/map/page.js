@@ -39,7 +39,7 @@ const elTagComponent = resolve => require(["@/views/elementCom/elData/elTagCom.v
  * @param elFormComponent
  * @param elFormComponent
 */
-const elInputComponent = resolve => require(["@/views/elementCom/elForm/elInput.vue"], resolve)
+const elInputComponent = resolve => require(["@/views/elementCom/elForm/elInputCom.vue"], resolve)
 const elSelectComponent = resolve => require(["@/views/elementCom/elForm/elSelect.vue"], resolve)
 const elUploadComponent = resolve => require(["@/views/elementCom/elForm/elUploadCom.vue"], resolve)
 const elFormComponent = resolve => require(["@/views/elementCom/elForm/elFormCom.vue"], resolve)

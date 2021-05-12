@@ -1,5 +1,7 @@
 <template>
   <div class="func">
+    <el-input-number v-model="num" :min="1" :max="10" label="描述文字" @change="handleChange"></el-input-number>
+    <el-input-number v-model="numSe" :min="1" :max="10" label="描述文字" @change="handleChangeSe"></el-input-number>
     <el-button type="primary" @click="paramTest(1)">参数测试</el-button>
     <el-button type="primary" @click="ternary">三目运算</el-button>
     <el-button type="primary" @click="asyncApi">异步执行</el-button>
@@ -8,6 +10,7 @@
     <el-button type="primary" @click="varHoisting">变量提升</el-button>
     <el-button type="primary" @click="overload">没有重载</el-button>
     <el-button type="primary" @click="addSelf">对象item自增</el-button>
+    <el-button type="primary" @click="recursion">递归</el-button>
     <button @click="$event.target.style.display = 'none'">点击消失</button>
   </div>
 </template>
@@ -23,12 +26,20 @@ export default {
     return {
       show: true,
       originString: "this is a dog",
-      id: 0
+      id: 0,
+      num: 0,
+      numSe: 0,
     };
   },
 
   //方法
   methods: {
+    handleChange(value) {
+      this.num = value;
+    },
+    handleChangeSe(value) {
+      this.numSe = value;
+    },
     paramTest(a, b) {
       console.log(a, b);
     },
@@ -118,6 +129,24 @@ export default {
       itemList.push([{ caseId: this.id++ }]);
       console.log(itemList, "itemList");
     },
+    recursion() {
+      // 计算1+2...+m
+      const count = (m) => {
+        if(m === 1 ) {
+          return 1;
+        }
+        return m + count(m-1);
+      };
+      // 计算1+2...+m
+      const countPlus = (m, n) => {
+        if(m === n ) {
+          return m;
+        }
+        return m + countPlus(m + 1, n);
+      };
+      console.log(count(Number(this.num)));
+      console.log(countPlus(this.num, this.numSe));
+    }
   }
 };
 </script>
