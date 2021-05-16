@@ -1,16 +1,11 @@
 <template>
   <div id="list-about">
+    <el-button v-for="item in btnObj['es5']" :key="item.methodName" type="text" @click="item.func">{{ item.methodName }}</el-button>
     <fieldset>
       <legend>JavaScript 版本:ECMAScript 6</legend>
-      <el-button type="text" @click="findFun">find</el-button>
-      <el-button type="text" @click="findFun">findIndex</el-button>
+      <!-- ES6 提供三个新的方法——entries()，keys()和values()——用于遍历数组、它们都返回一个遍历器对象 -->
+      <el-button v-for="item in btnObj['es6']" :key="item.methodName" type="text" @click="item.func">{{ item.methodName }}</el-button>
     </fieldset>
-    <el-button type="text" @click="filterFun">filter</el-button>
-    <el-button type="text" @click="forEachFun">forEach</el-button>
-    <el-button type="text" @click="fromFun">from</el-button>
-    <el-button type="text" @click="mapFun">map</el-button>
-    <el-button type="text" @click="sortFun">sort</el-button>
-    <el-button type="text" @click="reverseFun">reverse</el-button>
     <el-button type="primary" @click="testSet">响应更改数据</el-button>
     <el-button type="primary" @click="unique">数组去重</el-button>
     <el-button type="primary" @click="extension">常用技巧</el-button>
@@ -33,21 +28,98 @@ export default {
   data(){
     return{
       numList: [2,0,1,15,3,7],
+      fruits: ["Banana", "Apple", "Orange", "Mango", "Apple"],
       stringList: ["123","324","323","34242","12345"],
       objectList:[
         { latitude:1, longitude:32 },
         { latitude:2 },{ latitude:3 },{ latitude:4 },{ latitude:5 }
       ],
-      apiData: []
+      apiData: [],
+      btnObj:{
+        es5: [
+          { methodName: "concat", func: this.concatFun },
+          { methodName: "every", func: this.everyFun },
+          { methodName: "filter", func: this.filterFun },
+          { methodName: "forEach", func: this.forEachFun },
+          { methodName: "map", func: this.mapFun },
+          { methodName: "indexOf", func: this.indexOfFun },
+          { methodName: "lastIndexOf", func: this.lastIndexOfFun },
+          { methodName: "join", func: this.joinFun },
+          { methodName: "reverse", func: this.reverseFun },
+          { methodName: "isArray", func: this.isArrayFun },
+          { methodName: "pop", func: this.popFun },
+          { methodName: "push", func: this.pushFun },
+          { methodName: "shift", func: this.shiftFun },
+          { methodName: "unshift", func: this.unshiftFun },
+          { methodName: "reduce", func: this.reduceFun },
+          { methodName: "reduceRight", func: this.reduceRightFun },
+          { methodName: "slice", func: this.sliceFun },
+          { methodName: "some", func: this.someFun },
+          { methodName: "sort", func: this.sortFun },
+          { methodName: "splice", func: this.spliceFun },
+          { methodName: "toString-", func: this.toStringFun },
+          { methodName: "valueOf-", func: this.valueOfFun },
+        ],
+        es6: [
+          { methodName: "entries", func: this.entriesFun },
+          { methodName: "keys", func: this.keysFun },
+          { methodName: "values", func: this.valuesFun },
+          { methodName: "find", func: this.filterFun },
+          { methodName: "findIndex", func: this.findIndexFun },
+          { methodName: "fill", func: this.fillFun },
+          { methodName: "from", func: this.fromFun },
+          { methodName: "includes", func: this.includesFun },
+        ]
+      } 
     };
   },
   methods: {
+    concatFun(){
+      // 一道面试题：传递两个参数m，n，返回长度为m，所有元素都为n的数组，要求不能用循环
+      const fn = (m, n) => {
+        return m ? fn(m - 1, n).concat(n) : [];
+      }
+      console.log(fn(3, 6));
+    },
+    everyFun() {
+      const checkAdult = this.numList.every(i => i > 3);
+      console.log(checkAdult);
+    },
+    entriesFun() {
+      console.log(this.fruits.entries());
+      for (let [index, elem] of this.fruits.entries()) {
+        console.log(index, elem);
+      }
+      let entries = this.fruits.entries();
+      console.log(entries.next().value);
+    },
+    valuesFun(){
+      for (let elem of ["a", "b"].values()) {
+        console.log(elem);
+      }
+    },
+    keysFun(){
+      for (let elem of ["a", "b"].keys()) {
+        console.log(elem);
+      }
+    },
+    fillFun() {
+      const newL = this.fruits.fill("Runoob");
+      const newLi = this.numList.fill("Runoob", 2, 4);
+      console.log(newL, newLi);
+    },
     findFun(){
       //find只查出第一个符合条件的结果,且结果为数组中的value类型，而filter的结果是数组
       let findResult = this.numList.find((value)=>{
         return value > 1
       })
       console.log(findResult) // 15
+    },
+    // 当数组中的元素在测试条件时返回 true 时, findIndex() 返回符合条件的元素的索引位置，之后的值不会再调用执行函数. 没有符合条件的元素返回 -1
+    // findIndex() 并没有改变数组的原始值, 对于空数组，函数是不会执行的
+    findIndexFun() {
+      const newLi = this.numList.findIndex(i => i > 4);
+      console.log(newLi);
     },
     filterFun(){
       // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
@@ -68,6 +140,19 @@ export default {
 
       console.log(filterResult, filterResult1, trueArr)
     },
+    includesFun() {
+      [1, 2, NaN].includes(NaN); // true
+      // 如果 fromIndex 为负值，计算出的索引将作为开始搜索searchElement的位置。如果计算出的索引小于 0，则整个数组都会被搜索
+      // computed index 是 fruits的长度5 + (-100) = -95
+      this.fruits.includes("Banana", -100); // true
+    },
+    isArrayFun() {
+      console.log(Array.isArray(this.fruits));
+    },
+    joinFun() {
+      const energy = this.fruits.join(" and ");
+      console.log(energy)
+    },
     mapFun(){
       // map与filter的区别是：map会对每个元素进行处理，并返回每个元素，而filter只会返回符合条件的元素
       const tempArray = this.objectList.map((item)=>{
@@ -79,8 +164,8 @@ export default {
       console.log(tempArray)
     },
     forEachFun(){
-      this.objectList.forEach(function(item, index){ // eslint-disable-line
-        item.latitude = item.latitude +0.1
+      this.objectList.forEach(function(item, index){ 
+        item.latitude = item.latitude + index
       })
       console.log(this.objectList,"temp")
     },
@@ -89,6 +174,58 @@ export default {
       // 如果对象是数组返回 true，否则返回 false
       const arr = Array.from([1, 2, 3], x => x * 10);
       console.log(arr)  //[10, 20, 30]
+    },
+    indexOfFun() {
+      const num = this.fruits.indexOf("Apple", 2);
+      console.log(num);
+    },
+    lastIndexOfFun() {
+      var a = this.fruits.lastIndexOf("Apple", 3);
+      console.log(a);
+    },
+    // 注意返回值：删除数组的最后一个元素并返回删除的元素
+    popFun() {
+      var a = this.fruits.pop();
+      console.log(a, this.fruits);
+    },
+    shiftFun() {
+      var a = this.fruits.shift();
+      console.log(a, this.fruits);
+    },
+    // 注意返回值：末尾添加一个或多个元素，并返回新的长度
+    pushFun() {
+      var a = this.fruits.push("Kiwi","Lemon","Pineapple");
+      console.log(a, this.fruits);
+    },
+    unshiftFun() {
+      var a = this.fruits.unshift("Kiwi","Lemon","Pineapple");
+      console.log(a, this.fruits);
+    },
+    // 对于空数组是不会执行回调函数的
+    reduceFun() {
+      const count = this.numList.reduce((total, currentValue) => {
+        return total + currentValue
+      })
+      console.log(count);
+    },
+    // 对于空数组是不会执行回调函数的
+    reduceRightFun() {
+      const count = this.numList.reduceRight((total, currentValue) => {
+        return total - currentValue
+      })
+      console.log(count);
+    },
+    // 注意： slice() 方法不会改变原始数组
+    sliceFun() {
+      var citrus = this.fruits.slice(1,3)
+      // 截取倒数第三个（包含）到倒数第一个（不包含）的两个元素
+      let myBest = this.fruits.slice(-3,-1);
+      // 截取最后三个元素
+      let myBest1 = this.fruits.slice(-3);
+      console.log(citrus, myBest, myBest1)
+    },
+    someFun() {
+      this.numList.some(i => i > 5); // true
     },
     sortFun(){
       this.numList.sort((a,b)=>(
@@ -107,6 +244,23 @@ export default {
         }
       }
       console.log(this.numList) //改变了原来的数组
+    },
+    spliceFun() {
+      var fruits1 = ["Banana", "Orange", "Apple", "Mango"];
+      fruits1.splice(2,1,"Lemon","Kiwi");
+      var fruits2 = ["Banana", "Orange", "Apple", "Mango"];
+      fruits2.splice(2,2);
+      var fruits3 = ["Banana", "Orange", "Apple", "Mango"];
+      fruits3.splice(2);
+      console.log(fruits1, fruits2, fruits3);
+    },
+    toStringFun() {
+      const a = this.fruits.toString();
+      console.log(a);
+    },
+    valueOfFun() {
+      const a = this.fruits.valueOf();
+      console.log(a);
     },
     testSet(){
       // v-for 列表渲染，数组无法检测：当你利用索引直接设置一个项时；当你修改数组的长度时
