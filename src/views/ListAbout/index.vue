@@ -4,7 +4,7 @@
     <fieldset>
       <legend>JavaScript 版本:ECMAScript 6</legend>
       <!-- ES6 提供三个新的方法——entries()，keys()和values()——用于遍历数组、它们都返回一个遍历器对象 -->
-      <el-button v-for="item in btnObj['es6']" :key="item.methodName" type="text" @click="item.func">{{ item.methodName }}</el-button>
+      <el-button v-for="item in btnObj['es6']" :key="item.methodName" :style="{'color': item.color}" type="text" @click="item.func">{{ item.methodName }}</el-button>
     </fieldset>
     <el-button type="primary" @click="testSet">响应更改数据</el-button>
     <el-button type="primary" @click="unique">数组去重</el-button>
@@ -61,14 +61,18 @@ export default {
           { methodName: "valueOf-", func: this.valueOfFun },
         ],
         es6: [
-          { methodName: "entries", func: this.entriesFun },
-          { methodName: "keys", func: this.keysFun },
-          { methodName: "values", func: this.valuesFun },
-          { methodName: "find", func: this.filterFun },
-          { methodName: "findIndex", func: this.findIndexFun },
-          { methodName: "fill", func: this.fillFun },
           { methodName: "from", func: this.fromFun },
+          { methodName: "of", func: this.ofFun },
+          { methodName: "copyWithin", func: this.copyWithinFun },
+          { methodName: "find", func: this.findFun, color: "BlueViolet" },
+          { methodName: "findIndex", func: this.findIndexFun, color: "BlueViolet" },
+          { methodName: "fill", func: this.fillFun },
+          { methodName: "entries", func: this.entriesFun, color: "rosybrown" },
+          { methodName: "keys", func: this.keysFun, color: "rosybrown" },
+          { methodName: "values", func: this.valuesFun, color: "rosybrown" },
           { methodName: "includes", func: this.includesFun },
+          { methodName: "flat", func: this.flatFun },
+          { methodName: "flatMap", func: this.flatMapFun },
         ]
       } 
     };
@@ -169,11 +173,51 @@ export default {
       })
       console.log(this.objectList,"temp")
     },
+    copyWithinFun() {
+      let arr = [1, 2, 3, 4, 5];
+      // 将3号位复制到0号位
+      arr.copyWithin(0, 3, 5)
+      console.log(arr);
+    },
     fromFun(){
       // from() 方法用于通过拥有 length 属性的对象或可迭代的对象来返回一个数组。
       // 如果对象是数组返回 true，否则返回 false
       const arr = Array.from([1, 2, 3], x => x * 10);
       console.log(arr)  //[10, 20, 30]
+      // 类数组对象
+      let arrayLike = {
+        "0": "a",
+        "1": "b",
+        "2": "c",
+        length: 3
+      };
+      // ES5的写法
+      var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+      // ES6的写法
+      let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+      console.log(arr1, arr2)
+    },
+    ofFun() {
+      Array() // []
+      Array(3) // [, , ,]
+      Array(3, 11, 8) // [3, 11, 8]
+      // 主要目的，是弥补数组构造函数Array()的不足
+      Array.of() // []
+      Array.of(undefined) // [undefined]
+      Array.of(1) // [1]
+      console.log(Array.of(1, 2)) // [1, 2]
+    },
+    // 拉平
+    flatFun() {
+      console.log([1, 2, [3, [4, 5]]].flat());
+      console.log([1, 2, [3, [4, 5]]].flat(2));
+      console.log([1, [2, [3]]].flat(Infinity));
+      console.log([1, 2, , 4, 5].flat()); //eslint-disable-line
+    },
+    flatMapFun() {
+      // 相当于 [[2, 4], [3, 6], [4, 8]].flat()
+      [2, 3, 4].flatMap((x) => [x, x * 2])
+      // [2, 4, 3, 6, 4, 8]
     },
     indexOfFun() {
       const num = this.fruits.indexOf("Apple", 2);
@@ -342,6 +386,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="less">
+  
 </style>
