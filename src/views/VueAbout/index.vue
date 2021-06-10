@@ -30,15 +30,17 @@
       <div class="child">
         <router-view></router-view>
       </div>
-      <!-- <div class="article-wrap">
-        <h3 v-for="(id, index) in article" :key="id" :id="id">来{{ index }}篇文章查看超长</h3>
-      </div> -->
+      
+      <!-- 自定义指令 -->
+      <input v-focus>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import { menuList } from "utils/constant.js"
+
 import bindClass from "./components/bindClass";
 import slotCom from "./components/slotCom";
 import computedCom from "./components/computedCom";
@@ -58,8 +60,9 @@ export default {
   },
   data() {
     return {
+      menuList,
       toCalc: "",
-      activeAnchor: 0,
+      activeAnchor: 1,
       curComponent: "computedCom"
     };
   },
@@ -67,20 +70,26 @@ export default {
     // window.addEventListener("scroll", this.handleScroll)
   },
   created() {
-    this.menuList = [
-      { title: "计算属性和侦听器", dataScroll: "sdf", type: "level2", value: "computedCom" },
-      { title: "class与Style绑定", dataScroll: "eee", type: "level2", value: "bindClass" },
-      { title: "条件渲染", dataScroll: "eee", type: "level2" },
-      { title: "列表渲染", dataScroll: "eee", type: "level2" },
-      { title: "事件处理", dataScroll: "eee", type: "level2", value: "eventCom" },
-      { title: "表单输入绑定", dataScroll: "eee", type: "level2" },
-      { title: "nextTick", dataScroll: "eee", type: "level2", value: "nextTickCom" },
-      { title: "深入了解组件", dataScroll: "eee", type: "level1" },
-      { title: "插槽", dataScroll: "eee", type: "level2", value: "slotCom" },
-      { title: "规模化", dataScroll: "eee", type: "level1" },
-      { title: "路由", dataScroll: "eee", type: "level2" },
-      { title: "状态管理", dataScroll: "eee", type: "level2" },
-    ]
+    // this.menuList = [
+    //   // 基础
+    //   { title: "基础", dataScroll: "eee", type: "level1" },
+    //   { title: "计算属性和侦听器", dataScroll: "sdf", type: "level2", value: "computedCom" },
+    //   { title: "class与Style绑定", dataScroll: "eee", type: "level2", value: "bindClass" },
+    //   { title: "条件渲染", dataScroll: "eee", type: "level2" },
+    //   { title: "列表渲染", dataScroll: "eee", type: "level2" },
+    //   { title: "事件处理", dataScroll: "eee", type: "level2", value: "eventCom" },
+    //   { title: "表单输入绑定", dataScroll: "eee", type: "level2" },
+    //   { title: "nextTick", dataScroll: "eee", type: "level2", value: "nextTickCom" },
+    //   // 深入了解组件
+    //   { title: "深入了解组件", dataScroll: "eee", type: "level1" },
+    //   { title: "插槽", dataScroll: "eee", type: "level2", value: "slotCom" },
+    //   // 规模化
+    //   { title: "规模化", dataScroll: "eee", type: "level1" },
+    //   { title: "路由", dataScroll: "eee", type: "level2" },
+    //   { title: "状态管理", dataScroll: "eee", type: "level2" },
+    //   // 可复用性 & 组合
+    //   { title: "可复用性 & 组合", dataScroll: "eee", type: "level1" },
+    // ]
     this.article = [
       "anchor-0",
       "anchor-1",
